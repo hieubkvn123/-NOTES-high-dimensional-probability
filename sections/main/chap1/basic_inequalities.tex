@@ -1,0 +1,59 @@
+\subsection{Basic inequalities}
+First, we revisit the definition of a random variable as well as some basic inequalities that we
+learned in introductory statistics.
+
+\begin{definition}{Random variable}
+    Let $(\Omega, \Sigma. \Pm)$ be a probability space. A random variable $X$ is defined as a mapping from the sample space $\Omega$ to $\R$:
+    \begin{align}
+        X:\Omega \to \R
+    \end{align}
+
+    \noindent $\Sigma$ is the $\sigma$-algebra containing the possible events (collection of subsets of $\Omega$) and $\Pm$ is a probability measure that assigns events with probabilities:
+    \begin{align}
+        \Pm: \Sigma \to [0,1]
+    \end{align}
+\end{definition}
+
+\noindent For a given probability space $(\Omega, \Sigma, \Pm)$ and a random variable $X:\Omega\to\R$, we will use the following basic notations throughout this note:
+\begin{itemize}
+    \item $\|X\|_{L^p}$ - The $p^{th}$ root of the $p^{th}$ moment of the random variable $X$.
+    \begin{align}
+        \|X\|_{L^p} &= (\E|X|^p)^{1/p}, \ p \in (0,\infty) \\
+        \|X\|_{L^\infty} &= \esssup |X|
+    \end{align}
+
+    \item $L^p(\Omega, \Sigma, \Pm)$ -  The space of random variables $X$ satisfying:
+    \begin{align}
+        L^p(\Omega, \Sigma, \Pm) = \bigCurl{
+            X : \Omega\to\R \Big| \|X\|_{L^p} < \infty
+        }
+    \end{align}
+\end{itemize}
+
+\noindent Some basic inequalities and identities:
+\begin{itemize}
+    \item \textbf{1. Jensen's Inequality} - For a random variable $X$ and a convex function $\varphi:\R\to\R$, we have:
+    \begin{align}
+        \varphi(\E X) \le \E\varphi(X)
+    \end{align}
+
+    \item \textbf{2. Monotonicity of $L^p$ norm} - For a random variable $X$:
+    \begin{align}
+        \|X\|_{L^p} \le \|X\|_{L^q}, \ 0 \le p\le q \le \infty
+    \end{align}
+
+    \item \textbf{3. Minkowski's Inequality} - For $1\le p \le \infty$ and two random variables $X, Y$ in $L^p(\Omega, \Sigma, \Pm)$ space:
+    \begin{align}
+        \|X+Y\|_{L^p} \le \|X\|_{L^p} + \|Y\|_{L^p}
+    \end{align}
+
+    \item \textbf{4. Holder's Inequality} - For $p, q\in [1, \infty]$ such that $1/p + 1/q=1$. Then, for random variables $X\in L^p(\Omega, \Sigma, \Pm)$ and $Y\in L^q(\Omega, \Sigma, \Pm)$, we have:
+    \begin{align}
+        |\E XY| \le \|X\|_{L^p}\cdot\|Y\|_{L^q} 
+    \end{align}
+
+    \item \textbf{5. Integral Identity} - Let $X$ be a non-negative random variable, we have:
+    \begin{align}
+        \E X = \int_0^\infty \Pm(X > t)dt
+    \end{align}
+\end{itemize}
