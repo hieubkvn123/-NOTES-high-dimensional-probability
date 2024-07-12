@@ -120,5 +120,15 @@ learned in introductory statistics.
 \end{exercise}
 
 \begin{solution*}[Exercise \ref{ex:exercise_1.1.2}]
-    
+    Let $X$ be a random variable that is not necessarily non-negative. Using the integral identity, we have:
+    \begin{align*}
+        \E|X|^p = \int_0^\infty \Pm(u<|X|^p)du
+    \end{align*}
+
+    \noindent Let $t^p = u \implies p t^{p-1}dt = du$. Since we integrate $u$ from $0\to\infty$, we also integrate $t$ from $0\to\infty$ when changing the variables. Hence, we have:
+    \begin{align*}
+        \E|X|^p &= \int_0^\infty \Pm(t^p < |X|^p)pt^{p-1}dt = \int_0^\infty \Pm(t < |X|)pt^{p-1}dt
+    \end{align*}
+
+    \noindent Hence, we obtained the desired identity.
 \end{solution*}
