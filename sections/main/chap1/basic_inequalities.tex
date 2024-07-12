@@ -77,7 +77,39 @@ learned in introductory statistics.
 \end{exercise}
 
 \begin{solution*}[Exercise \ref{ex:exercise_1.1.1}]
+    For $x\in\R$, using the basic integral indentity, we have:
+    \begin{align*}
+        |x| &= \int_0^\infty \1{t < |x|}dt
+    \end{align*}
+    
+    \noindent We consider the following cases:
+    \begin{itemize}
+        \item When $x < 0 \implies x = -|x|$:
+        \begin{align*}
+            x &= -\int_0^\infty \1{t < |x|}dt 
+                = -\int_0^\infty \1{t < -x}dt = -\int_0^\infty \1{-t>x}dt = -\int_{-\infty}^0 \1{t>x}dt
+        \end{align*}
 
+        \item When $x\ge0 \implies x = |x|$:
+        \begin{align*}
+            x &= \int_0^\infty \1{t < |x|}dt = \int_0^\infty \1{t<x}dt
+        \end{align*}
+    \end{itemize}
+
+    \noindent Therefore, for $x\in\R$, we can write:
+    \begin{align*}
+        x = \int_0^\infty \1{t<x}dt - \int_{-\infty}^0 \1{t>x}dt
+    \end{align*}
+
+    \noindent Therefore, for a random variable $X$ not necessarily non-negative, we have:
+    \begin{align*}
+        \E X &= \E\biggSquare{
+            \int_0^\infty \1{t<X}dt - \int_{-\infty}^0 \1{t>X}dt
+        } \\
+        &= \E \int_0^\infty \1{t<X}dt - \E \int_{-\infty}^0 \1{t>X}dt \\
+        &= \int_0^\infty \E\1{t<X}dt - \int_{-\infty}^0 \E\1{t>X}dt \\
+        &= \int_0^\infty \Pm(t<X)dt - \int_{-\infty}^0 \Pm(t>X)dt
+    \end{align*}
 \end{solution*}
 
 \begin{exercise}{$p^{th}$-moments via tails}{exercise_1.1.2}
