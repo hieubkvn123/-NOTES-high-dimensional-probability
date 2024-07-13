@@ -1,1 +1,57 @@
 \subsection{Limit Theorems}
+\begin{theorem}{Strong Law of Large Numbers}{strong_law_of_large_numbers}
+    Let $X_1, \dots, X_N$ be $i.i.d$ random variables with mean $\mu$. Consider the sum:
+    \begin{align}
+        S_N = X_1 + \dots + X_N
+    \end{align}
+
+    \noindent Then, the sample mean \textbf{converges to $\mu$ almost surely} ($S_N/N\xrightarrow{a.s}\mu$):
+    \begin{align}
+        \Pm\bigRound{
+            \limsup_{N\to\infty}|S_N/N - \mu| > \epsilon
+        } = 0, \ \forall \epsilon > 0
+    \end{align}
+\end{theorem}
+
+\begin{proof*}[Strong Law of Large Numbers]
+    We revisit the \textbf{Borel-Cantelli} lemma: Given a sequence of events $\{E_n\}_{n=1}^\infty$ such that its sum of probabilities $\sum_{n=1}^\infty \Pm(E_n) < \infty$. Then, we have:
+    \begin{align}
+        P\bigRound{
+            \limsup_{n\to\infty} E_n 
+        } = 0
+    \end{align}
+    
+    \noindent Let $\epsilon>0$ be given. Denote the sequence of events $\{E_n\}_{n=1}^\infty$ as follows:
+    \begin{align*}
+        E_n = \bigCurl{
+            | S_n / n - \mu | > \epsilon
+        }
+    \end{align*} 
+    \noindent One of our goal in this proof is to prove that $\sum_{n=1}^\infty \Pm(E_n)<\infty$ to apply the Borel-Cantelli lemma.
+
+    \noindent\newline\textbf{1. Attempt 1}: Suppose that $X_i$ have finite variance. Denote $\bar S_n = S_n/n$. Then, $\bar S_n$ is a random variable with $\E \bar S_n=\mu$ and $Var(\bar S_n)=\sigma^2/n$. For $n\ge1$, we have:
+    \begin{align*}
+        \Pm(E_n) &= \Pm\bigRound{|\bar S_n - \mu| > \epsilon} \le \frac{\sigma^2}{n\epsilon^2} \ \ \ (\text{Chebyshev's Inequality})
+    \end{align*}
+
+    \noindent However, we cannot use the above inequality because we can only conclude:
+    \begin{align*}
+        \sum_{n=1}^\infty \Pm(E_n) \le \frac{\sigma^2}{\epsilon^2} \sum_{n=1}^\infty n^{-1} \ \ \ (\text{Divergent sum})
+    \end{align*}
+    \noindent Hence, we move on to our next attemp.
+
+    \noindent\newline\textbf{2. Attempt 2}: Now, we change the strategy to bound $\Pm(E_n)$. Specifically, for any $s>0$, using the Chernoff bound, we have:
+    \begin{align*}
+        P\bigRound{|\bar S_n - \mu| > \epsilon} &\le M_{|\bar S_n - \mu|}(s) e^{-s\epsilon} \\
+            &= \E\bigSquare{e^{s|\bar S_n - \mu|}}e^{-s\epsilon} \\
+            &\le e^{s\E|\bar S_n - \mu|}e^{-s\epsilon}
+    \end{align*}
+
+    \noindent Now, we have to bound $\E|\bar S_n - \mu|$. Using the integral identity, we have:
+    \begin{align*}
+        \E|\bar S_n - \mu| &= \int_0^\infty \Pm(|\bar S_n - \mu| > t)dt \\
+            &\le \frac{\sigma^2}{n}\int_0^\infty t^{-2} dt \ \ \ (\text{Chebyshev's Inequality})
+    \end{align*}
+
+    \noindent This does not work either because the above integral is divergent.
+\end{proof*}
