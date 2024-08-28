@@ -2,7 +2,9 @@
 %% Link text %%
 \newcommand{\SLLN}{\hyperref[thm:strong_law_of_large_numbers]{(\mathrm{{\bf SLLN}})}}
 \newcommand{\WLLN}{\hyperref[thm:weak_law_of_large_numbers]{(\mathrm{{\bf WLLN}})}}
+\newcommand{\LCT}{\hyperref[thm:levy_continuity_theorem]{(\mathrm{{\bf LCT}})}}
 
+\subsubsection{Weak Law of Large Numbers}
 \begin{theorem}{Weak Law of Large Numbers $\WLLN$}{weak_law_of_large_numbers}
     Let $X_1, \dots, X_N$ be $i.i.d$ random variables with mean $\mu$. Consider the sum:
     \begin{align*}
@@ -18,24 +20,50 @@
 \end{theorem}
 
 \begin{proof*}[Weak Law of Large Numbers $\WLLN$]
-    Suppose that $\var X_i = \sigma^2$ for all $1\le i \le N$. Let $\bar X = S_N/N$. Then, $\bar X$ is a random variable with the following mean and variance:
-    \begin{align*}
-        \E\bar X &= \mu \quad \text{ and } \quad \var \bar X = \frac{\sigma^2}{N}.
-    \end{align*}
+    We split the proof into two sections corresponding to the assumptions of finite variance and non-finite variance.
+    \begin{enumerate}
+        \item \textbf{Finite variance case}:
+        Suppose that $\var X_i = \sigma^2<\infty$ for all $1\le i \le N$. Let $\bar X = S_N/N$. Then, $\bar X$ is a random variable with the following mean and variance:
+        \begin{align*}
+            \E\bar X &= \mu \quad \text{ and } \quad \var \bar X = \frac{\sigma^2}{N}.
+        \end{align*}
 
-    \noindent Hence, by the Chebyshev's inequality, we have:
-    \begin{align*}
-        \Pm\bigRound{|S_N/N - \mu| > \epsilon} &= \Pm\bigRound{|\bar X - \mu| > \epsilon} \le \frac{\sigma^2}{N\epsilon^2}.
-    \end{align*}
+        \noindent Hence, by the Chebyshev's inequality, we have:
+        \begin{align*}
+            \Pm\bigRound{|S_N/N - \mu| > \epsilon} &= \Pm\bigRound{|\bar X - \mu| > \epsilon} \le \frac{\sigma^2}{N\epsilon^2}.
+        \end{align*}
 
-    \noindent Therefore, we have:
-    \begin{align*}
-        \lim_{N\to\infty}\Pm\bigRound{|S_N/N - \mu| > \epsilon} &\le \lim_{N\to\infty}\frac{\sigma^2}{N\epsilon^2} = 0.
-    \end{align*}
+        \noindent Therefore, we have:
+        \begin{align*}
+            \lim_{N\to\infty}\Pm\bigRound{|S_N/N - \mu| > \epsilon} &\le \lim_{N\to\infty}\frac{\sigma^2}{N\epsilon^2} = 0.
+        \end{align*}
 
-    \noindent Hence, we have $\lim_{N\to\infty}\Pm\bigRound{|S_N/N - \mu| > \epsilon}=0$ and we obtained $\WLLN$.
+        \noindent Hence, we have $\lim_{N\to\infty}\Pm\bigRound{|S_N/N - \mu| > \epsilon}=0$ and we obtained $\WLLN$.
+
+        \item \textbf{Non-finite variance case}: In this case, we rely on the Levy Continuity Theorem $\LCT$, which relies on the convergence of the characteristic function. For $n\ge1$, define the sequence of random variable $Y_n=S_n/n$. Hence, we have:
+        \begin{align*}
+            \varphi_{Y_n}(t) &=
+        \end{align*}
+    \end{enumerate}
 \end{proof*}
 
+\begin{theorem}{Levy Continuity Theorem $\LCT$}{levy_continuity_theorem}
+    Let $X_1, X_2, \dots$ be $i.i.d$ random variables. Then:
+    \begin{equation}
+        \forall t \in \R: \lim_{n\to\infty}\varphi_{X_n}(t) = \varphi_X(t) \iff X_n \xrightarrow{d} X,
+    \end{equation}
+
+    \noindent for some random variable $X$. In a special case where $X = c$ for some $c\in \R$, we have:
+    \begin{equation}
+        \forall t \in \R : \lim_{n\to\infty} \varphi_{X_n}(t) = e^{itc} \iff X_n \xrightarrow{p} c.
+    \end{equation}
+\end{theorem}
+
+\begin{proof*}[Levy Continuity Theorem $\LCT$]
+    The proof for $\LCT$ can be found in \cite[Section 9.1, Theorem 9.1 and Collorary 9.1]{book:allen2004}
+\end{proof*}
+
+\subsubsection{Strong Law of Large Numbers}
 \begin{theorem}{Strong Law of Large Numbers $\SLLN$}{strong_law_of_large_numbers}
     Let $X_1, \dots, X_N$ be $i.i.d$ random variables with mean $\mu$. Consider the sum:
     \begin{align*}
@@ -51,44 +79,5 @@
 \end{theorem}
 
 \begin{proof*}[Strong Law of Large Numbers $\SLLN$]
-    We revisit the \textbf{Borel-Cantelli} lemma: Given a sequence of events $\{E_n\}_{n=1}^\infty$ such that its sum of probabilities $\sum_{n=1}^\infty \Pm(E_n) < \infty$. Then, we have:
-    \begin{align}
-        P\bigRound{
-            \limsup_{n\to\infty} E_n 
-        } = 0
-    \end{align}
     
-    \noindent Let $\epsilon>0$ be given. Denote the sequence of events $\{E_n\}_{n=1}^\infty$ as follows:
-    \begin{align*}
-        E_n = \bigCurl{
-            | S_n / n - \mu | > \epsilon
-        }
-    \end{align*} 
-    \noindent One of our goal in this proof is to prove that $\sum_{n=1}^\infty \Pm(E_n)<\infty$ to apply the Borel-Cantelli lemma.
-
-    \noindent\newline\textbf{1. Attempt 1}: Suppose that $X_i$ have finite variance. Denote $\bar S_n = S_n/n$. Then, $\bar S_n$ is a random variable with $\E \bar S_n=\mu$ and $Var(\bar S_n)=\sigma^2/n$. For $n\ge1$, we have:
-    \begin{align*}
-        \Pm(E_n) &= \Pm\bigRound{|\bar S_n - \mu| > \epsilon} \le \frac{\sigma^2}{n\epsilon^2} \ \ \ (\text{Chebyshev's Inequality})
-    \end{align*}
-
-    \noindent However, we cannot use the above inequality because we can only conclude:
-    \begin{align*}
-        \sum_{n=1}^\infty \Pm(E_n) \le \frac{\sigma^2}{\epsilon^2} \sum_{n=1}^\infty n^{-1} \ \ \ (\text{Divergent sum})
-    \end{align*}
-    \noindent Hence, we move on to our next attemp.
-
-    \noindent\newline\textbf{2. Attempt 2}: Now, we change the strategy to bound $\Pm(E_n)$. Specifically, for any $s>0$, using the Chernoff bound, we have:
-    \begin{align*}
-        P\bigRound{|\bar S_n - \mu| > \epsilon} &\le M_{|\bar S_n - \mu|}(s) e^{-s\epsilon} \\
-            &= \E\bigSquare{e^{s|\bar S_n - \mu|}}e^{-s\epsilon} \\
-            &\le e^{s\E|\bar S_n - \mu|}e^{-s\epsilon}
-    \end{align*}
-
-    \noindent Now, we have to bound $\E|\bar S_n - \mu|$. Using the integral identity, we have:
-    \begin{align*}
-        \E|\bar S_n - \mu| &= \int_0^\infty \Pm(|\bar S_n - \mu| > t)dt \\
-            &\le \frac{\sigma^2}{n}\int_0^\infty t^{-2} dt \ \ \ (\text{Chebyshev's Inequality})
-    \end{align*}
-
-    \noindent This does not work either because the above integral is divergent.
 \end{proof*}
