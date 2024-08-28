@@ -1,19 +1,56 @@
 \subsection{Limit Theorems}
-\begin{theorem}{Strong Law of Large Numbers}{strong_law_of_large_numbers}
+%% Link text %%
+\newcommand{\SLLN}{\hyperref[thm:strong_law_of_large_numbers]{(\mathrm{{\bf SLLN}})}}
+\newcommand{\WLLN}{\hyperref[thm:weak_law_of_large_numbers]{(\mathrm{{\bf WLLN}})}}
+
+\begin{theorem}{Weak Law of Large Numbers $\WLLN$}{weak_law_of_large_numbers}
     Let $X_1, \dots, X_N$ be $i.i.d$ random variables with mean $\mu$. Consider the sum:
-    \begin{align}
+    \begin{align*}
         S_N = X_1 + \dots + X_N
+    \end{align*}
+
+    \noindent Then, the sample mean \textbf{converges to $\mu$ in probability} ($S_N/N\xrightarrow{p}\mu$):
+    \begin{align}
+        \lim_{N\to\infty}\Pm\bigRound{
+            |S_N/N - \mu| > \epsilon
+        } = 0, \ \forall \epsilon > 0
     \end{align}
+\end{theorem}
+
+\begin{proof*}[Weak Law of Large Numbers $\WLLN$]
+    Suppose that $\var X_i = \sigma^2$ for all $1\le i \le N$. Let $\bar X = S_N/N$. Then, $\bar X$ is a random variable with the following mean and variance:
+    \begin{align*}
+        \E\bar X &= \mu \quad \text{ and } \quad \var \bar X = \frac{\sigma^2}{N}.
+    \end{align*}
+
+    \noindent Hence, by the Chebyshev's inequality, we have:
+    \begin{align*}
+        \Pm\bigRound{|S_N/N - \mu| > \epsilon} &= \Pm\bigRound{|\bar X - \mu| > \epsilon} \le \frac{\sigma^2}{N\epsilon^2}.
+    \end{align*}
+
+    \noindent Therefore, we have:
+    \begin{align*}
+        \lim_{N\to\infty}\Pm\bigRound{|S_N/N - \mu| > \epsilon} &\le \lim_{N\to\infty}\frac{\sigma^2}{N\epsilon^2} = 0.
+    \end{align*}
+
+    \noindent Hence, we have $\lim_{N\to\infty}\Pm\bigRound{|S_N/N - \mu| > \epsilon}=0$ and we obtained $\WLLN$.
+\end{proof*}
+
+\begin{theorem}{Strong Law of Large Numbers $\SLLN$}{strong_law_of_large_numbers}
+    Let $X_1, \dots, X_N$ be $i.i.d$ random variables with mean $\mu$. Consider the sum:
+    \begin{align*}
+        S_N = X_1 + \dots + X_N
+    \end{align*}
 
     \noindent Then, the sample mean \textbf{converges to $\mu$ almost surely} ($S_N/N\xrightarrow{a.s}\mu$):
     \begin{align}
-        \Pm\bigRound{
+        \Pm\biggRound{
             \limsup_{N\to\infty}|S_N/N - \mu| > \epsilon
         } = 0, \ \forall \epsilon > 0
     \end{align}
 \end{theorem}
 
-\begin{proof*}[Strong Law of Large Numbers]
+\begin{proof*}[Strong Law of Large Numbers $\SLLN$]
     We revisit the \textbf{Borel-Cantelli} lemma: Given a sequence of events $\{E_n\}_{n=1}^\infty$ such that its sum of probabilities $\sum_{n=1}^\infty \Pm(E_n) < \infty$. Then, we have:
     \begin{align}
         P\bigRound{
