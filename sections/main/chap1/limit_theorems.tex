@@ -72,6 +72,14 @@
                 \varphi_X(t) &= \E[e^{itX}] = 1 + \sum_{n=1}^\infty \frac{(it)^n}{n!}\E[X^n].
             \end{aligned}
         \end{equation}
+
+        For the sake of my laziness, here are the Taylor expansion for the first three terms of both the MGF and the CF:
+        \begin{equation}
+            \begin{aligned}
+                M_X(t) &= 1 + t\E[X] + \frac{t^2}{2}\E[X^2] + \mathcal{O}(t^3), \\
+                \varphi_X(t) &= 1 + it\E[X] - \frac{t^2}{2}\E[X^2] + \mathcal{O}(t^3).
+            \end{aligned}
+        \end{equation}
     \end{remark}
 \end{proof*}
 
