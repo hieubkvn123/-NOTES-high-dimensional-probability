@@ -155,8 +155,42 @@
 \end{proof*}
 
 \begin{theorem}{Borel-Cantelli Lemma $\BCL$}{borel_cantelli_lemma}
-    $\dots$
+    \textbf{1. First Borel-Cantelli Lemma}: Given a probability space $(X, \mathcal{S}, \Pm)$ and a sequence $\{A_n\}_{n=1}^\infty\subset\mathcal{S}$. If $\sum_{n=1}^\infty\Pm(A_n) < \infty$, we have:
+    \begin{equation}
+        \Pm\biggRound{\limsup_{n\to\infty} A_n} = 0.
+    \end{equation}
+
+    \noindent\textbf{2. Second Borel-Cantelli Lemma}: On the other hand, if $\sum_{n=1}^\infty \Pm(E_n) = \infty$, we have:
+    \begin{equation}
+        \Pm\biggRound{\limsup_{n\to\infty} A_n} = 1.
+    \end{equation}
 \end{theorem}
+
+\begin{proof*}[Borel-Cantelli Lemma $\BCL$]
+    We focus on proving the first Borel-Cantelli lemma. We define another sequence of $\mathcal{S}$-measurable sets $\{B_n\}_{n=1}^\infty$ such that:
+    \begin{align*}
+        B_n &= \bigcup_{k=n}^\infty A_n.
+    \end{align*}
+
+    \noindent Hence, we have $B_{\ell+1}\subset B_\ell$ for every $\ell\ge 1$. In other words, $B_n$ is a decreasing sequence of $\mathcal{S}$-measurable sets. By continuity of measure, we have:
+    \begin{align*}
+        \Pm\bigRound{\lim_{n\to\infty} B_n} &= \lim_{n\to\infty} \Pm(B_n) \\
+            &= \lim_{n\to\infty} \sum_{k=n}^\infty \Pm(A_n) \quad \text{(By additivity)} \\
+            &= \sum_{i=1}^\infty\Pm(A_i) - \lim_{n\to\infty} \sum_{k=1}^n \Pm(A_n) \\
+            &= 0.
+    \end{align*}
+
+    \noindent Furthermore, we have:
+    \begin{align*}
+        \Pm\bigRound{\lim_{n\to\infty} B_n} &= \Pm\biggRound{\lim_{n\to\infty} \bigcup_{k=n}^\infty} = \Pm\biggRound{\bigcap_{n=1}^\infty \bigcup_{k=n}^\infty A_n} = \Pm\biggRound{\limsup_{n\to\infty} A_n}.
+    \end{align*}
+
+    \noindent Hence proved the first Borel-Cantelli Lemma. To prove the second Borel-Cantelli Lemma, we prove the following:
+    \begin{align*}
+        1 - \Pm\biggRound{\limsup_{n\to\infty} A_n} &= \Pm\biggRound{\bigCurl{\limsup_{n\to\infty} A_n}^c} \\
+        &= \Pm\biggRound{\liminf_{n\to\infty} A_n^c} = 0.
+    \end{align*}
+\end{proof*}
 
 
 \subsubsection{Central Limit Theorem}
