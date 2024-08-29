@@ -42,9 +42,35 @@
 
         \item \textbf{Non-finite variance case}: In this case, we rely on the Levy Continuity Theorem $\LCT$, which relies on the convergence of the characteristic function. For $n\ge1$, define the sequence of random variable $Y_n=S_n/n$. Hence, we have:
         \begin{align*}
-            \varphi_{Y_n}(t) &=
+            \varphi_{Y_n}(t) &= \varphi_{S_n/n}(t) \\
+                &= \varphi_{S_n}(t/n) \\
+                &= \prod_{i=1}^n \varphi_{X_i}(t/n) = \bigSquare{\varphi_X(t/n)}^n,
         \end{align*}
+
+        \noindent Where $X=X_1=\dots=X_n$. By Taylor's expansion, we have:
+        \begin{align*}
+            \varphi_X(t/n) &= 1 + \frac{it\E[X]}{n} + \mathcal{O}(1/n^2) = 1 +\frac{it\mu}{n} + \mathcal{O}(1/n^2).
+        \end{align*}
+
+        \noindent Hence, we have:
+        \begin{align*}
+            \lim_{n\to\infty}\varphi_{Y_n}(t) &= \lim_{n\to\infty}\biggRound{
+                1 + \frac{it\mu}{n} + \mathcal{O}(1/n^2)
+            }^n = e^{it\mu}.
+        \end{align*}
+
+        \noindent Therefore, by $\LCT$, we have $Y_n\xrightarrow{p} \mu$.
     \end{enumerate}
+
+    \begin{remark}[Taylor expansion of Moment Generating and Characteristic Functions]
+        Given a random variable $X$. For reference, the following are the Taylor expansions of the Moment Generating Function $M_X(t)$ and the Characteristic Function $\varphi_X(t)$:
+        \begin{equation}
+            \begin{aligned}
+                M_X(t) &= \E[e^{tX}] = 1 + \sum_{n=1}^\infty \frac{t^n}{n!}\E[X^n], \\
+                \varphi_X(t) &= \E[e^{itX}] = 1 + \sum_{n=1}^\infty \frac{(it)^n}{n!}\E[X^n].
+            \end{aligned}
+        \end{equation}
+    \end{remark}
 \end{proof*}
 
 \begin{theorem}{Levy Continuity Theorem $\LCT$}{levy_continuity_theorem}
