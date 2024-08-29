@@ -3,6 +3,7 @@
 \newcommand{\SLLN}{\hyperref[thm:strong_law_of_large_numbers]{(\mathrm{{\bf SLLN}})}}
 \newcommand{\WLLN}{\hyperref[thm:weak_law_of_large_numbers]{(\mathrm{{\bf WLLN}})}}
 \newcommand{\LCT}{\hyperref[thm:levy_continuity_theorem]{(\mathrm{{\bf LCT}})}}
+\newcommand{\BCL}{\hyperref[thm:borel_cantelli_lemma]{(\mathrm{{\bf BCL}})}}
 
 \subsubsection{Weak Law of Large Numbers}
 \begin{theorem}{Weak Law of Large Numbers $\WLLN$}{weak_law_of_large_numbers}
@@ -111,21 +112,51 @@
         \item $\E[X_n] = 0$. For non-zero mean case, we can set $Y_n = X_n - \mu$ and repeat the same arguments made below.
     \end{enumerate}
 
-    \noindent Then, use the Binomial formula to expand $\E[S_n]$. The expansion will contain the terms in the following forms:
+    \noindent We aim to prove that $\Pm\bigRound{\limsup_{N\to\infty}|S_N/N|>\epsilon} = 0$ for any $\epsilon>0$. Firstly, use the Multinomial formula to expand $\E[S_n]$. The expansion will contain the terms in the following forms:
     \begin{align*}
         X_i^2, X_i^3 X_j, X_i^2X_j^2, X_i^2X_jX_k, X_iX_jX_kX_\ell,
     \end{align*}
 
     \noindent where $i, j, k, \ell$ are distinct indices. By independence, we have:
     \begin{align*}
-        \E[X_i^3X_j] = \E[X_i^2X_j] = \E[X_iX_lX_kX_\ell] = 0.
+        \E[X_i^3X_j] = \E[X_i^2X_jX_k] = \E[X_iX_lX_kX_\ell] = 0.
     \end{align*}
 
-    \noindent As a result, we have the following remaining terms by the Binomial formula:
+    \noindent As a result, we have the following remaining terms by the Multinomial formula:
     \begin{align*}
-        \E[S_n^4]
+        \E[S_n^4] &= \sum_{i=1}^n \E[X_i^4] + \begin{pmatrix}
+            4 \\ 2
+        \end{pmatrix}\sum_{1 \le i < j \le n}\E[X_i^2X_j^2] \\
+        &= \sum_{i=1}^n \E[X_i^4] + 6 \underbrace{\sum_{1 \le i < j \le n}\E[X_i^2X_j^2]}_{n(n-1)/2 \text{ terms}} \\
+        &= nK + 3n(n-1)\E[X_i^2X_j^2].
+    \end{align*}
+
+    \noindent By independence, we have $\E[X_i^2X_j^2]=\E[X_i^2]\E[X_j^2]$ and for any $1\le i \le n$. Furthermore, we have $\E[X_i^2] = \var(X_i) + \mu^2 = \sigma^2 + \mu^2$. Therefore:
+    \begin{align*}
+        \E[S_n^4] &= nK + 3n(n-1)(\sigma^2 + \mu^2) < nK + 3n^2(\sigma^2 + \mu^2).
+    \end{align*}
+
+    \noindent Applying Markov's Inequality with the fourth moment, we have:
+    \begin{align*}
+        \Pm(|S_n/n|\ge \epsilon) &= \Pm(|S_n|\ge n\epsilon) \\ 
+        &\le \frac{\E[S_n^4]}{n^4\epsilon^4} \\
+        &< \frac{K}{n^3\epsilon^4} + \frac{3(\sigma^2 + \mu^2)}{n^2}.
+    \end{align*}
+
+    \noindent Therefore, we have:
+    \begin{align}
+        \sum_{n=1}^\infty \Pm(|S_n/n|\ge\epsilon) < \frac{K}{\epsilon^4}\sum_{n=1}^\infty n^{-3} + 3(\sigma^2 + \mu^2)\sum_{n=1}^\infty n^{-2} < \infty
+    \end{align}
+
+    \noindent Finally, by the Borel-Cantelli Lemma $\BCL$, we have:
+    \begin{align*}
+        \Pm\biggRound{\limsup_{n\to\infty} |S_n/n|\ge \epsilon} = 0, \quad \forall \epsilon > 0.
     \end{align*}
 \end{proof*}
+
+\begin{theorem}{Borel-Cantelli Lemma $\BCL$}{borel_cantelli_lemma}
+    $\dots$
+\end{theorem}
 
 
 \subsubsection{Central Limit Theorem}
