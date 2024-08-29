@@ -105,5 +105,27 @@
 \end{theorem}
 
 \begin{proof*}[Strong Law of Large Numbers $\SLLN$]
-    
+    For the sake of simplicity, we will present the proof for $\SLLN$ with an additional assumption that $\E[|X_n|^4] < \infty, \forall n \ge 1$. The proof for the general case of $\SLLN$ (also called the Kolmogorov Strong Law) can be found in \cite[Section 6, Theorem 6.1]{book:allen2004}. For convenience, we assume the following:
+    \begin{enumerate}
+        \item $\E[|X_n|^4] = K < \infty$.
+        \item $\E[X_n] = 0$. For non-zero mean case, we can set $Y_n = X_n - \mu$ and repeat the same arguments made below.
+    \end{enumerate}
+
+    \noindent Then, use the Binomial formula to expand $\E[S_n]$. The expansion will contain the terms in the following forms:
+    \begin{align*}
+        X_i^2, X_i^3 X_j, X_i^2X_j^2, X_i^2X_jX_k, X_iX_jX_kX_\ell,
+    \end{align*}
+
+    \noindent where $i, j, k, \ell$ are distinct indices. By independence, we have:
+    \begin{align*}
+        \E[X_i^3X_j] = \E[X_i^2X_j] = \E[X_iX_lX_kX_\ell] = 0.
+    \end{align*}
+
+    \noindent As a result, we have the following remaining terms by the Binomial formula:
+    \begin{align*}
+        \E[S_n^4]
+    \end{align*}
 \end{proof*}
+
+
+\subsubsection{Central Limit Theorem}

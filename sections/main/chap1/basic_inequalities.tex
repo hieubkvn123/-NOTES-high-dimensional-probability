@@ -39,32 +39,37 @@ learned in introductory statistics.
 
     \item \textbf{2. Monotonicity of $L^p$ norm} - For a random variable $X$:
     \begin{align}
-        \|X\|_{L^p} \le \|X\|_{L^q}, \ 0 \le p\le q \le \infty
+        \|X\|_{L^p} \le \|X\|_{L^q}, \ 0 \le p\le q \le \infty.
     \end{align}
 
     \item \textbf{3. Minkowski's Inequality} - For $1\le p \le \infty$ and two random variables $X, Y$ in $L^p(\Omega, \Sigma, \Pm)$ space:
     \begin{align}
-        \|X+Y\|_{L^p} \le \|X\|_{L^p} + \|Y\|_{L^p}
+        \|X+Y\|_{L^p} \le \|X\|_{L^p} + \|Y\|_{L^p}.
     \end{align}
 
     \item \textbf{4. Holder's Inequality} - For $p, q\in [1, \infty]$ such that $1/p + 1/q=1$. Then, for random variables $X\in L^p(\Omega, \Sigma, \Pm)$ and $Y\in L^q(\Omega, \Sigma, \Pm)$, we have:
     \begin{align}
-        |\E XY| \le \|X\|_{L^p}\cdot\|Y\|_{L^q} 
+        |\E XY| \le \|X\|_{L^p}\cdot\|Y\|_{L^q}.
     \end{align}
     
     \item \textbf{5. Markov's Inequality} - For a non-negative random variable $X$ and $t>0$, we have:
     \begin{align}
-        \Pm(X \ge t ) \le \frac{\E X}{t}
+        \Pm(X \ge t ) \le \frac{\E X}{t}.
+    \end{align}
+
+    \noindent We can also generalize Markov's Inequality for $p^{th}$ moment:
+    \begin{align}
+        \Pm(|X| \ge t) \le \frac{\E[|X|^p]}{t^p}, \forall t > 0, k \in [2, \infty).
     \end{align}
 
     \item \textbf{6. Chebyshev's Inequality} - For a random variable $X$ with mean $\mu$ and variance $\sigma^2$. Then, for any $t>0$, we have:
     \begin{align}
-        \Pm(|X-\mu| \ge t) \le \frac{\sigma^2}{t^2}
+        \Pm(|X-\mu| \ge t) \le \frac{\sigma^2}{t^2}.
     \end{align}
 
     \item \textbf{7. Integral Identity} - Let $X$ be a non-negative random variable, we have:
     \begin{align}
-        \E X = \int_0^\infty \Pm(X > t)dt
+        \E X = \int_0^\infty \Pm(X > t)dt.
     \end{align}
 \end{itemize}
 
@@ -72,7 +77,7 @@ learned in introductory statistics.
 \begin{exercise}{Generalized Integral Identity}{exercise_1.1.1}
     Let $X$ be a random variable (not necessarily non-negative). Prove the following identity:
     \begin{align}
-        \E X = \int_0^\infty \Pm(X > t)dt - \int_{-\infty}^0 \Pm (X<t)dt
+        \E X = \int_0^\infty \Pm(X > t)dt - \int_{-\infty}^0 \Pm (X<t)dt.
     \end{align}
 \end{exercise}
 
@@ -87,18 +92,18 @@ learned in introductory statistics.
         \item When $x < 0 \implies x = -|x|$:
         \begin{align*}
             x &= -\int_0^\infty \1{t < |x|}dt 
-                = -\int_0^\infty \1{t < -x}dt = -\int_0^\infty \1{-t>x}dt = -\int_{-\infty}^0 \1{t>x}dt
+                = -\int_0^\infty \1{t < -x}dt = -\int_0^\infty \1{-t>x}dt = -\int_{-\infty}^0 \1{t>x}dt.
         \end{align*}
 
         \item When $x\ge0 \implies x = |x|$:
         \begin{align*}
-            x &= \int_0^\infty \1{t < |x|}dt = \int_0^\infty \1{t<x}dt
+            x &= \int_0^\infty \1{t < |x|}dt = \int_0^\infty \1{t<x}dt.
         \end{align*}
     \end{itemize}
 
     \noindent Therefore, for $x\in\R$, we can write:
     \begin{align*}
-        x = \int_0^\infty \1{t<x}dt - \int_{-\infty}^0 \1{t>x}dt
+        x = \int_0^\infty \1{t<x}dt - \int_{-\infty}^0 \1{t>x}dt.
     \end{align*}
 
     \noindent Therefore, for a random variable $X$ not necessarily non-negative, we have:
@@ -108,26 +113,26 @@ learned in introductory statistics.
         } \\
         &= \E \int_0^\infty \1{t<X}dt - \E \int_{-\infty}^0 \1{t>X}dt \\
         &= \int_0^\infty \E\1{t<X}dt - \int_{-\infty}^0 \E\1{t>X}dt \\
-        &= \int_0^\infty \Pm(t<X)dt - \int_{-\infty}^0 \Pm(t>X)dt
+        &= \int_0^\infty \Pm(t<X)dt - \int_{-\infty}^0 \Pm(t>X)dt.
     \end{align*}
 \end{solution*}
 
 \begin{exercise}{$p^{th}$-moments via tails}{exercise_1.1.2}
     Let $X$ be a random variable and $p\in(0,\infty)$. Show that:
     \begin{align}
-        \E|X|^p = \int_0^\infty pt^{p-1}\Pm(|X| > t)dt
+        \E|X|^p = \int_0^\infty pt^{p-1}\Pm(|X| > t)dt.
     \end{align}
 \end{exercise}
 
 \begin{solution*}[Exercise \ref{ex:exercise_1.1.2}]
     Let $X$ be a random variable that is not necessarily non-negative. Using the integral identity, we have:
     \begin{align*}
-        \E|X|^p = \int_0^\infty \Pm(u<|X|^p)du
+        \E|X|^p = \int_0^\infty \Pm(u<|X|^p)du.
     \end{align*}
 
     \noindent Let $t^p = u \implies p t^{p-1}dt = du$. Since we integrate $u$ from $0\to\infty$, we also integrate $t$ from $0\to\infty$ when changing the variables. Hence, we have:
     \begin{align*}
-        \E|X|^p &= \int_0^\infty \Pm(t^p < |X|^p)pt^{p-1}dt = \int_0^\infty \Pm(t < |X|)pt^{p-1}dt
+        \E|X|^p &= \int_0^\infty \Pm(t^p < |X|^p)pt^{p-1}dt = \int_0^\infty \Pm(t < |X|)pt^{p-1}dt.
     \end{align*}
 
     \noindent Hence, we obtained the desired identity.
