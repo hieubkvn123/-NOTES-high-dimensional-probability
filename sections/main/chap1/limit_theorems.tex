@@ -4,6 +4,7 @@
 \newcommand{\WLLN}{\hyperref[thm:weak_law_of_large_numbers]{(\mathrm{{\bf WLLN}})}}
 \newcommand{\LCT}{\hyperref[thm:levy_continuity_theorem]{(\mathrm{{\bf LCT}})}}
 \newcommand{\BCL}{\hyperref[thm:borel_cantelli_lemma]{(\mathrm{{\bf BCL}})}}
+\newcommand{\CLT}{\hyperref[thm:central_limit_theorem]{(\mathrm{{\bf CLT}})}}
 
 \subsubsection{Weak Law of Large Numbers}
 \begin{theorem}{Weak Law of Large Numbers $\WLLN$}{weak_law_of_large_numbers}
@@ -194,3 +195,41 @@
 
 
 \subsubsection{Central Limit Theorem}
+\begin{theorem}{Central Limit Theorem $\CLT$}{central_limit_theorem}
+    Let $X_1, \dots X_n$ be a sequence of $i.i.d$ random variables with expected value $\mu$ and finite variance $\sigma^2$. Then, we have:
+    \begin{equation}
+        \frac{\bar X_n - \mu}{\sigma/\sqrt{n}} \xrightarrow{d} \mathcal{N}(0, 1) \quad as \quad n \to \infty,
+    \end{equation}
+
+    \noindent where $\bar X_n = S_n/n$ and $\mathcal{N}(0,1)$ is the standard normal distribution.
+\end{theorem}
+
+\begin{proof*}[Central Limit Theorem $\CLT$]
+    We prove this via the Characteristic Function. Let $\bar Z_n = \frac{\bar X_n - \mu}{\sigma/\sqrt n}$, notice that:
+    \begin{align*}
+        \bar Z_n &= \frac{\bar X_n - \mu}{\sigma/\sqrt n} = \frac{1}{\sqrt n}\sum_{i=1}^n \frac{X_i - \mu}{\sigma},
+    \end{align*}
+
+    \noindent Let $Z_i = X_i - \mu$ for $1\le i \le n$ and suppose $Z = Z_1 = \dots = Z_n$, we have:
+    \begin{align*}
+        \varphi_{\bar Z_n}(t) &= \varphi_{\sum_{i=1}^n Z_i}\biggRound{\frac{t}{\sqrt n}} = \biggSquare{
+            \varphi_Z\biggRound{\frac{t}{\sqrt n}}
+        }^n \\
+        &= \biggSquare{
+            1 + \frac{it\E[Z]}{\sqrt n} - \frac{t^2}{2n}\E[Z^2] + \mathcal{O}(1/n)
+        }^n \quad \text{(Taylor's Expansion)} \\
+        &= \biggSquare{
+            1 - \frac{t^2}{2n} + \mathcal{O}(1/n)
+        }^n. 
+    \end{align*}
+
+    \noindent The final equality comes from the fact that $\E[Z] = 0$ and $\E[Z^2] = \E[Z]^2 + \var(Z) = 1$. Finally, we have:
+    \begin{align*}
+        \lim_{n\to\infty}\varphi_{\bar Z_n}(t) = \lim_{n\to\infty} \biggSquare{
+            1 - \frac{t^2}{2n} + \mathcal{O}(1/n)
+        }^n = e^{-t^2/2}.
+    \end{align*}
+
+    \noindent Since $e^{-t^2/2}$ is the Characteristic Function of the standard normal distribution, by $\LCT$, we have $\bar Z_n \xrightarrow{d} \mathcal{N}(0,1)$.
+\end{proof*}
+
