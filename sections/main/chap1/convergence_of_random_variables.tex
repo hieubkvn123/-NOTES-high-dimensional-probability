@@ -52,8 +52,23 @@ In this section, we revise the modes of convergence in random variables.
     Let $c\in\R$ be a constant and $X_1, X_2, \dots$ be a sequence of real-valued random variables. Then, $X_n\xrightarrow{d}c\iff X_n\xrightarrow{p}c$.
 \end{proposition}
 
-\begin{proof*}[Proposition \ref{prop:dist_conv_to_const_implies_probability_conv}]
-    
+\begin{proof*}[Proposition \ref{prop:dist_conv_to_const_implies_probability_conv}, \cite{book:hossien2014}]
+    Since $X_n\xrightarrow{d}c$, we immediately have the following:
+    \begin{align*}
+        &\lim_{n\to\infty} F_{X_n}(c - \epsilon) = 0, \\
+        &\lim_{n\to\infty} F_{X_n}(c + \epsilon / 2) = 1. 
+    \end{align*}
+
+    \noindent Then, for any $\epsilon>0$, we have:
+    \begin{align*}
+        \lim_{n\to\infty} (|X_n - c|\ge \epsilon) &= \lim_{n\to\infty}\Pm\bigSquare{\Pm(X_n \le c - \epsilon) + \Pm(X_n \ge c + \epsilon)} \\
+            &= \underbrace{\lim_{n\to\infty} F_{X_n}(c-\epsilon)}_{=0} + \lim_{n\to\infty}\Pm(X_n\ge c+ \epsilon) \\
+            &\le \lim_{n\to\infty} \Pm(X_n \ge c + \epsilon/2) \\
+            &= 1 - \underbrace{\lim_{n\to\infty} F_{X_n}(c + \epsilon/2)}_{=1} \\
+            &= 0.
+    \end{align*}
+
+    \noindent From the above, we have $\lim_{n\to\infty}\Pm(|X_n-c|\ge\epsilon)=0$ and $X_n\xrightarrow{p}c$.
 \end{proof*}
 
 \subsubsection{Convergence in $L^p$ norm}
