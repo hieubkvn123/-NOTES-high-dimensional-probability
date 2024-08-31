@@ -57,8 +57,8 @@
 
 %% Theorem style %%
 \newtheoremstyle{definition}
-                {5pt} % top space
-                {5pt} % bottom space
+                {0pt} % top space
+                {0pt} % bottom space
                 {\itshape} % font
                 {0pt} % indent
                 {\bfseries} % theorem name font
@@ -159,13 +159,13 @@
 \theoremstyle{definition}
 \declaretheorem[name=Remark, numberwithin=section]{rmk}
 \newenvironment{remark}{\begin{shaded}\begin{rmk}}{\end{rmk}\end{shaded}}
+\colorlet{shadecolor}{white!25}
 
 %% Definitions %%
 \theoremstyle{definition}
 \declaretheorem[name=Definition, numberwithin=section]{dfn}
 \addto\captionsenglish{ \renewcommand{\listtheoremname}{B \ List of Definitions} }
 \newenvironment{definition}{\begin{shaded}\begin{dfn}}{\end{dfn}\end{shaded}}
-\colorlet{shadecolor}{white!25}
 
 %% Indicator function %%
 \DeclareMathAlphabet{\mathmybb}{U}{cmr}{m}{n}

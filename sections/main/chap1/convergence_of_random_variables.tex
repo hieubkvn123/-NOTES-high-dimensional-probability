@@ -1,1 +1,67 @@
 \subsection{Convergence of Random Variables}
+In this section, we revise the modes of convergence in random variables. 
+\subsubsection{Convergence in Distribution}
+\begin{definition}[Convergence in Distribution]
+    Given a sequence of real-valued random variables $X_1, X_2, \dots$ with CDFs $F_1, F_2, \dots$. We say that the sequence converge in distribution to a random variable $X$ with CDF $F$, denoted $X_n\xrightarrow{d}X$ if:
+    \begin{equation}
+        \lim_{n\to\infty}F_n(x) = F(x),
+    \end{equation}
+
+    \noindent for all $x\in\R$ at which $F$ is continuous. Convergence in distribution can also be referred to as \underline{weak convergence} in measure theory.
+\end{definition}
+
+
+\subsubsection{Convergence in Probability}
+\begin{definition}[Convergence in Probability]
+    Given a sequence of real-valued random variables $X_1, X_2, \dots$. We say that the sequence converge in probability to a random variable $X$, denoted $X_n\xrightarrow{p}X$ if:
+    \begin{equation}
+        \lim_{n\to\infty} \Pm\bigRound{|X_n - X| \ge \epsilon} = 0, \quad \forall \epsilon > 0.
+    \end{equation}
+
+    \noindent We also refer to convergence in probability as \underline{convergence in measure} in measure theory.
+\end{definition}
+
+\begin{proposition}{$X_n\xrightarrow{p}X\implies X_n\xrightarrow{d}X$}{probability_conv_implies_dist_conv}
+    Let $X$ and the sequence $X_1, X_2, \dots$ be real-valued random variables. If $X_n\xrightarrow{p}X$, then $X_n\xrightarrow{d}X$.
+\end{proposition}
+
+\begin{proof*}[Proposition \ref{prop:probability_conv_implies_dist_conv}]
+    We first prove the following claim: Let $X, Y$ be random variables, $a\in\R$ and $\epsilon>0$, the inequality $\Pm(Y\le a) \le \Pm(X \le a + \epsilon) + \Pm(|Y-X|\ge\epsilon)$ holds. We have:
+    \begin{align*}
+        \Pm(Y\le a) &= \Pm(Y\le a, X \le a + \epsilon) + \Pm(Y \le a, X \ge a + \epsilon) \\
+            &\le \Pm(X \le a + \epsilon) + \Pm(Y - X\le a - X, a - X \le -\epsilon) \\
+            &\le \Pm(X \le a + \epsilon) + \Pm(Y - X \le -\epsilon) \\
+            &\le \Pm(X \le a + \epsilon) + \Pm(Y - X \le -\epsilon) + \Pm(Y - X \ge \epsilon) \\
+            &= \Pm(X \le a + \epsilon) + \Pm(|Y - X| \ge \epsilon).
+    \end{align*}
+
+    \noindent Using the above inequality, we have:
+    \begin{align*}
+        \Pm(X \le a - \epsilon) - \Pm(|X_n - X| \ge \epsilon) \le \Pm(X_n \le a) \le \Pm(X\le a + \epsilon) + \Pm(|X_n - X| \ge \epsilon).
+    \end{align*}
+
+    \noindent Taking limits as $n\to\infty$ from both sides, we have:
+    \begin{align*}
+        F_X(a - \epsilon) \le \lim_{n\to\infty} F_{X_n}(a) \le F_X(a + \epsilon).
+    \end{align*}
+
+    \noindent Taking $\epsilon \to 0^+$, we have $\lim_{n\to\infty} F_{X_n}(a) = F_X(a)$.
+\end{proof*}
+
+\begin{proposition}{$X_n\xrightarrow{d}c\iff X_n\xrightarrow{p}c$}{dist_conv_to_const_implies_probability_conv}
+    Let $c\in\R$ be a constant and $X_1, X_2, \dots$ be a sequence of real-valued random variables. Then, $X_n\xrightarrow{d}c\iff X_n\xrightarrow{p}c$.
+\end{proposition}
+
+\begin{proof*}[Proposition \ref{prop:dist_conv_to_const_implies_probability_conv}]
+    
+\end{proof*}
+
+\subsubsection{Convergence in $L^p$ norm}
+\begin{definition}[Convergence in $L^p$ norm]
+    
+\end{definition}
+
+\subsubsection{Almost-sure Convergence}
+\begin{definition}[Convergence almost-surely]
+    
+\end{definition}
