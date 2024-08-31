@@ -2,7 +2,7 @@
 In this section, we revise the modes of convergence in random variables. 
 \subsubsection{Convergence in Distribution}
 \begin{definition}[Convergence in Distribution]
-    Given a sequence of real-valued random variables $X_1, X_2, \dots$ with CDFs $F_1, F_2, \dots$. We say that the sequence converge in distribution to a random variable $X$ with CDF $F$, denoted $X_n\xrightarrow{d}X$ if:
+    Given a sequence of real-valued random variables $X_1, X_2, \dots$ with CDFs $F_1, F_2, \dots$. We say that the sequence converges in distribution to a random variable $X$ with CDF $F$, denoted $X_n\xrightarrow{d}X$ if:
     \begin{equation}
         \lim_{n\to\infty}F_n(x) = F(x),
     \end{equation}
@@ -13,7 +13,7 @@ In this section, we revise the modes of convergence in random variables.
 
 \subsubsection{Convergence in Probability}
 \begin{definition}[Convergence in Probability]
-    Given a sequence of real-valued random variables $X_1, X_2, \dots$. We say that the sequence converge in probability to a random variable $X$, denoted $X_n\xrightarrow{p}X$ if:
+    Given a sequence of real-valued random variables $X_1, X_2, \dots$. We say that the sequence converges in probability to a random variable $X$, denoted $X_n\xrightarrow{p}X$ if:
     \begin{equation}
         \lim_{n\to\infty} \Pm\bigRound{|X_n - X| \ge \epsilon} = 0, \quad \forall \epsilon > 0.
     \end{equation}
@@ -73,10 +73,80 @@ In this section, we revise the modes of convergence in random variables.
 
 \subsubsection{Convergence in $L^p$ norm}
 \begin{definition}[Convergence in $L^p$ norm]
-    
+    Given a sequence of random variables $X_1, X_2, \dots$ and a real number $p\in[1, \infty)$. We say that the sequence converges in $L^p norm$ to a random variable $X$, denoted as $X_n\xrightarrow{L^p} X$ if:
+    \begin{equation}
+        \lim_{n\to\infty} \E|X_n - X|^p = 0.
+    \end{equation}
 \end{definition}
+
+\begin{proposition}{$X_n\xrightarrow{L^p}X\implies X_n\xrightarrow{p}X$}{conv_in_lp_implies_conv_in_probability}
+    Let $p\ge 1$ and $X_1, X_2, \dots$ be a sequence of real-valued random variables. Let $X$ be a random variable, then, $X_n\xrightarrow{L^p}X\implies X_n\xrightarrow{p}X$. 
+\end{proposition}
+
+\begin{proof*}[Proposition \ref{prop:conv_in_lp_implies_conv_in_probability}]
+    Let $\epsilon>0$, we have:
+    \begin{align*}
+        \Pm(|X_n - X| \ge \epsilon) &= \Pm(|X_n - X|^p \ge e^p) \quad (p\ge 1) \\
+            &\le \frac{\E|X_n - X|^p}{\epsilon^p}. \quad (\text{Markov's Inequality})
+    \end{align*}
+
+    \noindent Taking the limits from both sides, we have $\lim_{n\to\infty}\Pm(|X_n-X|\ge \epsilon) = 0$ and $X_n\xrightarrow{p}X$.
+\end{proof*}
 
 \subsubsection{Almost-sure Convergence}
 \begin{definition}[Convergence almost-surely]
-    
+    Let $X_1, X_2, \dots$ be a sequence of real-valued random variables that map from a sample space $\Omega$. Let $X$ also be a real-valued random variable. We say that $X_n$ converges almost surely to $X$, denoted as $X_n\xrightarrow{a.s}X$, if:
+    \begin{align*}
+        \Pm\bigRound{
+            \limsup_{n\to\infty} E_n
+        } = 0 \quad \text{where} \quad E_n = \bigCurl{
+            \omega\in\Omega: |X_n(\omega) - X(\omega)| \ge \epsilon
+        }.
+    \end{align*} 
 \end{definition}
+
+\begin{remark}[Consequence of $\BCL$]
+    \begin{equation}
+        \sum_{n=1}^\infty \Pm(E_n) < \infty \implies X_n\xrightarrow{a.s} X.
+    \end{equation}
+\end{remark}
+
+\begin{proposition}{$X_n\xrightarrow{a.s}X\implies X_n\xrightarrow{p}X$}{a.s_conv_implies_conv_in_probability}
+    Let $X_1, X_2,\dots$ be a sequence of real-valued random variables and also let $X$ be a real valued random variables. If $X_n\xrightarrow{a.s}X$ then $X_n\xrightarrow{p}X$.    
+\end{proposition}
+
+\begin{proof*}[Proposition \ref{prop:a.s_conv_implies_conv_in_probability}]
+    Let $f_n:\Omega\to\R_+$ be a sequence of nonnegative Borel-measurable functions such that $f_n(\omega)=|X_n(\omega) - X(\omega)|$. By Fatou's Lemma (reverse), we have:
+    \begin{align*}
+        \underbrace{\Pm\bigRound{\limsup_{n\to\infty} \{\omega\in\Omega:|X_n(\omega) - X(\omega)| \ge \epsilon\}}}_{=0} &= \int f_nd\Pm \\ 
+        &\ge \limsup_{n\to\infty}\Pm(|X_n - X|\ge\epsilon) \\
+        &\ge \lim_{n\to\infty}\Pm(|X_n - X|\ge\epsilon).
+    \end{align*}
+
+    \noindent Hence, we have $\lim_{n\to\infty}\Pm(|X_n-X|\ge\epsilon)=0$ and $X_n\xrightarrow{p}X$.
+\end{proof*}
+
+\newcommand{\CMT}{\hyperref[thm:continuous_mapping_theorem]{(\mathrm{{\bf CMT}})}}
+\begin{theorem}{Continuous Mapping Theorem $\CMT$}{continuous_mapping_theorem}
+    Let $f:\R\to\R$ be a \underline{continuous} function and $X_1, X_2, \dots$ be a sequence of real-valued random variables. Then, the following statements hold true:
+    \begin{enumerate}
+        \item $X_n\xrightarrow{d}X \implies   f(X_n)\xrightarrow{d}f(X)$.
+        \item $X_n\xrightarrow{p}X \implies   f(X_n)\xrightarrow{p}f(X)$.
+        \item $X_n\xrightarrow{a.s}X \implies f(X_n)\xrightarrow{a.s}f(X)$.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof*}[Continuous Mapping Theorem $\CMT$]
+    Since almost-sure convergence implies the other two modes of convergence, we only have to handle the almost-sure convergence case. Since $h$ is continuous, for any $\omega\in\Omega$ such that $X_n(\omega)\to X(\omega)$, we have $f(X_n(\omega))\to f(X(\omega))$. Therefore, we have:
+    \begin{align*}
+        \bigCurl{\omega\in\Omega : X_n(\omega)\to X(\omega)}\subseteq\bigCurl{\omega\in\Omega:f(X_n(\omega))\to f(X(\omega))}.
+    \end{align*}
+
+    \noindent Therefore, we have:
+    \begin{align*}
+        &\Pm\bigRound{\limsup_{n\to\infty}\bigCurl{\omega\in\Omega:|f(X_n(\omega)) - f(X(\omega))| \le \epsilon}} \\
+        &\ge \Pm\bigRound{\limsup_{n\to\infty}\bigCurl{\omega\in\Omega:|X_n(\omega) - X(\omega)| \le \epsilon}} = 1,
+    \end{align*}
+
+    \noindent for all $\epsilon>0$. Therefore, we have $f(X_n)\xrightarrow{a.s}f(X)$.
+\end{proof*}
