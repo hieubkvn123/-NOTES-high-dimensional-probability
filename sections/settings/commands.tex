@@ -161,6 +161,12 @@
 \newenvironment{remark}{\begin{shaded}\begin{rmk}}{\end{rmk}\end{shaded}}
 \colorlet{shadecolor}{white!25}
 
+%% Examples %%
+\theoremstyle{definition}
+\declaretheorem[name=Example, numberwithin=section]{exm}
+\newenvironment{example}{\begin{shaded}\begin{exm}}{\end{exm}\end{shaded}}
+\colorlet{shadecolor}{white!25}
+
 %% Definitions %%
 \theoremstyle{definition}
 \declaretheorem[name=Definition, numberwithin=section]{dfn}
@@ -208,3 +214,9 @@
 \newcommand{\E}{\mathbb{E}}
 \newcommand{\var}{\mathrm{Var}}
 \newcommand{\Pm}{\mathbb{P}}
+\newcommand{\bX}{{\bf X}}
+\newcommand{\bx}{{\bf x}}
+\newcommand{\bU}{{\bf U}}
+\newcommand{\bu}{{\bf u}}
+\newcommand{\btheta}{\boldsymbol{\theta}}
+\newcommand{\bern}{\mathrm{Bernoulli}}

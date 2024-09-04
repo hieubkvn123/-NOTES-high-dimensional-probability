@@ -1,9 +1,56 @@
 %% ---------------- %%
 \subsection{Sufficiency \& Likelihood}
+\newcommand{\FacT}{\hyperref[thm:factorisation_theorem]{(\mathrm{{\bf FacT}})}}
+
 \subsubsection{Sufficiency}
 \begin{definition}[Sufficient Statistics]
-    
+    Let $\bX = (X_1, \dots, X_n) \sim p(.;\btheta)$ be a random sample drawn $i.i.d$ from a distribution with parameters $\btheta$. Let $\bU=T(\bX)$ be a statistic, then it is called a \underline{sufficient statistic} if the conditional distribution $p_{\bX|\bU}$ does not depend on $\btheta$.
 \end{definition}
+
+\begin{example}[Bernoulli random variables]
+    Let $\bX = (X_1, \dots, X_n) \sim \bern(\theta)$ be a random sample from the Bernoulli distribution. Let $\bU = \frac{1}{n}\sum_{i=1}^n X_i$, then $\bU$ is a sufficient statistic of $\theta$. To illustrate this, suppose that $\bx = (x_1, \dots, x_n)$ is an observation of the random sample $\bX$ and $\bu = \frac{1}{n}\sum_{i=1}^n x_i$. We have:
+    \begin{align*}
+        \Pm(\bX=\bx| \bU=\bu) &= \frac{\Pm(\bX=\bx, \bU=\bu)}{\Pm(\bU=\bu)} \\
+            &= \frac{\Pm(X_1=x_1, \dots, X_n=x_n, \sum_{i=1}^n X_i = \sum_{i=1}^n x_i)}{\Pm(\sum_{i=1}^n X_i = \sum_{i=1}^n x_i)} \\
+            &= \frac{\Pm(X_1=x_1, \dots, X_n=x_n)}{\Pm(\sum_{i=1}^n X_i = \sum_{i=1}^n x_i)} \\
+            &= \frac{\theta^{\sum_{i=1}^n x_i}(1-\theta)^{n-\sum_{i=1}^n x_i}}{\Pm(\sum_{i=1}^n X_i = \sum_{i=1}^n x_i)}.
+    \end{align*}
+
+    \noindent Now, setting $k=\sum_{i=1}^n x_i$, The denominator is basically the probability that the Bernoulli variables sums up to $k$. Hence, we can calculate the denominator as follows:
+    \begin{align*}
+        \Pm\biggRound{\sum_{i=1}^n X_i = k} &= \begin{pmatrix}
+            n \\ k
+        \end{pmatrix} \theta^k(1-\theta)^{n - k}.
+    \end{align*}
+
+    \noindent Therefore, we have:
+    \begin{align*}
+        \Pm(\bX = \bx | \bU = \bu) &= \frac{\theta^k(1-\theta)^{n-k}}{
+            \begin{pmatrix}
+                n \\ k
+            \end{pmatrix} \theta^k(1-\theta)^{n - k}
+        } = \frac{1}{
+            \begin{pmatrix}
+                n \\ k
+            \end{pmatrix}
+        }.
+    \end{align*}
+
+    \noindent Therefore, the conditional distribution does not depend on $\theta$ and $\bU$ is a sufficient statistic.
+\end{example}
+
+\begin{definition}[Sufficiency Principle]
+    If $\bU=T(\bX)$ is a sufficient statistic for $\btheta$, then any inference about $\btheta$ should only depend on the sample $\bX$ through $\bU$. \color{blue}In other words, if we estimate $\btheta$ using an estimator $\hat\btheta$, only $\bU$ shows up in the formula of $\hat\btheta$, not the sample $\bX$ itself. We will see why this is the case in the Factorisation Theorem $\FacT$, which states that we can factorise the density function into a function of $\bU, \btheta$ and a function of the observations $\bx$ and thus, the inference about $\btheta$ is independent of the observations $\bx$\color{black}.
+\end{definition}
+
+\begin{theorem}{Factorisation Theorem $\FacT$}{factorisation_theorem}
+    Let $\bX = (X_1, \dots, X_n)$ be a random sample with joint density function $p(\bx;\btheta)$. The statistic $\bU=T(\bX)$ is sufficient for the parameters $\btheta$ if and only if we can find functions $h, g$ such that:
+    \begin{align*}
+        p(\bx;\btheta) &= g(T(\bx), \btheta)h(\bx),
+    \end{align*}
+
+    \noindent for all $\bx\in\R^n$ and $\btheta\in\Theta$.
+\end{theorem}
 
 \subsubsection{Likelihood}
 
