@@ -74,11 +74,25 @@
 
 \subsubsection{Sufficient Statistics \& Rao-Blackwell Theorem}
 \begin{theorem}{Rao-Blackwell Theorem $\RB$}{rao_blackwell_theorem}
-    
+     
 \end{theorem}
 
 
 \subsubsection{Estimator Variance \& Cramer-Rao Lower Bound}
+\begin{definition}[Fisher Information]
+    Let $\bX=(X_1, \dots, X_n) \sim p(.;\btheta)$ be a random sample from a distribution parameterized by $\btheta$. The \underline{(total) Fisher Information} about $\theta$ in the random sample $\bX$ is defined as follows:
+    \begin{equation}
+        \mathcal{I}_\bX(\btheta) = \E_\bX\biggSquare{
+            \biggRound{
+                \frac{\partial}{\partial\theta}\log L(\theta;\bX)
+            }^2 \quad \Big| \quad \btheta
+        }.
+    \end{equation}
+
+    \noindent The Fisher Informaton is the total information about $\btheta$ contained in the sample $\bX$.
+\end{definition}
+
+
 \begin{theorem}{Cramer-Rao Lower Bound $\CRLB$}{cramer_rao_lowerbound}
 
 \end{theorem}
