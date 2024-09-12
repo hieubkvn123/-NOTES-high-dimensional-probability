@@ -136,7 +136,19 @@
 \begin{proof*}[Proposition \ref{prop:properties_of_mle}]
     For properties $(1)$ and $(2)$, we can just prove the consistency of MLE because consistency implies asymptotic unbiasedness (We will provide a proof for this claim as a lemma below). 
     \begin{enumerate}
-        \item Consistency:  
+        \item Consistency: By $\SLLN$, for any $\theta\in\Theta$, we have the following
+        \begin{equation}
+            \begin{aligned}
+                n^{-1} \log L(\theta;\bX) &= \frac{1}{n}\sum_{i=1}^n \log p(X_i;\theta) \xrightarrow{a.s} \E_{\btheta}[\log p(X;\theta)],
+            \end{aligned}
+        \end{equation} 
+
+        \noindent where $\E_\btheta$ denotes the expectation taken over the distribution corresponding to the true parameters $\btheta$. We denote $q(\theta_2|\theta_1)$ as $\E_{\theta_1}[\log p(X;\theta_2)]$. Then, we want to prove that $\E_{\btheta}[\log p(X;\btheta)] \ge \E_{\btheta}[\log p(X;\theta)]$ for all $\theta\in\Theta$ and $X\sim p(.|\btheta)$. To do so, we prove the following inequality:
+        \begin{equation}
+            \E_{\btheta}\biggSquare{
+                \frac{\log p(X;\theta)}{\log p(X;\btheta)}
+            } \le 0, \quad \forall \theta\in\Theta.
+        \end{equation}
     \end{enumerate} 
 \end{proof*} 
 
