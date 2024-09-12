@@ -55,12 +55,24 @@
 \begin{proof*}[Factorisation Theorem $\FacT$]
     We have to conduct the proof in both directions.
     \begin{itemize}
-        \item $T(\bX)$ is sufficient $\implies$ Factorisation exists.
+        \item $T(\bX)$ is sufficient $\implies$ Factorisation exists:
+        Let $\bU=T(\bX)$ be a sufficient statistics and $\bu = T(\bx)$ be the statistics evaluated on the observations $\bx$. Then, we have:
+        \begin{align*}
+            p(\bx;\btheta) &= \Pm(\bX=\bx; \btheta) \\ 
+                &= \Pm(\bX=\bx | \bU=\bu; \btheta) \Pm(\bU=\bu;\btheta).
+        \end{align*} 
+
+        \noindent Since $\bU=T(\bX)$ is a sufficient statistics, $\Pm(\BX=\bx|\bU=\bu;\btheta)$ does not depend on $\btheta$. Hence, we denote $h(\bx) = \Pm(\bX=\bx|\bU=\bu;\btheta)$. Furthermore, by changing the variable, we have:
+        \begin{align*}
+            \Pm(\bU = \bu) &= \Pm(T(\bX) = T(\bx)) \\ 
+                &= p(T^{-1}(\bu);\btheta)\biggAbs{
+                    \frac{d}{d\bu}(T^{-1}(\bu))
+                },
+        \end{align*}
+
+        \noindent which is a function of $\bu, \btheta$, we denote this function as $g(\bu, \btheta)$ and conclude that the factorisation $p(\bx;\btheta)=h(\bx)g(T(\bx),\btheta)$ exists. 
         \item Factorisation exists $\implies$ $T(\bX)$ is sufficient.
     \end{itemize}
-
-    \textbf{1. $T(\bX)$ is sufficient $\implies$ Factorisation exists.}
-\end{proof*}
 
 \subsubsection{Likelihood}
 \begin{definition}[Likelihood Function]
@@ -69,7 +81,11 @@
         L(\theta;\bx) = \prod_{i=1}^n p(x_i;\theta), \quad \theta\in\Theta.
     \end{equation}
 
-    \noindent Essentially, $L(\theta;\bx)$ quantifies the likelihood that $\theta$ generates the observations $\bx$. In a way, it is the inverse of probability density (mass) functions.
+    \noindent Essentially, $L(\theta;\bx)$ quantifies the likelihood that $\theta$ generates the observations $\bx$. In a way, it is the inverse of probability density (mass) functions, we can see the contrast as follows:
+    \begin{itemize}
+        \item \textbf{Probability Density Function}: The parameters are fixed but the observations are random.
+        \item \textbf{Likelihood Function}: The observations are fixed but the parameters are variable.
+    \end{itemize} 
 \end{definition}
 
 
