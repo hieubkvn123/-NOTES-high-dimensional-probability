@@ -6,7 +6,6 @@ set "OUTPUT_DIR=output"
 
 :: Create directories if they do not exist
 if not exist "%OUTPUT_DIR%" mkdir "%OUTPUT_DIR%"
-if not exist "%OUTPUT_DIR%" mkdir "%OUTPUT_DIR%"
 
 :: Compile with pdflatex
 pdflatex -quiet -output-directory="%OUTPUT_DIR%" -aux-directory="%OUTPUT_DIR%" main.tex
