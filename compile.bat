@@ -8,6 +8,7 @@ set "OUTPUT_DIR=output"
 if not exist "%OUTPUT_DIR%" mkdir "%OUTPUT_DIR%"
 
 :: Compile with pdflatex
+echo INFO - Compiling PDF document from source.
 pdflatex -quiet -output-directory="%OUTPUT_DIR%" -aux-directory="%OUTPUT_DIR%" main.tex
 
 :: Run BibTeX
@@ -15,6 +16,7 @@ pdflatex -quiet -output-directory="%OUTPUT_DIR%" -aux-directory="%OUTPUT_DIR%" m
 biber "%OUTPUT_DIR%\\main"
 
 :: Recompile with pdflatex twice to ensure references are updated
+echo INFO - Recompiling PDF document from source.
 pdflatex -quiet -output-directory="%OUTPUT_DIR%" -aux-directory="%OUTPUT_DIR%" main.tex
 pdflatex -quiet -output-directory="%OUTPUT_DIR%" -aux-directory="%OUTPUT_DIR%" main.tex
 
@@ -22,7 +24,7 @@ pdflatex -quiet -output-directory="%OUTPUT_DIR%" -aux-directory="%OUTPUT_DIR%" m
 start /B SumatraPDF "output/main.pdf" 
 
 :: Pause before clear
-echo Compilation completed. Output in '%OUTPUT_DIR%' directory.
+echo INFO - Compilation completed. Output in '%OUTPUT_DIR%' directory.
 endlocal
 pause
 
