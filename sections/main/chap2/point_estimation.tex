@@ -44,7 +44,7 @@
 \end{definition}
 
 \begin{theorem}{Factorisation Theorem $\FacT$}{factorisation_theorem}
-    Let $\bX = (X_1, \dots, X_n)$ be a random sample with joint density function $p(\bx;\btheta)$. The statistic $\bU=T(\bX)$ is sufficient for the parameters $\btheta$ if and only if we can find functions $h, g$ such that:
+    Let $\bX = (X_1, \dots, X_n)$ be a random sample with joint density function $p(\bx;\btheta)$ over $\mathcal{X}^n$. The statistic $\bU=T(\bX)$ is sufficient for the parameters $\btheta$ if and only if we can find functions $h, g$ such that:
     \begin{align*}
         p(\bx;\btheta) &= g(T(\bx), \btheta)h(\bx),
     \end{align*}
@@ -62,16 +62,25 @@
                 &= \Pm(\bX=\bx | \bU=\bu; \btheta) \Pm(\bU=\bu;\btheta).
         \end{align*} 
 
-        \noindent Since $\bU=T(\bX)$ is a sufficient statistics, $\Pm(\BX=\bx|\bU=\bu;\btheta)$ does not depend on $\btheta$. Hence, we denote $h(\bx) = \Pm(\bX=\bx|\bU=\bu;\btheta)$. Furthermore, by changing the variable, we have:
-        \begin{align*}
-            \Pm(\bU = \bu) &= \Pm(T(\bX) = T(\bx)) \\ 
-                &= p(T^{-1}(\bu);\btheta)\biggAbs{
-                    \frac{d}{d\bu}(T^{-1}(\bu))
-                },
-        \end{align*}
+        \noindent Since $\bU=T(\bX)$ is a sufficient statistics, $\Pm(\BX=\bx|\bU=\bu;\btheta)$ does not depend on $\btheta$. Hence, we denote $h(\bx) = \Pm(\bX=\bx|\bU=\bu;\btheta)$. Furthermore, $\Pm(\bU=\bu;\btheta)$ is a function of $\bu$ and $\btheta$. We denote this function as $g(\bu, \btheta)$ and conclude that the factorisation $p(\bx;\btheta)=h(\bx)g(T(\bx),\btheta)$ indeed exists. 
 
-        \noindent which is a function of $\bu, \btheta$, we denote this function as $g(\bu, \btheta)$ and conclude that the factorisation $p(\bx;\btheta)=h(\bx)g(T(\bx),\btheta)$ exists. 
-        \item Factorisation exists $\implies$ $T(\bX)$ is sufficient.
+        \item Factorisation exists $\implies$ $T(\bX)$ is sufficient: Suppose that there exists $g, h$ such that $p(\bx;\btheta)=g(T(\bx), \btheta)h(\bx)$. We then have:
+        \begin{align*}
+            \Pm(\bX = \bx|\bU = \bu;\btheta) &=  \frac{p(\bx;\btheta)}{\Pm(\bU=\bu;\btheta)} = \frac{g(\bu, \btheta)h(\bx)}{\Pm(\bU=\bu;\btheta)}.
+        \end{align*} 
+
+        \noindent We denote $A_\bu = \bigCurl{\tilde\bx \in \mathcal{X}^n : T(\tilde\bx) = \bu}$. We have:
+        \begin{align*}
+            \Pm(\bU = \bu;\btheta) &= \sum_{\tilde \bx \in A_\bu} \Pm(\bX = \tilde\bx) \\ 
+                &= \sum_{\tilde\bx\in A_\bu} p(\tilde\bx;\btheta) = \sum_{\tilde\bx\in A_\bu} g(T(\tilde\bx), \btheta)h(\tilde\bx) \\ 
+                &= g(\bu, \btheta) \sum_{\tilde\bx\in A_\bu} h(\tilde\bx).
+        \end{align*} 
+
+        \noindent From the above, we have:
+        \begin{align*}
+            \Pm(\bX=\bx|\bU=\bu;\btheta) &= \frac{h(\bx)}{\sum_{\tilde\bx\in A_\bu} h(\tilde\bx)},
+        \end{align*} 
+        \noindent and the above expression does not depend on $\btheta$. Hence, $T(\bX)$ is a sufficient statistics.
     \end{itemize}
 
 \subsubsection{Likelihood}
@@ -79,6 +88,11 @@
     Let $\bX=(X_1, \dots, X_n)$ be a random sample from a distribution $p(.|\theta)$ that depends on parameters $\theta\in\Theta$. Let $\bx=(x_1, \dots, x_n)$ be an observation of the random sample $\bX$. Then, the likelihood function $L(\theta;\bx)$ is defined as follows:
     \begin{equation}
         L(\theta;\bx) = \prod_{i=1}^n p(x_i;\theta), \quad \theta\in\Theta.
+    \end{equation}
+
+    \noindent In some cases, we also use the log-likelihood function:
+    \begin{equation}
+        \ell(\theta;\bx) = \log L(\theta;\bx) = \sum_{i=1}^n \log p(x_i;\theta), \quad \theta\in\Theta.
     \end{equation}
 
     \noindent Essentially, $L(\theta;\bx)$ quantifies the likelihood that $\theta$ generates the observations $\bx$. In a way, it is the inverse of probability density (mass) functions, we can see the contrast as follows:
