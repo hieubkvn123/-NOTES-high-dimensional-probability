@@ -63,6 +63,14 @@
 \end{proof*}
 
 \subsubsection{Likelihood}
+\begin{definition}[Likelihood Function]
+    Let $\bX=(X_1, \dots, X_n)$ be a random sample from a distribution $p(.|\theta)$ that depends on parameters $\theta\in\Theta$. Let $\bx=(x_1, \dots, x_n)$ be an observation of the random sample $\bX$. Then, the likelihood function $L(\theta;\bx)$ is defined as follows:
+    \begin{equation}
+        L(\theta;\bx) = \prod_{i=1}^n p(x_i;\theta), \quad \theta\in\Theta.
+    \end{equation}
+
+    \noindent Essentially, $L(\theta;\bx)$ quantifies the likelihood that $\theta$ generates the observations $\bx$. In a way, it is the inverse of probability density (mass) functions.
+\end{definition}
 
 
 %% ---------------- %%
@@ -85,7 +93,7 @@
         \mathcal{I}_\bX(\btheta) = \E_\bX\biggSquare{
             \biggRound{
                 \frac{\partial}{\partial\theta}\log L(\theta;\bX)
-            }^2 \quad \Big| \quad \btheta
+            }^2 \quad \Bigg| \quad \btheta
         }.
     \end{equation}
 
