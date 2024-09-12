@@ -19,9 +19,11 @@ biber "%OUTPUT_DIR%\\main"
 pdflatex -quiet -output-directory="%OUTPUT_DIR%" -aux-directory="%OUTPUT_DIR%" main.tex
 pdflatex -quiet -output-directory="%OUTPUT_DIR%" -aux-directory="%OUTPUT_DIR%" main.tex
 
-echo Compilation completed. Output in '%OUTPUT_DIR%' directory.
+:: Open current output file
+start /B SumatraPDF "output/main.pdf" 
 
 :: Pause before clear
+echo Compilation completed. Output in '%OUTPUT_DIR%' directory.
 endlocal
 pause
 
