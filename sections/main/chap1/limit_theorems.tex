@@ -2,6 +2,7 @@
 %% Link text %%
 \newcommand{\SLLN}{\hyperref[thm:strong_law_of_large_numbers]{(\mathrm{{\bf SLLN}})}}
 \newcommand{\WLLN}{\hyperref[thm:weak_law_of_large_numbers]{(\mathrm{{\bf WLLN}})}}
+\newcommand{\ULLN}{\hyperref[thm:uniform_law_of_large_numbers]{(\mathrm{{\bf ULLN}})}}
 \newcommand{\LCT}{\hyperref[thm:levy_continuity_theorem]{(\mathrm{{\bf LCT}})}}
 \newcommand{\BCL}{\hyperref[thm:borel_cantelli_lemma]{(\mathrm{{\bf BCL}})}}
 \newcommand{\CLT}{\hyperref[thm:central_limit_theorem]{(\mathrm{{\bf CLT}})}}
@@ -101,7 +102,7 @@
 
 \subsubsection{Strong Law of Large Numbers}
 \begin{theorem}{Strong Law of Large Numbers $\SLLN$}{strong_law_of_large_numbers}
-    Let $X_1, \dots, X_N$ be $i.i.d$ random variables with mean $\mu$. Consider the sum:
+    Let $X_1, \dots, X_N$ be $i.i.d$ random variables with mean $\mu<\infty$. Consider the sum:
     \begin{align*}
         S_N = X_1 + \dots + X_N
     \end{align*}
@@ -202,9 +203,28 @@
 \end{proof*}
 
 
-\subsubsection{Uniform Law of Large Number}
+\subsubsection{Uniform Law of Large Numbers}
+The Uniform Law of Large Numbers $\ULLN$ provides a convergence result for collection of estimators where the convergence is uniform in the parameters space.
 
+\begin{theorem}{Uniform Law of Large Numbers $\ULLN$}{uniform_law_of_large_numbers}
+    Let $\bX=(X_1, \dots, X_n)$ be a random sample from a distribution $p(.;\btheta)$ over $\mathcal{X}$ that depends on the true parameters $\btheta$. Let $\Theta$ be the parameters space and $f:\Theta\times\mathcal{X}\to\R$ be a function that satisfies the following conditions:
+    \begin{enumerate}
+        \item $\Theta$ is compact.
+        \item $f(\theta, x)$ is continuous in $\theta$ for almost all $x\in\mathcal{X}$.
+        \item There exists a function $K$ such that $\E_{\btheta}[K(X)]<\infty$ and $|f(\theta, x)|\le K(x)$ for all $\theta\in\Theta$. 
+    \end{enumerate} 
 
+    \noindent Then, we have:
+    \begin{equation}
+        \sup_{\theta\in\Theta}\biggAbs{
+            \frac{1}{n}\sum_{i=1}^n f(X_1, \theta) - \E_{\btheta}[f(X, \theta)]
+        } \xrightarrow{p} 0.
+    \end{equation}
+\end{theorem} 
+
+\begin{proof*}[Theorem \ref{thm:uniform_law_of_large_numbers}]
+    I am too lazy to include the proof. Hence, a nice proof is provided in \cite[Theorem 16, Page 111]{book:ferguson1996}. The $\ULLN$ will be used later to prove the consistency of the Maximum Likelihood Estimator.
+\end{proof*} 
 
 \subsubsection{Central Limit Theorem}
 \begin{theorem}{Central Limit Theorem $\CLT$}{central_limit_theorem}

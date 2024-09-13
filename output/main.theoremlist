@@ -2,8 +2,9 @@
 \contentsline {tcolorbox}{\numberline {1.2}Levy Continuity Theorem $\hyperref [thm:levy_continuity_theorem]{(\mathrm {{\bf LCT}})}$}{5}{tcb@cnt@theorem.1.2}%
 \contentsline {tcolorbox}{\numberline {1.3}Strong Law of Large Numbers $\hyperref [thm:strong_law_of_large_numbers]{(\mathrm {{\bf SLLN}})}$}{6}{tcb@cnt@theorem.1.3}%
 \contentsline {tcolorbox}{\numberline {1.4}Borel-Cantelli Lemma $\hyperref [thm:borel_cantelli_lemma]{(\mathrm {{\bf BCL}})}$}{7}{tcb@cnt@theorem.1.4}%
-\contentsline {tcolorbox}{\numberline {1.5}Central Limit Theorem $\hyperref [thm:central_limit_theorem]{(\mathrm {{\bf CLT}})}$}{8}{tcb@cnt@theorem.1.5}%
-\contentsline {tcolorbox}{\numberline {1.6}Continuous Mapping Theorem $\hyperref [thm:continuous_mapping_theorem]{(\mathrm {{\bf CMT}})}$}{11}{tcb@cnt@theorem.1.6}%
-\contentsline {tcolorbox}{\numberline {2.1}Factorisation Theorem $\hyperref [thm:factorisation_theorem]{(\mathrm {{\bf FacT}})}$}{13}{tcb@cnt@theorem.2.1}%
-\contentsline {tcolorbox}{\numberline {2.2}Rao-Blackwell Theorem $\hyperref [thm:rao_blackwell_theorem]{(\mathrm {{\bf RB}})}$}{15}{tcb@cnt@theorem.2.2}%
-\contentsline {tcolorbox}{\numberline {2.3}Cramer-Rao Lower Bound $\hyperref [thm:cramer_rao_lowerbound]{(\mathrm {{\bf CRLB}})}$}{15}{tcb@cnt@theorem.2.3}%
+\contentsline {tcolorbox}{\numberline {1.5}Uniform Law of Large Numbers $\hyperref [thm:uniform_law_of_large_numbers]{(\mathrm {{\bf ULLN}})}$}{8}{tcb@cnt@theorem.1.5}%
+\contentsline {tcolorbox}{\numberline {1.6}Central Limit Theorem $\hyperref [thm:central_limit_theorem]{(\mathrm {{\bf CLT}})}$}{8}{tcb@cnt@theorem.1.6}%
+\contentsline {tcolorbox}{\numberline {1.7}Continuous Mapping Theorem $\hyperref [thm:continuous_mapping_theorem]{(\mathrm {{\bf CMT}})}$}{11}{tcb@cnt@theorem.1.7}%
+\contentsline {tcolorbox}{\numberline {2.1}Factorisation Theorem $\hyperref [thm:factorisation_theorem]{(\mathrm {{\bf FacT}})}$}{14}{tcb@cnt@theorem.2.1}%
+\contentsline {tcolorbox}{\numberline {2.2}Rao-Blackwell Theorem $\hyperref [thm:rao_blackwell_theorem]{(\mathrm {{\bf RB}})}$}{16}{tcb@cnt@theorem.2.2}%
+\contentsline {tcolorbox}{\numberline {2.3}Cramer-Rao Lower Bound $\hyperref [thm:cramer_rao_lowerbound]{(\mathrm {{\bf CRLB}})}$}{16}{tcb@cnt@theorem.2.3}%
