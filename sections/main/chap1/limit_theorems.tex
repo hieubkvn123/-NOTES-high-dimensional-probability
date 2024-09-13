@@ -210,8 +210,8 @@ The Uniform Law of Large Numbers $\ULLN$ provides a convergence result for colle
     Let $\bX=(X_1, \dots, X_n)$ be a random sample from a distribution $p(.;\btheta)$ over $\mathcal{X}$ that depends on the true parameters $\btheta$. Let $\Theta$ be the parameters space and $f:\Theta\times\mathcal{X}\to\R$ be a function that satisfies the following conditions:
     \begin{enumerate}
         \item $\Theta$ is compact.
+        \item $\E_{\btheta}[\sup_{\theta\in\Theta}|f(\theta, x)|] < \infty$.
         \item $f(\theta, x)$ is continuous in $\theta$ for almost all $x\in\mathcal{X}$.
-        \item There exists a function $K$ such that $\E_{\btheta}[K(X)]<\infty$ and $|f(\theta, x)|\le K(x)$ for all $\theta\in\Theta$. 
     \end{enumerate} 
 
     \noindent Then, we have:
