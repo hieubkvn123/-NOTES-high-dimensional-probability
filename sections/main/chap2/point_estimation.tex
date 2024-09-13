@@ -1,5 +1,5 @@
 %% ---------------- %%
-\subsection{Sufficiency \& Likelihood}
+\subsection{Sufficiency \& Likelihood Principles}
 \newcommand{\FacT}{\hyperref[thm:factorisation_theorem]{(\mathrm{{\bf FacT}})}}
 
 \subsubsection{Sufficiency}
@@ -113,23 +113,19 @@
 
 
 \begin{proposition}{Consistency of MLE}{consistency_of_mle}
-    Let $\bX=(X_1, \dots, X_n)$ be a random sample from a distribution $p(.;\btheta)$ dependent on a true set of parameters $\btheta$. Let $\Theta$ be the parameters space. Then, the Maximum Likelihood Estimator $\theta_{MLE} = \arg\max_{\theta\in\Theta}L(\theta;\bX)$, which is a random variable, is consistent:
-    \begin{equation}
-        \lim_{n\to\infty} \Pm(|\theta_{MLE} - \btheta| \ge \epsilon) = 0, \quad \forall\epsilon>0,
-    \end{equation}
-
-    \noindent provided that the following conditions are met:
+    Let $\bX=(X_1, \dots, X_n)$ be a random sample from a distribution $p(.;\btheta)$ over $\mathcal{X}$ dependent on a true set of parameters $\btheta$. Let $\Theta$ be the parameters space. Then, the Maximum Likelihood Estimator $\theta_{MLE} = \arg\max_{\theta\in\Theta}L(\theta;\bX)$, which is a random variable, is consistent, meaning $\theta_{MLE}\xrightarrow{p}\btheta$, provided that the following conditions are met:
     \begin{enumerate}
-        \item $\Theta$ is a compact space. 
-        \item $p(x;\theta)$ is continuous in $\theta$ for almost all $x$.
-        \item There exists a function $K$ such that $\E_{\btheta}[K(X)]<\infty$ and $|\log p(x;\theta)|<K(x)$.
+        \item $\btheta\in\Theta$ and $\Theta$ is a compact space. 
+        \item If $\theta_1\ne\theta_2$ then $p(x;\theta_1)\ne p(x;\theta_2), \quad \forall x\in\mathcal{X}$.
+        \item $\log p(x;\theta)$ is continuous in $\theta$ for almost all $x\in\mathcal{X}$.
+        \item $\E_{\btheta}[\sup_{\theta\in\Theta}|\log(X;\theta)|] < \infty$.
     \end{enumerate} 
     
     \noindent Furthermore, we can also show that $\theta_{MLE}$ is asymptotically unbiased. In other words, $\lim_{n\to\infty}\E[\theta_{MLE}] = \btheta$.
 \end{proposition} 
 
 \begin{proof*}[Proposition \ref{prop:consistency_of_mle}]
-    
+    A proof for consistency of MLE can be found in \cite[Theorem 2.5]{book:newey1994}. In this section, we briefly go through the proof again.
 \end{proof*} 
 
 \begin{proposition}{Asymptotic Normality of MLE}{asymptotic_normality_mle}

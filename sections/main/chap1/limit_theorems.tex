@@ -217,13 +217,13 @@ The Uniform Law of Large Numbers $\ULLN$ provides a convergence result for colle
     \noindent Then, we have:
     \begin{equation}
         \sup_{\theta\in\Theta}\biggAbs{
-            \frac{1}{n}\sum_{i=1}^n f(X_1, \theta) - \E_{\btheta}[f(X, \theta)]
+            \frac{1}{n}\sum_{i=1}^n f(X_i, \theta) - \E_{\btheta}[f(X, \theta)]
         } \xrightarrow{p} 0.
     \end{equation}
 \end{theorem} 
 
 \begin{proof*}[Theorem \ref{thm:uniform_law_of_large_numbers}]
-    I am too lazy to include the proof. Hence, a nice proof is provided in \cite[Theorem 16, Page 111]{book:ferguson1996}. The $\ULLN$ will be used later to prove the consistency of the Maximum Likelihood Estimator.
+    I am too lazy to include the proof. Hence, a nice proof is provided in \cite[Theorem 16, Page 111]{book:ferguson1996}. The $\ULLN$ will be used later to prove the (strong) consistency of the Maximum Likelihood Estimator.
 \end{proof*} 
 
 \subsubsection{Central Limit Theorem}
