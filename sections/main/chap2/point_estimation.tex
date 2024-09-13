@@ -107,33 +107,28 @@
     \begin{equation}
         \theta_{MLE} = \arg\max_{\theta\in\Theta} L(\theta;\bx).
     \end{equation}
+
+    \noindent In the subsequent propositions, we will discuss some of the key properties of MLE.
 \end{definition} 
 
 
-\begin{proposition}{Properties of Maximum Likelihood Estimator}{properties_of_mle}
-    Let $\bX=(X_1, \dots, X_n)$ be a random sample from a distribution dependent on a true set of parameters $\btheta$. Then, the estimator
+\begin{proposition}{Consistency of MLE}{consistency_of_mle}
+    Let $\bX=(X_1, \dots, X_n)$ be a random sample from a distribution $p(.;\btheta)$ dependent on a true set of parameters $\btheta$. Let $\Theta$ be the parameters space. Then, the Maximum Likelihood Estimator $\theta_{MLE} = \arg\max_{\theta\in\Theta}L(\theta;\bX)$, which is a random variable, is consistent:
     \begin{equation}
-        \theta_{MLE} = \arg\max_{\theta\in\Theta}L(\theta;\bX),
+        \lim_{n\to\infty} \Pm(|\theta_{MLE} - \btheta| \ge \epsilon) = 0, \quad \forall\epsilon>0,
     \end{equation}
 
-    \noindent which is a random variable, has the following properties:
+    \noindent provided that the following conditions are met:
     \begin{enumerate}
-        \item $\theta_{MLE}$ is asymptotically consistent, meaning:
-        \begin{equation}
-            \lim_{n\to\infty} \Pm(|\theta_{MLE} - \btheta| \ge \epsilon) = 0, \quad \forall\epsilon>0.
-        \end{equation}
-        \item $\theta_{MLE}$ is asymptotically unbiased:
-        \begin{equation}
-            \lim_{n\to\infty}\E[\theta_{MLE}] = \btheta.
-        \end{equation}
-        \item $\theta_{MLE}$ is asymptotically normal:
-        \begin{equation}
-            \frac{\theta_{MLE} - \btheta}{\sqrt{\var(\theta_{MLE})}} \xrightarrow{d} \mathcal{N}(0,1).
-        \end{equation}
+        \item $\Theta$ is a compact space. 
+        \item $p(x;\theta)$ is continuous in $\theta$ for almost all $x$.
+        \item There exists a function $K$ such that $\E_{\btheta}[K(X)]<\infty$ and $|\log p(x;\theta)|<K(x)$.
     \end{enumerate} 
+    
+    \noindent Furthermore, we can also show that $\theta_{MLE}$ is asymptotically unbiased. In other words, $\lim_{n\to\infty}\E[\theta_{MLE}] = \btheta$.
 \end{proposition} 
 
-\begin{proof*}[Proposition \ref{prop:properties_of_mle}]
+\begin{proof*}[Proposition \ref{prop:consistency_of_mle}]
     For properties $(1)$ and $(2)$, we can just prove the consistency of MLE because consistency implies asymptotic unbiasedness (We will provide a proof for this claim as a lemma below). 
     \begin{enumerate}
         \item Consistency: By $\SLLN$, for any $\theta\in\Theta$, we have the following
@@ -151,6 +146,10 @@
         \end{equation}
     \end{enumerate} 
 \end{proof*} 
+
+\begin{proposition}{Asymptotic Normality of MLE}{asymptotic_normality_mle}
+    
+\end{proposition} 
 
 
 %% ---------------- %%

@@ -2,4 +2,5 @@
 \contentsline {tcolorbox}{\numberline {1.2}$X_n\xrightarrow {d}c\DOTSB \tmspace +\thickmuskip {.2777em}\DOTSB \Leftarrow \joinrel \Rightarrow \tmspace +\thickmuskip {.2777em}X_n\xrightarrow {p}c$}{10}{tcb@cnt@proposition.1.2}%
 \contentsline {tcolorbox}{\numberline {1.3}$X_n\xrightarrow {L^p}X\DOTSB \tmspace +\thickmuskip {.2777em}\DOTSB \Relbar \joinrel \Rightarrow \tmspace +\thickmuskip {.2777em}X_n\xrightarrow {p}X$}{10}{tcb@cnt@proposition.1.3}%
 \contentsline {tcolorbox}{\numberline {1.4}$X_n\xrightarrow {a.s}X\DOTSB \tmspace +\thickmuskip {.2777em}\DOTSB \Relbar \joinrel \Rightarrow \tmspace +\thickmuskip {.2777em}X_n\xrightarrow {p}X$}{11}{tcb@cnt@proposition.1.4}%
-\contentsline {tcolorbox}{\numberline {2.1}Properties of Maximum Likelihood Estimator}{15}{tcb@cnt@proposition.2.1}%
+\contentsline {tcolorbox}{\numberline {2.1}Consistency of MLE}{15}{tcb@cnt@proposition.2.1}%
+\contentsline {tcolorbox}{\numberline {2.2}Asymptotic Normality of MLE}{16}{tcb@cnt@proposition.2.2}%
