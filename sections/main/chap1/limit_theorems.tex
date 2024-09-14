@@ -207,23 +207,117 @@
 The Uniform Law of Large Numbers $\ULLN$ provides a convergence result for collection of estimators where the convergence is uniform in the parameters space.
 
 \begin{theorem}{Uniform Law of Large Numbers $\ULLN$}{uniform_law_of_large_numbers}
-    Let $\bX=(X_1, \dots, X_n)$ be a random sample from a distribution $p(.;\btheta)$ over $\mathcal{X}$ that depends on the true parameters $\btheta$. Let $\Theta$ be the parameters space and $f:\Theta\times\mathcal{X}\to\R$ be a function that satisfies the following conditions:
+    Let $\bX=(X_1, \dots, X_n)$ be a random sample from a distribution $p_\btheta$ over $\mathcal{X}$ that depends on the true parameters $\btheta$. Let $\Theta\subset\R^m$ be the parameters space and $f_\theta:\mathcal{X}\to\R$ be a function indexed by $\theta\in\Theta$ that satisfies the following conditions:
     \begin{enumerate}
-        \item $\Theta$ is compact.
-        \item $\E_{\btheta}[\sup_{\theta\in\Theta}|f(\theta, x)|] < \infty$.
-        \item $f(\theta, x)$ is continuous in $\theta$ for almost all $x\in\mathcal{X}$.
-    \end{enumerate} 
+        \item $\btheta\in\Theta$ and $\Theta$ is compact.
+        \item $\E_{\btheta}[\sup_{\theta\in\Theta}|f_\theta(X)|] < \infty$\footnote{$\E_\btheta$ denotes the expectation taken over the distribution described by $p_\btheta$.}.
+        \item $f_\theta(x)$ is continuous in $\theta$ for all $x\in\mathcal{X}$.
+    \end{enumerate}
 
     \noindent Then, we have:
     \begin{equation}
         \sup_{\theta\in\Theta}\biggAbs{
-            \frac{1}{n}\sum_{i=1}^n f(X_i, \theta) - \E_{\btheta}[f(X, \theta)]
+            \frac{1}{n}\sum_{i=1}^n f_\theta(X_i) - \E_{\btheta}[f_\theta(X)]
         } \xrightarrow{p} 0.
     \end{equation}
 \end{theorem} 
 
 \begin{proof*}[Theorem \ref{thm:uniform_law_of_large_numbers}]
-    I am too lazy to include the proof. Hence, a nice proof is provided in \cite[Theorem 16, Page 111]{book:ferguson1996}. The $\ULLN$ will be used later to prove the (strong) consistency of the Maximum Likelihood Estimator.
+    A nice proof is provided in \cite[Theorem 16, Page 111]{book:ferguson1996}. However, we will conduct our own version of the proof relying on results in learning theory. For $\theta\in\Theta$, define the following function:
+    \begin{equation}
+        \phi_\theta(\bX) = \biggAbs{
+            \frac{1}{n}\sum_{i=1}^n \bigRound{f_\theta(X_i) - \E_{\btheta}[f_\theta(X)]}
+        } 
+    \end{equation}
+
+    \noindent We have to prove that $\Pm(\sup_{\theta\in\Theta}|\phi_\theta(\bX)|\ge \epsilon)\to 0$ for all $\epsilon>0$. For $\epsilon>0$, we have:
+    \begin{align*}
+        \Pm\bigRound{\sup_{\theta\in\Theta}|\phi_\theta(\bX)| \ge \epsilon} 
+        &= \Pm\bigRound{\bigCurl{\sup_{\theta\in\Theta} \phi_\theta(\bX) \ge \epsilon}\cup\bigCurl{\sup_{\theta\in\Theta} (-\phi_\theta(\bX)) \ge \epsilon}} \\ 
+        &\le \Pm\bigRound{\sup_{\theta\in\Theta} \phi_\theta(\bX) \ge \epsilon} + \Pm\bigRound{\sup_{\theta\in\Theta} (-\phi_\theta(\bX)) \ge \epsilon} \\ 
+        &\le \frac{1}{\epsilon}\bigRound{\E\bigSquare{\sup_{\theta\in\Theta}\phi_\theta(\bX)} + \E\bigSquare{\sup_{\theta\in\Theta}(-\phi_\theta(\bX))}} \quad \text{(Markov's Inequality)}
+    \end{align*} 
+
+    \noindent Now, we need to bound the expectations on the right-hand-side. To do so, we use the symmetrization trick. Specifically, given a sequence of $i.i.d$ random variables $S = \{Z_1, \dots, Z_n\}\sim\rho^n$ sampled from a distribution $\rho$ and a class of functions $\mathcal{F}$. Let $S'=\{Z_1', \dots, Z_n'\}\sim\rho^n$ be a another sample from the same distribution $\rho$ (which we called the phantom sample), we have:
+    \begin{equation}
+    \label{eq:ulln_eq1}
+    \begin{aligned}
+        &\E_S\biggSquare{\sup_{f\in\mathcal{F}}\frac{1}{n}{\sum_{i=1}^n (f(Z_i) - \E_S[f(Z_i)])}} \\
+            &= \E_S\biggSquare{\sup_{f\in\mathcal{F}}\frac{1}{n}{\sum_{i=1}^n (f(Z_i) - \E_{S'}[f(Z_i')])}} \\ 
+            &= \E_S\biggSquare{\sup_{f\in\mathcal{F}}{
+                \frac{1}{n}\sum_{i=1}^n f(Z_i) - \frac{1}{n}\sum_{i=1}^n \E_{S'}[f(Z_i')]
+            }} \\ 
+            &= \E_{S}\biggSquare{
+                \sup_{f\in\mathcal{F}} {
+                    \E_{S'}\biggSquare{
+                        \frac{1}{n}\sum_{i=1}^n (f(Z_i) - f(Z_i'))
+                    }
+                }
+            } \\
+            &\le \E_{S, S'}\biggSquare{
+                \sup_{f\in\mathcal{F}} {
+                    \frac{1}{n}\sum_{i=1}^n (f(Z_i) - f(Z_i'))
+                }
+            } \quad (\text{Jensen's Inequality}) \\ 
+            &= \E_{S, S', \sigma}\biggSquare{
+                \sup_{f\in\mathcal{F}} {
+                    \frac{1}{n}\sum_{i=1}^n \sigma_i(f(Z_i) - f(Z_i'))
+                }
+            } \quad (\sigma\sim\mathrm{Rad}^n, f(Z_i) - f(Z_i')\text{ is symmetric}) \\ 
+            &\le \E_{S, \sigma}\biggSquare{\sup_{f\in\mathcal{F}}{\frac{1}{n}\sum_{i=1}^n \sigma_if(Z_i)}} + \E_{S', \sigma}\biggSquare{\sup_{f\in\mathcal{F}}{\frac{1}{n}\sum_{i=1}^n (-\sigma_i)f(Z_i')}} \\ 
+            &= \E_{S, \sigma}\biggSquare{\sup_{f\in\mathcal{F}}{\frac{1}{n}\sum_{i=1}^n \sigma_if(Z_i)}} + \E_{S', \sigma}\biggSquare{\sup_{f\in\mathcal{F}}{\frac{1}{n}\sum_{i=1}^n \sigma_if(Z_i')}} \quad \text{(Rademacher variables are symmetric)} \\ 
+            &= 2\E_{S, \sigma}\biggSquare{\sup_{f\in\mathcal{F}}{\frac{1}{n}\sum_{i=1}^n \sigma_if(Z_i)}} \quad \text{($S$ and $S'$ are identically distributed)}\\
+            &= 2\mathfrak{R}_n(\mathcal{F}).
+    \end{aligned}
+    \end{equation}
+
+    \noindent Using the same argument, we can also have:
+    \begin{equation}
+        \label{eq:ulln_eq2}
+         \E_S\biggSquare{\sup_{f\in\mathcal{F}}{\frac{1}{n}\sum_{i=1}^n (\E_S[f(Z_i)] - f(Z_i))}} \le 2\mathfrak{R}_n(\mathcal{F}).
+    \end{equation}
+
+    \noindent Using equations \ref{eq:ulln_eq1} and \ref{eq:ulln_eq2} to bound $\Pm(\sup_{\theta\in\Theta}|\phi_\theta(S)|\ge \epsilon)$, we have:
+    \begin{align*}
+        &\Pm\Big(\sup_{\theta\in\Theta}|\phi_\theta(S)|\ge \epsilon\Big) \le \frac{4\mathfrak{R}_n(\mathcal{F}_\Theta)}{\epsilon}, 
+        \text{ where }\mathcal{F}_\Theta = \bigCurl{
+            f_\theta : \theta \in \Theta
+        }.
+    \end{align*}
+
+    \noindent To complete the proof, we have to show that the Rademacher complexity $\mathfrak{R}_n(\mathcal{F}_\Theta) \to 0$ as $n\to\infty$. By the definition of Rademacher Complexity, we have:
+    \begin{align*}
+        \mathfrak{R}_n(\mathcal{F}_\Theta) = \E_{\bX\sim p_{\btheta}^n} \E_\sigma \bigSquare{
+            \mathfrak{\hat R}_\bX(\mathcal{F}_\Theta)
+        },
+    \end{align*}
+
+    \noindent It is sufficient to prove that the Empirical Rademacher Complexity $\mathfrak{\hat R}_\bX(\mathcal{F}_\Theta)\to0$ as $n\to\infty$. Using Dudley's Entropy Integral \cite[Lemma A.5]{article:bartlett2017}, we have:
+    \begin{equation}
+        \mathfrak{\hat R}_\bX(\mathcal{F}_\Theta) \le \frac{12}{\sqrt n}\int_\alpha^M \sqrt{\log\mathcal{N}\bigRound{\mathcal{F}_\Theta, \epsilon, L_2(\bX)}}d\epsilon, \quad \alpha > 0, 
+    \end{equation}
+
+    \noindent where $M<\infty$ is a constant such that $|f_\theta(x)| \le M$ $p_\btheta$-(almost everywhere) on $\mathcal{X}$ for all $\theta\in\Theta$\footnote{M exists because we have $\E_{\btheta}[\sup_{\theta\in\Theta}|f_\theta(X)|] < \infty$.}. Now, we need to construct a cover in $L_2$ norm for the class $\mathcal{F}_\Theta$. Since $f_\theta(x)$ is continuous in $\theta$ for all $x\in\mathcal{X}$, for all $\epsilon > 0$, there exists $\delta_x>0$ such that $\|\theta - \bar\theta\|_2<\delta_x \implies |f_\theta(x) - f_{\bar\theta}(x)|<\epsilon$. Define $\delta>0$ as follows:
+    \begin{equation}
+        \delta = \min_{1\le i \le n}\delta_{X_i}, \quad X_i \in \bX.
+    \end{equation}
+
+    \noindent Due to continuity, constructing an $\epsilon$-cover in $\mathcal{F}_\Theta$ is equivalent to constructing a $\delta$-cover for $\Theta$ with respect to the Euclidean norm. Since $\Theta$ is compact, there exists $N\in\mathbb{N}$ and a sequence of open balls $\{\mathcal{B}(y_j, r_j)\}_{j=1}^N$ where $y_j\in\Theta$ for all $1\le j \le N$ such that:
+    \begin{equation}
+        \Theta \subseteq \bigcup_{j=1}^N \mathcal{B}(y_j, r_j).
+    \end{equation}
+
+    \noindent By \cite[Lemma A.8]{article:long2020}, we have:
+    \begin{equation}
+        \log \mathcal{N}\bigRound{\mathcal{B}(y_j, r_j), \delta, \|.\|_2} \le m \log \biggRound{\frac{3r_j}{\delta}}.
+    \end{equation}
+
+    \noindent Therefore, we have:
+    \begin{equation}
+        \log\mathcal{N}\bigRound{\Theta, \delta, \|.\|_2} \le \sum_{j=1}^N \log \mathcal{N}\bigRound{\mathcal{B}(y_j, r_j), \delta, \|.\|_2} \le mN\log\biggRound{\frac{\prod_{j=1}^N r_j}{\delta^N}}.
+    \end{equation}
+
+    \noindent From the above covering number bound, we can see that $\log\mathcal{N}\bigRound{\Theta, \delta, \|.\|_2}$ does not grow with $n$ and therefore, $\log\mathcal{N}\bigRound{\mathcal{F}_\Theta, \epsilon, L_2(\bX)}$ does not grow with $n$. Therefore, we have $\mathfrak{\hat R}_{\bX}(\mathcal{F}_\Theta) \in \mathcal{O}(1/\sqrt{n})$ and $\mathfrak{\hat R}_{\bX}(\mathcal{F}_\Theta)\to 0$ as $n\to\infty$.
 \end{proof*} 
 
 \subsubsection{Central Limit Theorem}
