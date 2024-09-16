@@ -28,8 +28,25 @@ In this section, we revise the modes of convergence in random variables.
     \begin{align*}
         F_{X_n+Y_n}(t) &= \Pm(X_n + Y_n \le t) \\ 
             &= \Pm(X_n + Y_n \le t, |Y_n - c| \le \epsilon) + \Pm(X_n + Y_n \le t, |Y_n - c| > \epsilon) \\
-            &\le \Pm(X_n + Y_n \le t, |Y_n - c| \le \epsilon) + \underbrace{\Pm(|Y_n - c| > \epsilon)}_{\text{approaches } 0 \text{ as } n\to\infty}
+            &\le \Pm(X_n + Y_n \le t, |Y_n - c| \le \epsilon) + \underbrace{\Pm(|Y_n - c| > \epsilon)}_{\text{approaches } 0 \text{ as } n\to\infty}.
     \end{align*} 
+
+    \noindent In the event that $|Y_n - c| \le \epsilon$, we have $Y_n \ge c - |Y_n - c| \ge c - \epsilon$. Therefore, we have:
+    \begin{align*}
+        F_{X_n + Y_n}(t) &\le \Pm(X_n \le t - c + \epsilon) + \Pm(|Y_n - c|>\epsilon).
+    \end{align*} 
+
+    \noindent Similarly, we have:
+    \begin{align*}
+         F_{X_n + Y_n}(t) \ge \Pm(X_n \le t - c - \epsilon) - \Pm(|Y_n - c| > \epsilon).
+    \end{align*} 
+
+    \noindent Taking limits of both inequalities, we have:
+    \begin{align*}
+        F_{X}(t - c - \epsilon) \le \lim_{n\to\infty} F_{X_n + Y_n}(t) \le F_X(t - c + \epsilon). 
+    \end{align*} 
+
+    \noindent Let $\epsilon\to0$, we have $\lim_{n\to\infty}F_{X_n+Y_n}(t) \to F_X(t - c) = F_{X+c}(t)$ as $n\to\infty$.
     \item $X_nY_n \xrightarrow{d} cX$.
     \item $X_n/Y_n \xrightarrow{d} X/c$ if $c \ne 0$. 
 \end{enumerate} 
