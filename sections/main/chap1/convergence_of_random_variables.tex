@@ -24,7 +24,11 @@ In this section, we revise the modes of convergence in random variables.
 \begin{proof*}[Theorem \ref{thm:slutsky_theorem}]
 \ \begin{enumerate}     
     \item $X_n + Y_n \xrightarrow{d} X + c$.
-            
+    Let $\epsilon>0$ be any positive constant, we have:
+    \begin{align*}
+        F_{X_n+Y_n}(t) &= \Pm(X_n + Y_n \le t) \\ 
+            &\le \Pm(X_n + Y_n \le t, |Y_n - c| \le \epsilon) + \Pm(|Y_n - c| \le \epsilon)
+    \end{align*} 
     \item $X_nY_n \xrightarrow{d} cX$.
     \item $X_n/Y_n \xrightarrow{d} X/c$ if $c \ne 0$. 
 \end{enumerate} 
