@@ -85,7 +85,7 @@
 
 \subsubsection{Likelihood}
 \begin{definition}[Likelihood Function]
-    Let $\bX=(X_1, \dots, X_n)$ be a random sample from a distribution $p(.|\theta)$ that depends on parameters $\theta\in\Theta$. Let $\bx=(x_1, \dots, x_n)$ be an observation of the random sample $\bX$. Then, the likelihood function $L(\theta;\bx)$ is defined as follows:
+    Let $\bX=(X_1, \dots, X_n)$ be a random sample from a distribution $p(.;\theta)$ that depends on parameters $\theta\in\Theta$. Let $\bx=(x_1, \dots, x_n)$ be an observation of the random sample $\bX$. Then, the likelihood function $L(\theta;\bx)$ is defined as follows:
     \begin{equation}
         L(\theta;\bx) = \prod_{i=1}^n p(x_i;\theta), \quad \theta\in\Theta.
     \end{equation}
@@ -116,9 +116,9 @@
     Let $\bX=(X_1, \dots, X_n)$ be a random sample from a distribution $p(.;\btheta)$ over $\mathcal{X}$ dependent on a true set of parameters $\btheta$. Let $\Theta$ be the parameters space. Then, the Maximum Likelihood Estimator $\theta_{MLE} = \arg\max_{\theta\in\Theta}L(\theta;\bX)$, which is a random variable, is consistent, meaning $\theta_{MLE}\xrightarrow{p}\btheta$, provided that the following conditions are met:
     \begin{enumerate}
         \item $\btheta\in\Theta$ and $\Theta$ is a compact space. 
-        \item If $\theta_1\ne\theta_2$ then $p(x;\theta_1)\ne p(x;\theta_2), \quad \forall x\in\mathcal{X}$.
         \item $\log p(x;\theta)$ is continuous in $\theta$ for almost all $x\in\mathcal{X}$.
         \item $\E_{\btheta}[\sup_{\theta\in\Theta}|\log(X;\theta)|] < \infty$.
+        \item The mapping $\xi\mapsto p(.;\xi), \quad \xi\in\Theta$ is one-to-one (Identifiability).\footnote{In general, it is required that the model is strongly identifiable. However, since the parameters space $\Theta$ is compact, this requirement is satisfied.}
     \end{enumerate} 
     
     \noindent Furthermore, we can also show that $\theta_{MLE}$ is asymptotically unbiased. In other words, $\lim_{n\to\infty}\E[\theta_{MLE}] = \btheta$.
