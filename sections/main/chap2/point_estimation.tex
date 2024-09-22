@@ -129,7 +129,7 @@
     \begin{enumerate}
         \item First, prove that $\btheta=\arg\max_{\xi\in\Theta}\E_{\btheta} [\log p_\xi(X)]$. 
         \item Then, by $\ULLN$: $\frac{1}{n}\sum_{i=1}^n \log p_\theta(X_i)\xrightarrow{p}\E_{\btheta}[\log p_\theta(X)], \quad \forall \theta\in\Theta$.
-        \item Since $\log p_\theta(x)$ is continuous in $\theta$, by $\CMT$: $\Theta_{MLE} \xrightarrow{p} \btheta$.
+        \item Prove that if a stochastic process converges in probability to a deterministic process, then the maximizers of the stochastic process converges in probability to the maximizer of the deterministic process.
     \end{enumerate} 
 
     \noindent To complete the proof, it is sufficient to prove the first point. For any $\theta\in\Theta$, we have:
@@ -141,11 +141,17 @@
         } = \log\int_\mathcal{X} \frac{p_\theta(x)}{p_{\btheta}(x)}p_{\btheta}(x)dx = \log 1 = 0.
     \end{align*} 
 
-    \noindent Therefore, for all $\theta\in\Theta:\E_{\btheta}[\log p_\theta(X)]\le \E_{\btheta}[\log p_{\btheta}(X)]$. Hence, $\btheta=\arg\max_{\xi\in\Theta}\E_{\btheta} [\log p_\xi(X)]$ as desired. The rest of the proof is followed by $\ULLN$ and $\CMT$.
+    \noindent Therefore, for all $\theta\in\Theta:\E_{\btheta}[\log p_\theta(X)]\le \E_{\btheta}[\log p_{\btheta}(X)]$. Hence, $\btheta=\arg\max_{\xi\in\Theta}\E_{\btheta} [\log p_\xi(X)]$ as desired. Denote the following mappings:
+    \begin{align*}
+        M_n &= \xi \mapsto \frac{1}{n} \sum_{i=1}^n p_\xi(X_i), \\
+        \text{ and } M &= \xi \mapsto \E_{\btheta}[\log p_\xi(X)]. 
+    \end{align*} 
+
+    \noindent Then, by $\ULLN$, we have $\|M_n - M\|_\infty \xrightarrow{p} 0$.
 \end{proof*} 
 
 \begin{proposition}{Asymptotic Normality of MLE}{asymptotic_normality_mle}
-    Let $\bX=(X_1, \dots, X_n)$ be a random sample from a distribution $p(.;\btheta)$ dependent on a true set of parameters $\btheta$. Let $\Theta$ be the parameters space. Then, the Maximum Likelihood Estimator $\Theta_{MLE} = \arg\max_{\theta\in\Theta}L(\theta;\bX)$ is asymptotically normal:
+    Let $\bX=(X_1, \dots, X_n)$ be a random sample from a distribution $p_{\btheta}$ dependent on a true set of parameters $\btheta$. Let $\Theta$ be the parameters space. Then, the Maximum Likelihood Estimator $\Theta_{MLE} = \arg\max_{\theta\in\Theta}L(\theta;\bX)$ is asymptotically normal:
     \begin{equation}
         \frac{\Theta_{MLE} - \btheta}{\sqrt{\var(\Theta_{MLE})/n}} \xrightarrow{d} \mathcal{N}(0,1).
     \end{equation}
