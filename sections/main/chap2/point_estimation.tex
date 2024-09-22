@@ -141,13 +141,18 @@
         } = \log\int_\mathcal{X} \frac{p_\theta(x)}{p_{\btheta}(x)}p_{\btheta}(x)dx = \log 1 = 0.
     \end{align*} 
 
-    \noindent Therefore, for all $\theta\in\Theta:\E_{\btheta}[\log p_\theta(X)]\le \E_{\btheta}[\log p_{\btheta}(X)]$. Hence, $\btheta=\arg\max_{\xi\in\Theta}\E_{\btheta} [\log p_\xi(X)]$ as desired. Denote the following mappings:
+    \noindent Therefore, for all $\theta\in\Theta:\E_{\btheta}[\log p_\theta(X)]\le \E_{\btheta}[\log p_{\btheta}(X)]$. Hence, $\btheta=\arg\max_{\xi\in\Theta}\E_{\btheta} [\log p_\xi(X)]$ as desired. Define the following continuous mappings:
     \begin{align*}
         M_n &= \xi \mapsto \frac{1}{n} \sum_{i=1}^n p_\xi(X_i), \\
         \text{ and } M &= \xi \mapsto \E_{\btheta}[\log p_\xi(X)]. 
     \end{align*} 
 
-    \noindent Then, by $\ULLN$, we have $\|M_n - M\|_\infty \xrightarrow{p} 0$.
+    \noindent Then, by $\ULLN$, we have $\|M_n - M\|_\infty \xrightarrow{p} 0$. Therefore, since $\Theta$ is compact, we also have:
+    \begin{align*}
+        \arg\max_{\theta\in\Theta}M_n(\theta) \xrightarrow{p} \arg\max_{\theta\in\Theta}M(\theta).
+    \end{align*} 
+
+    \noindent In other words, $\Theta_{MLE}\xrightarrow{p}\btheta$.
 \end{proof*} 
 
 \begin{proposition}{Asymptotic Normality of MLE}{asymptotic_normality_mle}
