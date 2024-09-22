@@ -131,6 +131,17 @@
         \item Then, by $\ULLN$: $\frac{1}{n}\sum_{i=1}^n \log p_\theta(X_i)\xrightarrow{p}\E_{\btheta}[\log p_\theta(X)], \quad \forall \theta\in\Theta$.
         \item Since $\log p_\theta(x)$ is continuous in $\theta$, by $\CMT$: $\Theta_{MLE} \xrightarrow{p} \btheta$.
     \end{enumerate} 
+
+    \noindent To complete the proof, it is sufficient to prove the first point. For any $\theta\in\Theta$, we have:
+    \begin{align*}
+        \E_{\btheta}\biggSquare{
+            \log \frac{p_\theta(X)}{p_{\btheta}(X)}
+        } &\le \log\E_{\btheta}\biggSquare{
+            \frac{p_\theta(X)}{p_{\btheta}(X)}
+        } = \log\int_\mathcal{X} \frac{p_\theta(x)}{p_{\btheta}(x)}p_{\btheta}(x)dx = \log 1 = 0.
+    \end{align*} 
+
+    \noindent Therefore, for all $\theta\in\Theta:\E_{\btheta}[\log p_\theta(X)]\le \E_{\btheta}[\log p_{\btheta}(X)]$. Hence, $\btheta=\arg\max_{\xi\in\Theta}\E_{\btheta} [\log p_\xi(X)]$ as desired. The rest of the proof is followed by $\ULLN$ and $\CMT$.
 \end{proof*} 
 
 \begin{proposition}{Asymptotic Normality of MLE}{asymptotic_normality_mle}
