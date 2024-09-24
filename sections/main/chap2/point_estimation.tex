@@ -143,7 +143,7 @@
 
     \noindent Therefore, for all $\theta\in\Theta:\E_{\btheta}[\log p_\theta(X)]\le \E_{\btheta}[\log p_{\btheta}(X)]$. Hence, $\btheta=\arg\max_{\xi\in\Theta}\E_{\btheta} [\log p_\xi(X)]$ as desired. Define the following continuous mappings:
     \begin{align*}
-        M_n &= \xi \mapsto \frac{1}{n} \sum_{i=1}^n p_\xi(X_i), \\
+        M_n &= \xi \mapsto \frac{1}{n} \sum_{i=1}^n \log p_\xi(X_i), \\
         \text{ and } M &= \xi \mapsto \E_{\btheta}[\log p_\xi(X)]. 
     \end{align*} 
 
