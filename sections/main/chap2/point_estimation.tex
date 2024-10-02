@@ -147,12 +147,25 @@
         \text{ and } M &= \xi \mapsto \E_{\btheta}[\log p_\xi(X)]. 
     \end{align*} 
 
-    \noindent Then, by $\ULLN$, we have $\|M_n - M\|_\infty \xrightarrow{p} 0$. Therefore, since $\Theta$ is compact, we also have:
+    \noindent Then, by $\ULLN$, we have $\|M_n - M\|_\infty \xrightarrow{p} 0$. This means that for any fixed $\epsilon>0$, there exists $\delta\in(0,1)$ and $N\in\mathbb{N}$ such that for all $n\ge N$, with probability of at least $1-\delta$, we have:
     \begin{align*}
-        \arg\max_{\theta\in\Theta}M_n(\theta) \xrightarrow{p} \arg\max_{\theta\in\Theta}M(\theta).
+        |M_n(\hat\theta_n) - M(\hat\theta_n)| < \frac{\epsilon}{2}, \quad \text{and} \quad |M_n(\btheta) - M(\btheta)| < \frac{\epsilon}{2},
     \end{align*} 
 
-    \noindent In other words, $\Theta_{MLE}\xrightarrow{p}\btheta$.
+    \noindent where $\hat\theta = \arg\max_{\theta\in\Theta}M_n(\theta)$. From the above, with probability of at least $1-\delta$, we have:
+    \begin{align*}
+        M(\hat\theta_n) \ge M_n(\hat\theta_n) - \frac{\epsilon}{2} \ge M_n(\btheta) - \frac{\epsilon}{2} \ge M(\btheta) - \epsilon.
+    \end{align*} 
+
+    \noindent Hence, we have $M(\btheta) - M(\hat\theta_n) < \epsilon$ with high probability. Since $M$ is continuous on a compact space, for all $\epsilon>0$, there exists a constant $\xi>0$ such that $|\theta - \btheta| < \xi \implies |M(\btheta) - M(\theta)|<\epsilon$. Hence, we have:
+    \begin{align*}
+        \Pm(|\btheta - \hat\theta_n| < \xi) = \Pm(|M(\btheta)-M(\hat\theta_n)| < \epsilon) \ge 1 - \delta.  
+    \end{align*}   
+
+    \noindent Hence, we have $|\btheta-\hat\theta_n|<\xi$ with high probability. Since $\delta$ is chosen arbitrarily, we can take $\delta\to0$ and for all $\xi>0$, we have: 
+    \begin{align*}
+        \lim_{n\to\infty}\Pm(|\btheta-\hat\theta_n|<\xi) = 1 \implies \hat\theta_n \xrightarrow{p} \btheta. 
+    \end{align*} 
 \end{proof*} 
 
 \begin{proposition}{Asymptotic Normality of MLE}{asymptotic_normality_mle}
