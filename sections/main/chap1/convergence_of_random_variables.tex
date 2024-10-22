@@ -147,9 +147,12 @@ In this section, we revise the modes of convergence in random variables.
 \end{definition}
 
 \begin{remark}[Consequence of $\BCL$]
+    Let $X, X_1, X_2, \dots$ be random variables defined over the same probability space $(\Omega, \mathcal{F}, \Pm)$. For $\epsilon>0$ be chosen arbitrarily, let $E_n = \{ \omega\in\Omega: |X_n(\omega) - X(\omega)| \ge \epsilon \}$. Then, we have:
     \begin{equation}
         \sum_{n=1}^\infty \Pm(E_n) < \infty \implies X_n\xrightarrow{a.s} X.
     \end{equation}
+
+    \noindent In other words, if the sequence $\{\Pm(E_n)\}_{n=1}^\infty$ converges, then $X_n$ converges almost surely to $X$.
 \end{remark}
 
 \begin{proposition}{$X_n\xrightarrow{a.s}X\implies X_n\xrightarrow{p}X$}{a.s_conv_implies_conv_in_probability}
