@@ -172,7 +172,7 @@ In this section, we revise the modes of convergence in random variables.
 
 \newcommand{\CMT}{\hyperref[thm:continuous_mapping_theorem]{(\mathrm{{\bf CMT}})}}
 \begin{theorem}{Continuous Mapping Theorem $\CMT$}{continuous_mapping_theorem}
-    Let $f:\R\to\R$ be a \underline{continuous} function and $X_1, X_2, \dots$ be a sequence of real-valued random variables. Then, the following statements hold true:
+    Let $f:\R\to\R$ be a \underline{continuous almost everywhere} function and $X_1, X_2, \dots$ be a sequence of real-valued random variables. Then, the following statements hold:
     \begin{enumerate}
         \item $X_n\xrightarrow{d}X \implies   f(X_n)\xrightarrow{d}f(X)$.
         \item $X_n\xrightarrow{p}X \implies   f(X_n)\xrightarrow{p}f(X)$.
@@ -181,16 +181,20 @@ In this section, we revise the modes of convergence in random variables.
 \end{theorem}
 
 \begin{proof*}[Continuous Mapping Theorem $\CMT$]
-    Since almost-sure convergence implies the other two modes of convergence, we only have to handle the almost-sure convergence case. Since $h$ is continuous, for any $\omega\in\Omega$ such that $X_n(\omega)\to X(\omega)$, we have $f(X_n(\omega))\to f(X(\omega))$. Therefore, we have:
-    \begin{align*}
-        \bigCurl{\omega\in\Omega : X_n(\omega)\to X(\omega)}\subseteq\bigCurl{\omega\in\Omega:f(X_n(\omega))\to f(X(\omega))}.
-    \end{align*}
+    We handle each statement separately:
 
-    \noindent Therefore, we have:
-    \begin{align*}
-        &\Pm\bigRound{\limsup_{n\to\infty}\bigCurl{\omega\in\Omega:|f(X_n(\omega)) - f(X(\omega))| \le \epsilon}} \\
-        &\ge \Pm\bigRound{\limsup_{n\to\infty}\bigCurl{\omega\in\Omega:|X_n(\omega) - X(\omega)| \le \epsilon}} = 1,
-    \end{align*}
+    \begin{enumerate}
+        \item Since $f$ is continuous, for any $\omega\in\Omega$ such that $X_n(\omega)\to X(\omega)$, we have $f(X_n(\omega))\to f(X(\omega))$. Therefore, we have:
+        \begin{align*}
+            \bigCurl{\omega\in\Omega : X_n(\omega)\to X(\omega)}\subseteq\bigCurl{\omega\in\Omega:f(X_n(\omega))\to f(X(\omega))}.
+        \end{align*}
 
-    \noindent for all $\epsilon>0$. Therefore, we have $f(X_n)\xrightarrow{a.s}f(X)$.
+        \noindent Therefore, for all $\epsilon>0$, we have:
+        \begin{align*}
+            &\Pm\bigRound{\limsup_{n\to\infty}\bigCurl{\omega\in\Omega:|f(X_n(\omega)) - f(X(\omega))| \le \epsilon}} \\
+            &\ge \Pm\bigRound{\limsup_{n\to\infty}\bigCurl{\omega\in\Omega:|X_n(\omega) - X(\omega)| \le \epsilon}} = 1,
+        \end{align*}
+
+        \noindent Hence, we have $f(X_n)\xrightarrow{a.s}f(X)$.
+    \end{enumerate}
 \end{proof*}
