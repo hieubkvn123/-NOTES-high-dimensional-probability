@@ -1,7 +1,7 @@
 \subsection{Convergence of Random Variables}
 \newcommand{\SLUTSKY}{\hyperref[thm:slutsky_theorem]{(\mathrm{{\bf SLUTSKY}})}}
+\newcommand{\PORT}{\hyperref[thm:portmanteau_theorem]{(\mathrm{{\bf PORTMANTEAU}})}}
 
-In this section, we revise the modes of convergence in random variables. 
 \subsubsection{Convergence in Distribution}
 \begin{definition}[Convergence in Distribution]
     Given a sequence of real-valued random variables $X_1, X_2, \dots$ with CDFs $F_1, F_2, \dots$. We say that the sequence converges in distribution to a random variable $X$ with CDF $F$, denoted $X_n\xrightarrow{d}X$ if:
@@ -51,6 +51,32 @@ In this section, we revise the modes of convergence in random variables.
     \item $X_n/Y_n \xrightarrow{d} X/c$ if $c \ne 0$. (Apply the same proof method as $(1)$). 
 \end{enumerate} 
 \end{proof*} 
+
+\subsubsection*{Connection to Weak Convergence of Measures}
+\begin{definition}[Weak Convergence of Measures]
+    Let $\{\mu_n\}_{n=1}^\infty$ be a sequence of measures on a measurable space $(X, \mathcal{F})$. We say that $\mu_n$ converges weakly to a measure $\mu$ if:
+    \begin{equation}
+        \int f d\mu_n \to \int fd\mu,
+    \end{equation} 
+    \noindent for all $f$ continuous and bounded.
+\end{definition} 
+
+\begin{definition}[Continuity Sets] 
+    A continuity set $A\in\mathcal{B}$, where $\mathcal{B}$ is the Borel-$\sigma$-algebra, with respect to a measure $\mu$ satisfies:
+    \begin{equation}
+        \mu(\partial A) = 0, 
+    \end{equation} 
+
+    \noindent where $\partial A$ is the topological boundary of $A$, defined as:
+    \begin{equation}
+        \partial A = \mathrm{cl}_X(A) \setminus \mathrm{in}_X(A). 
+    \end{equation} 
+\end{definition} 
+
+
+\begin{theorem}{Portmanteau's Theorem $\PORT$}{portmanteau_theorem}
+    
+\end{theorem} 
 
 \subsubsection{Convergence in Probability}
 \begin{definition}[Convergence in Probability]
@@ -136,14 +162,19 @@ In this section, we revise the modes of convergence in random variables.
 
 \subsubsection{Almost-sure Convergence}
 \begin{definition}[Convergence almost-surely]
-    Let $X_1, X_2, \dots$ be a sequence of real-valued random variables that map from a sample space $\Omega$. Let $X$ also be a real-valued random variable. We say that $X_n$ converges almost surely to $X$, denoted as $X_n\xrightarrow{a.s}X$, if:
-    \begin{align*}
+    Let $X_1, X_2, \dots$ be a sequence of real-valued random variables that map from a sample space $\Omega$. Let $X$ also be a real-valued random variable. We say that $X_n$ converges almost surely to $X$, denoted as $X_n\xrightarrow{a.s}X$, if $X_n(\omega) \to X(\omega)$ as $n\to\infty$ for almost all $\omega\in\Omega$:
+    \begin{equation}
+        \Pm\bigRound{\bigCurl{\omega\in\Omega:\lim_{n\to\infty} X_n(\omega) = X(\omega)}} = 1. 
+    \end{equation} 
+
+    \noindent In other words, we can write:
+    \begin{equation}
         \Pm\bigRound{
             \limsup_{n\to\infty} E_n
         } = 0 \quad \text{where} \quad E_n = \bigCurl{
             \omega\in\Omega: |X_n(\omega) - X(\omega)| \ge \epsilon
         }.
-    \end{align*} 
+    \end{equation} 
 \end{definition}
 
 \begin{remark}[Consequence of $\BCL$]
@@ -184,6 +215,27 @@ In this section, we revise the modes of convergence in random variables.
     We handle each statement separately:
 
     \begin{enumerate}
+        \item Let $C_f$ denotes the set of points on $\R$ where $f$ is continuous. By assumption, we have $\Pm(x)$. Let $\epsilon>0$ be arbitrary. For all $\delta>0$, we denote the following set:
+        \begin{align*}
+            B_\delta = \bigCurl{
+                x\in C_f : \exists y\in\R \text{ s.t } |x-y| < \delta \text{ but } |f(x) - f(y)| \ge \epsilon
+            }
+        \end{align*} 
+
+        \noindent In other words, $B_\delta$ denotes the set of all conitnuous points $x$ of $f$ such that we can find a point close to $x$ but its output is not close to $f(x)$. We have:
+        \begin{align*}
+            \Pm\bigRound{|f(X_n) - f(X)| \ge \epsilon} &= \Pm\bigRound{
+                \bigCurl{X \notin C_f} \cup \bigCurl{|X_n - X| \ge \delta} \cup \bigCurl{X \in B_\delta}
+            } \\ 
+            &\le \underbrace{\Pm(X\notin C_f)}_{=0} + \Pm(|X_n - X| \ge \delta) + \Pm(X\in B_\delta) \\ 
+            &= \Pm(|X_n - X| \ge \delta) + \Pm(X\in B_\delta).
+        \end{align*} 
+
+        \noindent Since $\lim_{n\to\infty}\Pm(|X_n - X| \ge \delta)=0$ for all $\delta>0$ by assumption and $\Pm(X\in B_\delta)=0$ when $\delta\to0$, we have:
+        \begin{align*}
+            \lim_{n\to\infty} \Pm\bigRound{|f(X_n) - f(X)| \ge \epsilon} = 0 \text{ or } f(X_n) \xrightarrow{p} f(X).
+        \end{align*} 
+
         \item Since $f$ is continuous, for any $\omega\in\Omega$ such that $X_n(\omega)\to X(\omega)$, we have $f(X_n(\omega))\to f(X(\omega))$. Therefore, we have:
         \begin{align*}
             \bigCurl{\omega\in\Omega : X_n(\omega)\to X(\omega)}\subseteq\bigCurl{\omega\in\Omega:f(X_n(\omega))\to f(X(\omega))}.
@@ -191,8 +243,8 @@ In this section, we revise the modes of convergence in random variables.
 
         \noindent Therefore, for all $\epsilon>0$, we have:
         \begin{align*}
-            &\Pm\bigRound{\limsup_{n\to\infty}\bigCurl{\omega\in\Omega:|f(X_n(\omega)) - f(X(\omega))| \le \epsilon}} \\
-            &\ge \Pm\bigRound{\limsup_{n\to\infty}\bigCurl{\omega\in\Omega:|X_n(\omega) - X(\omega)| \le \epsilon}} = 1,
+            &\Pm\bigRound{\bigCurl{\omega\in\Omega:\lim_{n\to\infty} f(X_n(\omega)) = f(X(\omega))}} \\
+            &\ge \Pm\bigRound{\bigCurl{\omega\in\Omega:\lim_{n\to\infty} X_n(\omega) = X(\omega)}} = 1,
         \end{align*}
 
         \noindent Hence, we have $f(X_n)\xrightarrow{a.s}f(X)$.
