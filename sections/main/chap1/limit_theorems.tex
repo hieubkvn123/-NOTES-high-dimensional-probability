@@ -207,10 +207,10 @@
 The Uniform Law of Large Numbers $\ULLN$ provides a convergence result for collection of estimators where the convergence is uniform in the parameters space.
 
 \begin{theorem}{Uniform Law of Large Numbers $\ULLN$}{uniform_law_of_large_numbers}
-    Let $\bX=(X_1, \dots, X_n)$ be a random sample from a distribution $p_\btheta$ over $\mathcal{X}$ that depends on the true parameters $\btheta$. Let $\Theta\subset\R^m$ be the parameters space and $f_\theta:\mathcal{X}\to\R$ be a function indexed by $\theta\in\Theta$ that satisfies the following conditions:
+    Let $\bX=(X_1, \dots, X_n)$ be a random sample from a distribution $p_{\btheta}$ over $\mathcal{X}$ that depends on the true parameters $\btheta$. Let $\Theta\subset\R^m$ be the parameters space and $f_\theta:\mathcal{X}\to\R$ be a function indexed by $\theta\in\Theta$ that satisfies the following conditions:
     \begin{enumerate}
         \item $\btheta\in\Theta$ and $\Theta$ is compact.
-        \item $\E_{\btheta}[\sup_{\theta\in\Theta}|f_\theta(X)|] < \infty$\footnote{$\E_\btheta$ denotes the expectation taken over the distribution described by $p_\btheta$.}.
+        \item $\E_{\btheta}[\sup_{\theta\in\Theta}|f_\theta(X)|] < \infty$\footnote{$\E_{\btheta}$ denotes the expectation taken over the distribution described by $p_{\btheta}$.}.
         \item $f_\theta(x)$ is continuous in $\theta$ for all $x\in\mathcal{X}$.
     \end{enumerate}
 
@@ -297,7 +297,7 @@ The Uniform Law of Large Numbers $\ULLN$ provides a convergence result for colle
         \mathfrak{\hat R}_\bX(\mathcal{F}_\Theta) \le \frac{12}{\sqrt n}\int_\alpha^M \sqrt{\log\mathcal{N}\bigRound{\mathcal{F}_\Theta, \epsilon, L_2(\bX)}}d\epsilon, \quad \alpha > 0, 
     \end{equation}
 
-    \noindent where $M<\infty$ is a constant such that $|f_\theta(x)| \le M$ $p_\btheta$-(almost everywhere) on $\mathcal{X}$ for all $\theta\in\Theta$\footnote{M exists because we have $\E_{\btheta}[\sup_{\theta\in\Theta}|f_\theta(X)|] < \infty$.}. Now, we need to construct a cover in $L_2$ norm for the class $\mathcal{F}_\Theta$. Since $f_\theta(x)$ is continuous in $\theta$ for all $x\in\mathcal{X}$, for all $\epsilon > 0$, there exists $\delta_x>0$ such that $\|\theta - \bar\theta\|_2<\delta_x \implies |f_\theta(x) - f_{\bar\theta}(x)|<\epsilon$. Define $\delta>0$ as follows:
+    \noindent where $M<\infty$ is a constant such that $|f_\theta(x)| \le M$ $p_{\btheta}$-(almost everywhere) on $\mathcal{X}$ for all $\theta\in\Theta$\footnote{M exists because we have $\E_{\btheta}[\sup_{\theta\in\Theta}|f_\theta(X)|] < \infty$.}. Now, we need to construct a cover in $L_2$ norm for the class $\mathcal{F}_\Theta$. Since $f_\theta(x)$ is continuous in $\theta$ for all $x\in\mathcal{X}$, for all $\epsilon > 0$, there exists $\delta_x>0$ such that $\|\theta - \bar\theta\|_2<\delta_x \implies |f_\theta(x) - f_{\bar\theta}(x)|<\epsilon$. Define $\delta>0$ as follows:
     \begin{equation}
         \delta = \min_{1\le i \le n}\delta_{X_i}, \quad X_i \in \bX.
     \end{equation}

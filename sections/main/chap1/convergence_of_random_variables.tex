@@ -53,16 +53,9 @@
 \end{proof*} 
 
 \subsubsection*{Connection to Weak Convergence of Measures}
-\begin{definition}[Weak Convergence of Measures]
-    Let $\{\mu_n\}_{n=1}^\infty$ be a sequence of measures on a measurable space $(X, \mathcal{F})$. We say that $\mu_n$ converges weakly to a measure $\mu$ if:
-    \begin{equation}
-        \int f d\mu_n \to \int fd\mu,
-    \end{equation} 
-    \noindent for all $f$ continuous and bounded.
-\end{definition} 
 
 \begin{definition}[Continuity Sets] 
-    A continuity set $A\in\mathcal{B}$, where $\mathcal{B}$ is the Borel-$\sigma$-algebra, with respect to a measure $\mu$ satisfies:
+    Let $\mathcal{B}$ be the Borel-$\sigma$-algebra and $A\in \mathcal{B}$ be a Borel set. Then, we say that $A$ is a continuity set with respect to a measure $\mu$, or $A$ is a $\mu$-continuity set, if:
     \begin{equation}
         \mu(\partial A) = 0, 
     \end{equation} 
@@ -71,6 +64,14 @@
     \begin{equation}
         \partial A = \mathrm{cl}_X(A) \setminus \mathrm{in}_X(A). 
     \end{equation} 
+\end{definition} 
+
+\begin{definition}[Weak Convergence of Measures]
+    Let $\{\mu_n\}_{n=1}^\infty$ be a sequence of measures on a measurable space $(X, \mathcal{F})$. We say that $\mu_n$ converges weakly to a measure $\mu$ if:
+    \begin{equation}
+        \int f d\mu_n \to \int fd\mu,
+    \end{equation} 
+    \noindent for all $f$ continuous and bounded.
 \end{definition} 
 
 
