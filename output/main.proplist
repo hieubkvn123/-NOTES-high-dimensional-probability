@@ -1,6 +1,6 @@
 \contentsline {tcolorbox}{\numberline {1.1}$X_n\xrightarrow {p}X\DOTSB \tmspace +\thickmuskip {.2777em}\DOTSB \Relbar \joinrel \Rightarrow \tmspace +\thickmuskip {.2777em}X_n\xrightarrow {d}X$}{12}{tcb@cnt@proposition.1.1}%
 \contentsline {tcolorbox}{\numberline {1.2}$X_n\xrightarrow {d}c\DOTSB \tmspace +\thickmuskip {.2777em}\DOTSB \Leftarrow \joinrel \Rightarrow \tmspace +\thickmuskip {.2777em}X_n\xrightarrow {p}c$}{13}{tcb@cnt@proposition.1.2}%
-\contentsline {tcolorbox}{\numberline {1.3}$X_n\xrightarrow {L^p}X\DOTSB \tmspace +\thickmuskip {.2777em}\DOTSB \Relbar \joinrel \Rightarrow \tmspace +\thickmuskip {.2777em}X_n\xrightarrow {p}X$}{13}{tcb@cnt@proposition.1.3}%
+\contentsline {tcolorbox}{\numberline {1.3}$X_n\xrightarrow {L^p}X\DOTSB \tmspace +\thickmuskip {.2777em}\DOTSB \Relbar \joinrel \Rightarrow \tmspace +\thickmuskip {.2777em}X_n\xrightarrow {p}X$}{14}{tcb@cnt@proposition.1.3}%
 \contentsline {tcolorbox}{\numberline {1.4}$X_n\xrightarrow {a.s}X\DOTSB \tmspace +\thickmuskip {.2777em}\DOTSB \Relbar \joinrel \Rightarrow \tmspace +\thickmuskip {.2777em}X_n\xrightarrow {p}X$}{14}{tcb@cnt@proposition.1.4}%
-\contentsline {tcolorbox}{\numberline {2.1}Consistency of MLE}{18}{tcb@cnt@proposition.2.1}%
-\contentsline {tcolorbox}{\numberline {2.2}Asymptotic Normality of MLE}{19}{tcb@cnt@proposition.2.2}%
+\contentsline {tcolorbox}{\numberline {2.1}Consistency of MLE}{19}{tcb@cnt@proposition.2.1}%
+\contentsline {tcolorbox}{\numberline {2.2}Asymptotic Normality of MLE}{20}{tcb@cnt@proposition.2.2}%

@@ -69,16 +69,20 @@
 \end{definition} 
 
 \begin{definition}[Weak Convergence of Measures]
-    Let $\{\mu_n\}_{n=1}^\infty$ be a sequence of measures on a measurable space $(X, \mathcal{F})$. We say that $\mu_n$ converges weakly to a measure $\mu$ if:
+    Let $\{\mu_n\}_{n=1}^\infty$ be a sequence of measures and $\mu$ be a measure on a measurable space $(X, \mathcal{F})$. We say that $\mu_n$ converges weakly to a measure $\mu$ if:
     \begin{equation}
-        \int f d\mu_n \to \int fd\mu,
+        \lim_{n\to\infty}\mu_n(A) = \mu(A),
     \end{equation} 
-    \noindent for all $f$ continuous and bounded.
+    \noindent for all \underline{$\mu$-continuity sets} $A\in\mathcal{F}$.
 \end{definition} 
 
 
 \begin{theorem}{Portmanteau's Theorem $\PORT$}{portmanteau_theorem}
-    
+    Let $\{\mu_n\}_{n=1}^\infty, \mu$ be measures on a measurable space $(X, \mathcal{F})$. Then, the following statements are equivalent:
+    \begin{enumerate}
+        \item $\mu_n$ converges weakly to $\mu$.
+        \item $\int fd\mu_n \to \int fd\mu$ for all $f\in C_b(X)$.     
+    \end{enumerate}  
 \end{theorem} 
 
 \subsubsection{Convergence in Probability}
