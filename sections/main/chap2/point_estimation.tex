@@ -62,7 +62,7 @@
                 &= \Pm(\bX=\bx | \bU=\bu; \btheta) \Pm(\bU=\bu;\btheta).
         \end{align*} 
 
-        \noindent Since $\bU=T(\bX)$ is a sufficient statistics, $\Pm(\BX=\bx|\bU=\bu;\btheta)$ does not depend on $\btheta$. Hence, we denote $h(\bx) = \Pm(\bX=\bx|\bU=\bu;\btheta)$. Furthermore, $\Pm(\bU=\bu;\btheta)$ is a function of $\bu$ and $\btheta$. We denote this function as $g(\bu, \btheta)$ and conclude that the factorisation $p_{\btheta}(\bx)=h(\bx)g(T(\bx),\btheta)$ indeed exists. 
+        \noindent Since $\bU=T(\bX)$ is a sufficient statistics, $\Pm(\bX=\bx|\bU=\bu;\btheta)$ does not depend on $\btheta$. Hence, we denote $h(\bx) = \Pm(\bX=\bx|\bU=\bu;\btheta)$. Furthermore, $\Pm(\bU=\bu;\btheta)$ is a function of $\bu$ and $\btheta$. We denote this function as $g(\bu, \btheta)$ and conclude that the factorisation $p_{\btheta}(\bx)=h(\bx)g(T(\bx),\btheta)$ indeed exists. 
 
         \item Factorisation exists $\implies$ $T(\bX)$ is sufficient: Suppose that there exists $g, h$ such that we have the factorisation $p_{\btheta}(\bx)=g(T(\bx), \btheta)h(\bx)$. We then have:
         \begin{align*}
@@ -82,6 +82,7 @@
         \end{align*} 
         \noindent and the above expression does not depend on $\btheta$. Hence, $T(\bX)$ is a sufficient statistics.
     \end{itemize}
+\end{proof*}
 
 \subsubsection{Likelihood}
 \begin{definition}[Likelihood Function]
