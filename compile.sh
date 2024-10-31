@@ -37,7 +37,12 @@ pgrep -x okular > /dev/null || okular $OUTPUT_DIR/main.pdf &
 
 # Pause and wait for user input
 echo "INFO - Compilation completed. Output in '$OUTPUT_DIR' directory."
-read -p "Press [Enter] to clear the terminal and exit..."
+read -n 1 -p "INFO - Press [Enter] to re-compile or any key to quit: " key
 
 # Clear the terminal screen
 clear
+if [[ $key == "" ]]; then
+	bash compile.sh
+else
+	echo "INFO - Finished compiling..."
+fi
