@@ -9,7 +9,7 @@ mkdir -p "$OUTPUT_DIR"
 # Define compilation function
 function tex-pdf {
     printf "Step 1/4 (pdflatex) - First compilation \n"
-    pdflatex -halt-on-error -interaction=nonstopmode -output-directory="$OUTPUT_DIR" $1 > $OUTPUT_DIR/$1.txt
+    pdflatex -output-directory=$OUTPUT_DIR -halt-on-error -interaction=nonstopmode $1 > $OUTPUT_DIR/$1.txt
     grep '^!.*' --color=never $OUTPUT_DIR/$1.txt
 
     printf "Step 2/4 (bibtex) - Compile references \n"
@@ -31,6 +31,9 @@ export -f tex-pdf
 
 # Compile
 tex-pdf main
+
+# Open Okular
+okular $OUTPUT_DIR/main.pdf
 
 # Pause and wait for user input
 echo "INFO - Compilation completed. Output in '$OUTPUT_DIR' directory."
