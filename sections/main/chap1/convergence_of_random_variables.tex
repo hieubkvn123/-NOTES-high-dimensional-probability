@@ -120,10 +120,17 @@
         \begin{align*}
             \int f d\Pm_n &= \int \int_0^b \1{t < f}dt d\Pm_n \\
                 &= \int_0^b \int \1{t < f}d\Pm_n dt \quad \text{(Fubini's Theorem)} \\
-                &= \int_0^b \Pm_n(f^{-1}(0, t))dt.
+                &= \int_0^b \Pm_n(f^{-1}(t, b))dt.
         \end{align*} 
 
-        \noindent By Dominated Convergence Theorem, we have $\int_0^b \Pm_n(f^{-1}(0, t))dt \to \int_0^b \Pm(f^{-1}(0, t))dt$. Hence, we obtain the desired result.
+        \noindent We have $\partial f^{-1}(t, b) \subseteq f^{-1}(\{t, b\})$. Hence, we have $\Pm(\partial f^{-1}(t, b)) \le \Pm(f^{-1}(\{t, b\})) = 0$, which means that $f^{-1}(t, b)$ is a $\Pm$-continuity set. Therefore, by the initial assumption, we have:
+        \begin{align*}
+            \lim_{n\to\infty} \Pm_n(f^{-1}(t, b)) = \Pm(f^{-1}(t, b)). 
+        \end{align*} 
+
+        \noindent By Dominated Convergence Theorem, we have $\int_0^b \Pm_n(f^{-1}(t, b))dt \to \int_0^b \Pm(f^{-1}(t, b))dt$. Hence, we obtain the desired result.
+
+        \item $\limsup_{n\to\infty}\Pm_n(F) \le \Pm(F)$ for all closed $F\in\mathcal{F}$:
     \end{enumerate} 
 \end{proof*} 
 
