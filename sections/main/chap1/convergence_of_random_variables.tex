@@ -55,9 +55,9 @@
 \subsubsection*{Connection to Weak Convergence of Measures}
 
 \begin{definition}[Continuity Sets] 
-    Let $\mathcal{B}$ be the Borel-$\sigma$-algebra and $A\in \mathcal{B}$ be a Borel set. Then, we say that $A$ is a continuity set with respect to a measure $\mu$, or $A$ is a $\mu$-continuity set, if:
+    Let $X$ be a metric space and $\mathcal{B}$ be the Borel-$\sigma$-algebra generated from open subsets of $X$. Let $A\in \mathcal{B}$ be a Borel set. Then, we say that $A$ is a continuity set with respect to a measure $\mu$, or $A$ is a $\mu$-continuity set, if:
     \begin{equation}
-        \mu(\partial A) = 0, 
+        \mu(\partial A) = 0, \text{ or } \mu(\mathrm{cl}_X(A)) = \mu(A),
     \end{equation} 
 
     \noindent where $\partial A$ is the topological boundary of $A$, defined as:
@@ -65,8 +65,29 @@
         \partial A = \mathrm{cl}_X(A) \setminus \mathrm{in}_X(A),
     \end{equation} 
 
-    \noindent where $\mathrm{cl}_X(A)$ is the closure, which contains all limit points of $A$ and $\mathrm{in}_X(A)$ is the set of all interior points of $A$.
+    \noindent where $\mathrm{cl}_X(A)$ is the closure, which contains all limit points of $A$ and $\mathrm{in}_X(A)$ is the set of all interior points of $A$. Intuitively, a set is continuous with respect to a measure if \underline{its closure does not change its measure}.
 \end{definition} 
+
+\begin{remark}[Non-examples of Continuity Sets]
+    Some examples of the non-continuity sets are as follows:
+    \begin{enumerate}
+        \item The set of rational numbers $\mathbb{Q}$ is not a continuity set with respect to the Lebesgue measure $\lambda$ because its closure is the set of real numbers. Hence, we have:
+        \begin{align*}
+            \lambda(\partial \mathbb{Q}) = \lambda(\mathbb{R}\setminus\mathbb{Q}) = \infty. 
+        \end{align*}
+
+        \item Given an experiment of rolling an unfair $6$-sided die with probabilities $p_1, \dots, p_6$. Let the sample space $\Omega=[1,6]$ and $\mathcal{B}(\Omega)$ be the Borel-$\sigma$-algebra generated from open subsets of the sample space. Then, we have the corresponding probability space $(\Omega, \mathcal{B}(\Omega), \mu)$ where $\mu$ is defined as:
+        \begin{align*}
+            \mu((a, b)) = \sum_{i=\lceil a \rceil}^{\lfloor b \rfloor} p_i, \qquad \forall (a, b)\in\mathcal{B}(\Omega),
+        \end{align*} 
+
+        \noindent which denotes the probability that the rolled die lands on a face in the range between $a$ and $b$. Then, any set $(a, b)$ in $\mathcal{B}(\Omega)$ where $a$ or $b$ is integer is not $\mu$-continuous. For example:
+        \begin{align*}
+            \mu((2, 4.5)) &= p_3 + p_4, \\
+            \mu(\mathrm{cl}((2, 4.5))) &= \mu([2, 4.5]) = p_2 + p_3 + p_4 > \mu((2, 4.5)). 
+        \end{align*} 
+    \end{enumerate}  
+\end{remark} 
 
 \begin{definition}[Weak Convergence of Measures]
     Let $\{\mu_n\}_{n=1}^\infty$ be a sequence of measures and $\mu$ be a measure on a measurable space $(X, \mathcal{F})$. We say that $\mu_n$ converges weakly to a measure $\mu$ if:
