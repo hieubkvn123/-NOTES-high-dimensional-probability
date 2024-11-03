@@ -110,6 +110,21 @@
 
 \begin{proof*}[Theorem \ref{thm:portmanteau_theorem}]
     Assume that for all Borel sets $A\in\mathcal{F}$ that is $\Pm$-continuity, we have $\lim_{n\to\infty} \Pm_n(A) = \Pm(A)$. We prove the following: 
+    \begin{enumerate}
+        \item $\int fd\Pm_n \to \int fd\Pm$ for all $f\in C_b(X)$ : Let $b>0$, without loss of generality, suppose that $0\le f \le b$ for all $f\in C_b(X)$. By the integral identity, we have:
+        \begin{align*}
+            f(x) = \int_0^b \1{t < f(x)}dt, \quad \forall x\in X.    
+        \end{align*}
+
+        \noindent Hence, for $n\ge 1$, we have:
+        \begin{align*}
+            \int f d\Pm_n &= \int \int_0^b \1{t < f}dt d\Pm_n \\
+                &= \int_0^b \int \1{t < f}d\Pm_n dt \quad \text{(Fubini's Theorem)} \\
+                &= \int_0^b \Pm_n(f^{-1}(0, t))dt.
+        \end{align*} 
+
+        \noindent By Dominated Convergence Theorem, we have $\int_0^b \Pm_n(f^{-1}(0, t))dt \to \int_0^b \Pm(f^{-1}(0, t))dt$. Hence, we obtain the desired result.
+    \end{enumerate} 
 \end{proof*} 
 
 \subsubsection{Convergence in Probability}
