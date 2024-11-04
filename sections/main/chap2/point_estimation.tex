@@ -220,6 +220,11 @@
 \begin{proposition}{Alternative Representation of Fisher Information}{alt_rep_of_fisher}
     Let $\bX=(X_1, \dots, X_n) \sim p_{\btheta}$ be a random sample from a distribution parameterized by a true unknown parameter $\btheta$. Let $\ell(\theta;\bX)=\log L(\theta;\bX)$ be the log-likelihood function. Then, we have:
     \begin{equation}
+        \mathcal{I}_{\bX}(\btheta) = \mathrm{Var}(s(\btheta;\bX)), 
+    \end{equation} 
+
+    \noindent where $s(\btheta;\bX)=\frac{\partial\ell(\btheta;\bX)}{\partial\btheta}$ is the score evaluated at the true parameter $\btheta$. Furthermore, we have:
+    \begin{equation}
         \mathcal{I}_{\bX}(\btheta) = -\E_{\btheta}\biggSquare{\frac{\partial^2}{\partial\xi^2}\ell(\xi;\bX)\Bigg|_{\xi=\btheta}}.
     \end{equation} 
 \end{proposition} 
@@ -237,17 +242,26 @@
         &= \mathcal{I}_{\bX}(\btheta) - \E_{\btheta}\biggSquare{
             \frac{1}{n}\sum_{i=1}^n \frac{\partial\log p_\xi(X_i)}{\partial\xi}\Bigg|_{\xi=\btheta}
         } \\
-        &= \mathcal{I}_{\bX}(\btheta) - \E_{\btheta}[s(\btheta;\bX)]^2.
+        &= \mathcal{I}_{\bX}(\btheta) - \E_{\btheta}[s(\btheta;X)]^2,
     \end{align*}
 
-    \noindent We claim that the score evaluated at the true parameter has expectation zero. Let $\chi$ be the sample space, we have:
+    \noindent where $X$ is identically distributed as $X_1, \dots, X_n$. We claim that $\E_{\btheta}[s(\btheta;X)]=0$. Let $\chi$ be the sample space, we have:
     \begin{align*}
-        \E_{\btheta}[s(\btheta;\bX)] &=
+        \E_{\btheta}[s(\btheta;X)] &= \int_\chi p_{\btheta}(x) \frac{\partial\log p_\xi(x)}{\partial\xi}\Bigg|_{\xi=\btheta}dx \\
+            &= \int_\chi p_{\btheta}(x)\cdot \frac{1}{p_{\btheta}(x)}\frac{\partial p_{\btheta}(x)}{\partial\btheta}dx \\
+            &= \int_\chi \frac{\partial p_{\btheta}(x)}{\partial\btheta}dx \\
+            &= \frac{\partial}{\partial\btheta}\int_\chi p_{\btheta}(x)dx = \frac{\partial}{\partial\btheta}1 = 0.
     \end{align*} 
+
+    \noindent Therefore, we have $\boxed{\mathcal{I}_{\bX}(\btheta) = \mathrm{Var}(s(\btheta;\bX))}$. $\color{red}\dots\color{black}$
 \end{proof*} 
 
+\begin{remark}[Exchanging Derivative and Integral]
+    Note that in the proof of proposition \ref{prop:alt_rep_of_fisher}, we exchanged the integration and the partial derivative to prove that $\E_{\btheta}[s(\btheta;X)]=0$. $\color{red}\dots\color{black}$
+\end{remark} 
+
 \begin{remark}[Alternative Representation of $\mathcal{I}_{\bX}$ under Mispecified Parameter]
-    
+    $\color{red}\dots\color{black}$
 \end{remark} 
 
 
