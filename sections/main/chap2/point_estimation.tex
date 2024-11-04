@@ -225,7 +225,25 @@
 \end{proposition} 
 
 \begin{proof*}[Proposition \ref{prop:alt_rep_of_fisher}]
-     
+    Denote $s(\btheta;\bX)$ as the score evaluated at the true parameter $\btheta$, we have:
+    \begin{align*}
+        \mathrm{Var}(s(\btheta;\bX)) &= \E_{\btheta}\biggSquare{
+            \biggRound{
+                \frac{\partial}{\partial\xi}\ell(\xi;\bX)\Bigg|_{\xi=\btheta}
+            }^2
+        } - \E_{\btheta}\biggSquare{
+            \frac{\partial}{\partial\xi}\ell(\xi;\bX)\Bigg|_{\xi=\btheta}
+        }^2 \\
+        &= \mathcal{I}_{\bX}(\btheta) - \E_{\btheta}\biggSquare{
+            \frac{1}{n}\sum_{i=1}^n \frac{\partial\log p_\xi(X_i)}{\partial\xi}\Bigg|_{\xi=\btheta}
+        } \\
+        &= \mathcal{I}_{\bX}(\btheta) - \E_{\btheta}[s(\btheta;\bX)]^2.
+    \end{align*}
+
+    \noindent We claim that the score evaluated at the true parameter has expectation zero. Let $\chi$ be the sample space, we have:
+    \begin{align*}
+        \E_{\btheta}[s(\btheta;\bX)] &=
+    \end{align*} 
 \end{proof*} 
 
 \begin{remark}[Alternative Representation of $\mathcal{I}_{\bX}$ under Mispecified Parameter]
