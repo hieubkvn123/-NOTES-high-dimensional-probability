@@ -172,7 +172,7 @@
 \begin{proposition}{Asymptotic Normality of MLE}{asymptotic_normality_mle}
     Let $\bX=(X_1, \dots, X_n)$ be a random sample from a distribution $p_{\btheta}$ dependent on a true set of parameters $\btheta$. Let $\Theta$ be the parameters space. Then, the Maximum Likelihood Estimator $\Theta_{MLE} = \arg\max_{\theta\in\Theta}L(\theta;\bX)$ is asymptotically normal:
     \begin{equation}
-        \sqrt{n}(\Theta_{MLE} - \btheta) \xrightarrow{d} \mathcal{N}(0, \mathcal{I}(\btheta)^{-1}).
+        \sqrt{n}(\Theta_{MLE} - \btheta) \xrightarrow{d} \mathcal{N}(0, \mathcal{I}_{\bX}(\btheta)^{-1}).
     \end{equation}
 \end{proposition} 
 
@@ -195,24 +195,42 @@
 
 \subsubsection{Estimator Variance \& Cramer-Rao Lower Bound}
 \begin{definition}[Fisher Information]
-    Let $\bX=(X_1, \dots, X_n) \sim p_{\btheta}$ be a random sample from a distribution parameterized by $\btheta$. The \underline{(total) Fisher Information} about $\theta$ in the random sample $\bX$ is defined as follows:
+    Let $\bX=(X_1, \dots, X_n) \sim p_{\btheta}$ be a random sample from a distribution $p_{\btheta}$ with the true unknown parameter $\btheta$. The \underline{Fisher Information} about $\btheta$ in the random sample $\bX$ is defined as follows:
     \begin{equation}
-        \mathcal{I}_\bX(\theta) = \E_{\theta}\biggSquare{
+        \mathcal{I}_\bX(\btheta) = \E_{\btheta}\biggSquare{
             \biggRound{
-                \frac{\partial}{\partial\xi}\log L(\xi;\bX)
+                \frac{\partial}{\partial\xi}\log L(\xi;\bX)\Bigg|_{\xi=\btheta}
             }^2
         },
     \end{equation}
 
-    \noindent where $\E_{\theta}$ denotes the expectation taken over the distribution $p_{\theta}$ parameterized by $\theta$. The Fisher Informaton is the total information about $\theta$ contained in the sample $\bX$.
+    \noindent where $\E_{\btheta}$ denotes the expectation conditioned on $\btheta$. The Fisher Information is the total information about $\btheta$ contained in the sample $\bX$.
 \end{definition}
 
+\begin{remark}
+    Some Notes on Fisher Information:
+    \begin{enumerate}
+        \item The expectation $\E_\theta$ conditioned on $\theta$ means that the expectation is taken over the sample $\bX$ under the hypothesis that $\theta$ is the true parameter of all the $X_i$'s. 
+
+        \item Inside the expectation is the score function evaluated at $\btheta$.
+        \item From two points above, the Fisher Information is essentially calculated as \textbf{the expectation conditioned on $\btheta$ of the score evaluated at $\btheta$}.
+    \end{enumerate} 
+\end{remark} 
+
 \begin{proposition}{Alternative Representation of Fisher Information}{alt_rep_of_fisher}
-    Let $\bX=(X_1, \dots, X_n) \sim p_{\btheta}$ be a random sample from a distribution parameterized by $\btheta$. Let $\ell(\theta;\bX)=\log L(\theta;\bX)$ be the log-likelihood function. Then, we have:
+    Let $\bX=(X_1, \dots, X_n) \sim p_{\btheta}$ be a random sample from a distribution parameterized by a true unknown parameter $\btheta$. Let $\ell(\theta;\bX)=\log L(\theta;\bX)$ be the log-likelihood function. Then, we have:
     \begin{equation}
-        \mathcal{I}_{\bX}(\theta) = 
+        \mathcal{I}_{\bX}(\btheta) = -\E_{\btheta}\biggSquare{\frac{\partial^2}{\partial\xi^2}\ell(\xi;\bX)\Bigg|_{\xi=\btheta}}.
     \end{equation} 
 \end{proposition} 
+
+\begin{proof*}[Proposition \ref{prop:alt_rep_of_fisher}]
+     
+\end{proof*} 
+
+\begin{remark}[Alternative Representation of $\mathcal{I}_{\bX}$ under Mispecified Parameter]
+    
+\end{remark} 
 
 
 \begin{theorem}{Cramer-Rao Lower Bound $\CRLB$}{cramer_rao_lowerbound}
