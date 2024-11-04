@@ -130,7 +130,35 @@
 
         \noindent By Dominated Convergence Theorem, we have $\int_0^b \Pm_n(f^{-1}(t, b))dt \to \int_0^b \Pm(f^{-1}(t, b))dt$. Hence, we obtain the desired result.
 
-        \item $\limsup_{n\to\infty}\Pm_n(F) \le \Pm(F)$ for all closed $F\in\mathcal{F}$:
+        \item $\liminf_{n\to\infty}\Pm_n(G) \ge \Pm(G)$ for all open $G\in\mathcal{F}$: Let $G\in\mathcal{F}$ be an open set and let $U=G^c$. Consider the following sequence of continuous, bounded functions:
+        \begin{align*}
+            f_m(s) = \min(1, m \cdot d_X(s, U)),
+        \end{align*} 
+
+        \noindent where we denote:
+        \begin{align*}
+            d_X(s, U) = \inf_{x\in U} d_X(s, x),
+        \end{align*} 
+
+        \noindent which is the projection of a point $s$ onto the set $U$. We can re-write $f_m$ as follows:
+        \begin{align*}
+            f_m(s) &= \begin{cases}
+                1, &\text{if } d(s, U) \ge \frac{1}{m} \\
+                m\cdot d(s, U), &\text{if } d(s, U) < \frac{1}{m} 
+            \end{cases}.
+        \end{align*} 
+
+        \noindent In other words, $f_m(s)=1$ when the point $s$ is sufficiently far away from the complement $U$ and as $m$ increases, the distance threshold required for $f_m(s)=1$ becomes smaller, making $f_m$ approaches the indicator function $\boldsymbol{1}_G$. Hence, we have:
+        \begin{align*}
+            \Pm_n(G) &= \int \boldsymbol{1}_G d\Pm_n \ge \int f_md\Pm_n \to \int f_md\Pm, \qquad (\text{By (1)}).
+        \end{align*} 
+
+        \noindent Hence, we have $\liminf_{n\to\infty}\Pm_n(G) \ge \int f_md\Pm$\footnote{From $\Pm_n(G) \ge \int f_md\Pm_n$, we have $\liminf_{n\to\infty} \Pm_n(G) \ge \liminf_{n\to\infty} \int f_m d\Pm_n = \lim_{n\to\infty}\int f_m d\Pm_n = \int f_m d\Pm$.}. Taking $m\to\infty$ and using Monotone Convergence Theorem, we have:
+        \begin{align*}
+            \liminf_{n\to\infty} \Pm_n(G) \ge \lim_{m\to\infty}\int f_md\Pm = \int \lim_{m\to\infty} f_m d\Pm = \int \boldsymbol{1}_Gd\Pm = \Pm(G). 
+        \end{align*} 
+
+        \item $\limsup_{n\to\infty}\Pm_n(F) \le \Pm(F)$ for all closed $F\in\mathcal{F}$: Taking the complement of $F$ and apply $(2)$, we obtain the desired result.
     \end{enumerate} 
 \end{proof*} 
 
