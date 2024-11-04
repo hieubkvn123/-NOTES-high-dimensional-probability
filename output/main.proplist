@@ -4,3 +4,4 @@
 \contentsline {tcolorbox}{\numberline {1.4}$X_n\xrightarrow {a.s}X\DOTSB \tmspace +\thickmuskip {.2777em}\DOTSB \Relbar \joinrel \Rightarrow \tmspace +\thickmuskip {.2777em}X_n\xrightarrow {p}X$}{16}{tcb@cnt@proposition.1.4}%
 \contentsline {tcolorbox}{\numberline {2.1}Consistency of MLE}{20}{tcb@cnt@proposition.2.1}%
 \contentsline {tcolorbox}{\numberline {2.2}Asymptotic Normality of MLE}{21}{tcb@cnt@proposition.2.2}%
+\contentsline {tcolorbox}{\numberline {2.3}Alternative Representation of Fisher Information}{22}{tcb@cnt@proposition.2.3}%

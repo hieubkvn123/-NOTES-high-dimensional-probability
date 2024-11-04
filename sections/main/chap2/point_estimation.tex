@@ -153,7 +153,7 @@
         |M_n(\hat\theta_n) - M(\hat\theta_n)| < \frac{\epsilon}{2}, \quad \text{and} \quad |M_n(\btheta) - M(\btheta)| < \frac{\epsilon}{2},
     \end{align*} 
 
-    \noindent where $\hat\theta = \arg\max_{\theta\in\Theta}M_n(\theta)$. From the above, with probability of at least $1-\delta$, we have:
+    \noindent simultaneously, where $\hat\theta_n = \arg\max_{\theta\in\Theta}M_n(\theta)$. From the above, with probability of at least $1-\delta$, we have:
     \begin{align*}
         M(\hat\theta_n) \ge M_n(\hat\theta_n) - \frac{\epsilon}{2} \ge M_n(\btheta) - \frac{\epsilon}{2} \ge M(\btheta) - \epsilon.
     \end{align*} 
@@ -172,7 +172,7 @@
 \begin{proposition}{Asymptotic Normality of MLE}{asymptotic_normality_mle}
     Let $\bX=(X_1, \dots, X_n)$ be a random sample from a distribution $p_{\btheta}$ dependent on a true set of parameters $\btheta$. Let $\Theta$ be the parameters space. Then, the Maximum Likelihood Estimator $\Theta_{MLE} = \arg\max_{\theta\in\Theta}L(\theta;\bX)$ is asymptotically normal:
     \begin{equation}
-        \frac{\Theta_{MLE} - \btheta}{\sqrt{\var(\Theta_{MLE})/n}} \xrightarrow{d} \mathcal{N}(0,1).
+        \sqrt{n}(\Theta_{MLE} - \btheta) \xrightarrow{d} \mathcal{N}(0, \mathcal{I}(\btheta)^{-1}).
     \end{equation}
 \end{proposition} 
 
@@ -195,17 +195,24 @@
 
 \subsubsection{Estimator Variance \& Cramer-Rao Lower Bound}
 \begin{definition}[Fisher Information]
-    Let $\bX=(X_1, \dots, X_n) \sim p(.;\btheta)$ be a random sample from a distribution parameterized by $\btheta$. The \underline{(total) Fisher Information} about $\theta$ in the random sample $\bX$ is defined as follows:
+    Let $\bX=(X_1, \dots, X_n) \sim p_{\btheta}$ be a random sample from a distribution parameterized by $\btheta$. The \underline{(total) Fisher Information} about $\theta$ in the random sample $\bX$ is defined as follows:
     \begin{equation}
-        \mathcal{I}_\bX(\btheta) = \E_\bX\biggSquare{
+        \mathcal{I}_\bX(\theta) = \E_{\theta}\biggSquare{
             \biggRound{
-                \frac{\partial}{\partial\theta}\log L(\theta;\bX)
-            }^2 \quad \Bigg| \quad \btheta
-        }.
+                \frac{\partial}{\partial\xi}\log L(\xi;\bX)
+            }^2
+        },
     \end{equation}
 
-    \noindent The Fisher Informaton is the total information about $\btheta$ contained in the sample $\bX$.
+    \noindent where $\E_{\theta}$ denotes the expectation taken over the distribution $p_{\theta}$ parameterized by $\theta$. The Fisher Informaton is the total information about $\theta$ contained in the sample $\bX$.
 \end{definition}
+
+\begin{proposition}{Alternative Representation of Fisher Information}{alt_rep_of_fisher}
+    Let $\bX=(X_1, \dots, X_n) \sim p_{\btheta}$ be a random sample from a distribution parameterized by $\btheta$. Let $\ell(\theta;\bX)=\log L(\theta;\bX)$ be the log-likelihood function. Then, we have:
+    \begin{equation}
+        \mathcal{I}_{\bX}(\theta) = 
+    \end{equation} 
+\end{proposition} 
 
 
 \begin{theorem}{Cramer-Rao Lower Bound $\CRLB$}{cramer_rao_lowerbound}
