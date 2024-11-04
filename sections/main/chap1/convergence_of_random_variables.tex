@@ -299,6 +299,13 @@
     We handle each statement separately:
 
     \begin{enumerate}
+        \item Let $\Pm_n, \Pm$ be the probability measures induced by $X_n$ and $X$, respectively. By $\PORT$, $\Pm_n$ converges weakly to $\Pm$ is equivalent to $\int gd\Pm_n \to \int gd\Pm$ for all continuous, bounded $g: \R\to\R$. For all $g$ continuous and bounded, $g\circ f$ is also continuous and bounded. Hence:
+        \begin{align*}
+            \int g\circ fd\Pm_n \to \int g\circ fd\Pm \text{ as } n\to\infty. 
+        \end{align*} 
+
+        \noindent Hence, let $\Pm_n f$ and $\Pm f$ be the probability measures induced by $f(X_n)$ and $f(X)$, respectively. We have $\Pm_n f$ converges $\Pm f$ weakly. Therefore, $f(X_n) \xrightarrow{d} f(X)$.
+
         \item Let $C_f$ denotes the set of points on $\R$ where $f$ is continuous. By assumption, we have $\Pm(x)$. Let $\epsilon>0$ be arbitrary. For all $\delta>0$, we denote the following set:
         \begin{align*}
             B_\delta = \bigCurl{
