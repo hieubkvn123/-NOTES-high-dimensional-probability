@@ -1,11 +1,19 @@
 \subsection{Leibniz Differentiation Rule}
 \label{sec:leib_diff_rule}
+
 \textbf{Leibniz Differentiation/Integral Rule} refers to the conditions by which differentiation and integration can be exchanged. Essentially, let $\Omega$ be a measure space and $A\subset\R^n$ be an open subset. Then, if a function $f:A \times \Omega \to \R$ satisfies:
 \begin{enumerate}
 	\item For all $x\in A$, $\omega\mapsto f(x, \omega)$ is a measurable function in $\omega$ ($f$ is a \underline{Caratheodory Function}).	
 	\item For almost all $\omega\in\Omega$, $\frac{\partial f(x, \omega)}{\partial x}$ exists for all $x\in A$.
-	\item For almost all $\omega\in\Omega$, there is an integrable function $h:\Omega\to\R$ such that $|f(x, \omega)|\le h(x)$ for all $x\in A$.
+	\item For almost all $\omega\in\Omega$, there is an integrable function $h:\Omega\to\R$ such that $|D_if(x, \omega)|\le h(x)$ for all $x\in A$.
 \end{enumerate} 
+
+\noindent Then, we have:
+\begin{enumerate}
+	\item $g(x) = \int_\Omega f(x, \omega)d\mu(\omega)$ is continuous.
+	\item $D_i g(x) = \int_\Omega D_i f(x, \omega)d\mu(\omega)$.
+\end{enumerate} 
+
 
 \begin{definition}[Caratheodory Function]
 	Let $(\Omega, \mathcal{F}, \mu)$ be a measure space and $A\subset\R^n$. We say $f: A \times \Omega \to \R$ is a Caratheodory Function if it satisfies:
@@ -16,3 +24,7 @@
 
 	\noindent We also say that $f$ is a Caratheodory function if it is measurable in $\omega$ and continuous in $x$.
 \end{definition} 
+
+\begin{proposition}{Leibniz Differentiation Rule}{leibniz_diff_rule}
+	
+\end{proposition} 
