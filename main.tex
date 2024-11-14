@@ -32,14 +32,19 @@
 \tableofcontents
 
 %% Main sections %%
-\input{sections/main/chap1/main.tex}
-\input{sections/main/chap2/main.tex}
+\input{sections/main/chap1/main}
+\input{sections/main/chap2/main}
 
 \newpage
 \input{sections/sample/sample}
 \input{sections/manual/manual}
 
 %% Appendices %%
+\appendix
+\renewcommand\thesection{\Roman{section}}
+\input{sections/appendix/main}
+
+%% Footnotes %%
 \input{sections/main/footnotes}
 
 %% ========================================================================= %%
