@@ -8,5 +8,11 @@
 \end{enumerate} 
 
 \begin{definition}[Caratheodory Function]
-	
+	Let $(\Omega, \mathcal{F}, \mu)$ be a measure space and $A\subset\R^n$. We say $f: A \times \Omega \to \R$ is a Caratheodory Function if it satisfies:
+	\begin{enumerate}
+		\item For all $x\in A$: $\omega\mapsto f(x, \omega)$ is $\mathcal{F}$-measurable.	
+		\item For all $\omega\in\Omega$: $x\mapsto f(x, \omega)$ is continuous.
+	\end{enumerate}
+
+	\noindent We also say that $f$ is a Caratheodory function if it is measurable in $\omega$ and continuous in $x$.
 \end{definition} 
