@@ -250,10 +250,31 @@
         \E_{\btheta}[s(\btheta;X)] &= \int_\chi p_{\btheta}(x) \frac{\partial\log p_\xi(x)}{\partial\xi}\Bigg|_{\xi=\btheta}dx \\
             &= \int_\chi p_{\btheta}(x)\cdot \frac{1}{p_{\btheta}(x)}\frac{\partial p_{\btheta}(x)}{\partial\btheta}dx \\
             &= \int_\chi \frac{\partial p_{\btheta}(x)}{\partial\btheta}dx \\
-            &= \frac{\partial}{\partial\btheta}\int_\chi p_{\btheta}(x)dx = \frac{\partial}{\partial\btheta}1 = 0.
+            &= \frac{\partial}{\partial\btheta}\int_\chi p_{\btheta}(x)dx = \frac{\partial}{\partial\btheta}1 = 0. \qquad \text{(Leibniz's Differentiation Rule)}
     \end{align*} 
 
-    \noindent Therefore, we have $\boxed{\mathcal{I}_{\bX}(\btheta) = \mathrm{Var}(s(\btheta;\bX))}$. $\color{red}\dots\color{black}$
+    \noindent Therefore, we have $\boxed{\mathcal{I}_{\bX}(\btheta) = \mathrm{Var}(s(\btheta;\bX))}$. Now, we prove the second point: $\mathcal{I}_{\bX}(\btheta) = -\E_{\btheta}\bigSquare{\frac{\partial^2}{\partial\xi^2}\ell(\xi;\bX)\Big|_{\xi=\btheta}}$. Expanding $\frac{\partial^2}{\partial\xi^2}\ell(\xi;\bX)\Big|_{\xi=\btheta}$, we have:
+    \begin{align*}
+        \frac{\partial^2}{\partial\xi^2}\ell(\xi;\bX)\Big|_{\xi=\btheta} &= \frac{\partial}{\partial\btheta}\biggSquare{\frac{\partial}{\partial\btheta}\ell(\btheta;\bX)} \\
+        &= \frac{\partial}{\partial\btheta}\biggSquare{\frac{1}{L(\btheta;\bX)}\frac{\partial}{\partial\btheta}L(\btheta;\bX)} \\
+        &= -\frac{1}{L(\btheta;\bX)^2}\biggSquare{\frac{\partial}{\partial\btheta} L(\btheta;\bX)}^2 + \frac{1}{L(\btheta;\bX)}\frac{\partial^2 L(\btheta;\bX)}{\partial\btheta^2} \\
+        &= -\biggSquare{\frac{\partial}{\partial\btheta}\ell(\btheta;\bX)}^2 + \frac{1}{L(\btheta;\bX)}\frac{\partial^2 L(\btheta;\bX)}{\partial\btheta^2}.
+    \end{align*} 
+
+    \noindent Now, let $P_{\btheta}$ be the probability density function for the random sample $\bX$. Then, essentially, $P_{\btheta}(\bX) = L(\btheta;\bX)$. Therefore, we have:
+    \begin{align*}
+        \E_{\bX\sim P_{\btheta}} \biggSquare{\frac{1}{L(\btheta;\bX)}\frac{\partial^2 L(\btheta;\bX)}{\partial\btheta^2}} &= \int_{\chi^n} \frac{1}{L(\btheta;\bx)}\frac{\partial^2 L(\btheta;\bx)}{\partial\btheta^2} P_{\btheta}(\bx) d\bx \\
+        &= \int_{\chi^n}\frac{\partial^2 L(\btheta;\bx)}{\partial\btheta^2} d\bx \\
+        &= \frac{\partial^2}{\partial\btheta^2}\int_{\chi^n} L(\btheta;\bx)d\bx \qquad \text{(Leibniz's Differentiation Rule)} \\
+        &= \frac{\partial^2}{\partial\btheta^2} 1 = 0.
+    \end{align*} 
+
+    \noindent Therefore, we have:
+    \begin{align*}
+        -\E_{\btheta}\biggSquare{\frac{\partial^2}{\partial\xi}\ell(\xi;\bX)\Bigg|_{\xi=\btheta}} = \E_{\btheta}\biggSquare{\biggRound{\frac{\partial}{\partial\btheta}\ell(\btheta;\bX)}^2} = \mathcal{I}_{\bX}(\btheta),
+    \end{align*} 
+
+    as desired.
 \end{proof*} 
 
 \begin{remark}[Exchanging Derivative and Integral]
