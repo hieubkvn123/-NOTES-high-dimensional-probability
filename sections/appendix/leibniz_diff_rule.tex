@@ -3,6 +3,8 @@
 \textbf{Leibniz Differentiation/Integral Rule} refers to the conditions by which differentiation and integration can be exchanged. Essentially, let $\Omega$ be a measure space and $A\subset\R^n$ be an open subset. Then, if a function $f:A \times \Omega \to \R$ satisfies:
 \begin{enumerate}
 	\item For all $x\in A$, $\omega\mapsto f(x, \omega)$ is a measurable function in $\omega$ ($f$ is a \underline{Caratheodory Function}).	
+	\item For almost all $\omega\in\Omega$, $\frac{\partial f(x, \omega)}{\partial x}$ exists for all $x\in A$.
+	\item For almost all $\omega\in\Omega$, there is an integrable function $h:\Omega\to\R$ such that $|f(x, \omega)|\le h(x)$ for all $x\in A$.
 \end{enumerate} 
 
 \begin{definition}[Caratheodory Function]
