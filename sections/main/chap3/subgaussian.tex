@@ -39,5 +39,19 @@ A random variable $X$ is called ``sub-Gaussian" if its distribution has a strong
 \end{definition} 
 
 \begin{proposition}{Properties of Sub-Gaussian Variables}{props_subgaussian}
-	
+	Let $X$ be a random variable with mean $\mu$. Then, the following properties are equivalent:
+
+	\begin{enumerate}[label=(\roman*)]
+		\item \textbf{Sub-Gaussianity (bounded tail probability)}: There exists $K_1>0$ such that
+		\begin{equation}
+			\Pm(|X| \ge t) \le 2\exp\biggRound{-\frac{t^2}{K_1^2}}.		
+		\end{equation} 	
+
+		\item \textbf{Bounded $p$-moment}: There exists $K_2>0$ such that
+		\begin{equation}
+			\|X\|_{L^p} = (\E |X|^p)^{1/p} \le K_2\sqrt{p}, \quad \forall p \ge 1.	
+		\end{equation} 
+	\end{enumerate} 
+
+	\noindent The parameters $K_1, \dots, K_5$ differ from each other by at most an absolute constant. Meaning, there exists a constant $C$ independent of $K_1, \dots, K_5$ such that $K_i \le C K_j$ for any two $i,j \in \{1, \dots, 5\}$.
 \end{proposition} 
