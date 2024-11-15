@@ -5,7 +5,7 @@
 \begin{enumerate}
 	\item For all $x\in A$, $\omega\mapsto f(x, \omega)$ is a measurable function in $\omega$ ($f$ is a \underline{Caratheodory Function}).	
 	\item For almost all $\omega\in\Omega$, $\frac{\partial f(x, \omega)}{\partial x}$ exists for all $x\in A$.
-	\item For almost all $\omega\in\Omega$, there is an integrable function $h:\Omega\to\R$ such that $|D_if(x, \omega)|\le h(x)$ for all $x\in A$.
+	\item For almost all $\omega\in\Omega$, there is an integrable function $h:\Omega\to\R$ such that $|f(x, \omega)|\le h(\omega)$ for all $x\in A$.
 \end{enumerate} 
 
 \noindent Then, we have:
@@ -26,5 +26,15 @@
 \end{definition} 
 
 \begin{proposition}{Leibniz Differentiation Rule}{leibniz_diff_rule}
-	
+	Let $(\Omega, \mathcal{F}, \mu)$ be a measure space and $A\subset\R^n$ be open. Let the function $f: A\times\Omega\to\R$ satisfy the following:
+	\begin{enumerate}
+		\item $f$ is a Caratheodory function.
+		\item There exists $h: \Omega\to\R$ such that $|f(x, \omega)|\le h(\omega)$ for almost all $\omega\in\Omega$ for all $x\in A$.
+	\end{enumerate}
+
+	\noindent Then, if we define $g(x) = \int_\Omega f(x, \omega)d\mu(\omega)$, we have:
+	\begin{enumerate}[label=(\roman*)]
+		\item $g$ is continuous.
+		\item $D_i g(x) = \int_\Omega D_i f(x, \omega)d\mu(\omega)$.
+	\end{enumerate} 
 \end{proposition} 
