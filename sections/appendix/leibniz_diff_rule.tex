@@ -53,5 +53,28 @@
 		\begin{align*}
 			D_i f(x, \omega) = \lim_{\xi\to 0} \frac{f(x+\xi e_i, \omega) - f(x, \omega)}{\xi}.
 		\end{align*} 
+
+		\noindent Furthermore, we have:
+		\begin{align*}
+			D_i g(x) &= \lim_{\xi\to0}\frac{g(x+\xi e_i) - g(x)}{\xi} \\
+				&= \lim_{\xi\to0}\xi^{-1}\biggSquare{
+					\int_\Omega f(x+\xi e_i, \omega)d\mu(\omega) - \int_\Omega f(x, \omega)d\mu(\omega) 
+				} \\
+				&= \lim_{\xi\to0}\int_\Omega \frac{f(x+\xi e_i, \omega) - f(x, \omega)}{\xi}d\mu(\omega)
+		\end{align*} 
+
+		\noindent By the Mean Value Theorem, there exists a point $y(\xi, \omega)$ between $x$ and $x+\xi e_i$ such that:
+		\begin{align*}
+			f(x+\xi e_i, \omega) - f(x, \omega) = \xi D_i f(y(\xi, \omega), \omega).
+		\end{align*} 
+
+		\noindent Therefore, we have:
+		\begin{align*}
+			D_ig(x) &= \lim_{\xi\to0}\int_\Omega D_i f(y(\xi, \omega), \omega)d\mu(\omega) \\
+				&= \lim_{n\to\infty} \int_\Omega D_i f(y(n^{-1}, \omega))d\mu(\omega) \\
+				&= \int_\Omega \lim_{n\to\infty} D_if(y(n^{-1}, \omega))d\mu(\omega) \qquad \text{(Dominated Convergence Theorem)}.
+		\end{align*} 
+
+		\noindent As $n\to\infty$, we have $y(n^{-1}, \omega)\to x$ since it lies between $x$ and $x+\frac{e_i}{n}$. Hence, we have $D_if(y(n^{-1}, \omega), \omega) \to D_i f(x, \omega)$. Therefore, $D_ig(x) = \int_\Omega D_i f(x, \omega)d\mu(\omega)$ as desired.
 	\end{enumerate} 	
 \end{proof*} 
