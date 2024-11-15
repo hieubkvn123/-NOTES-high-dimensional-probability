@@ -38,3 +38,20 @@
 		\item $D_i g(x) = \int_\Omega D_i f(x, \omega)d\mu(\omega)$.
 	\end{enumerate} 
 \end{proposition} 
+
+\begin{proof*}[Proposition \ref{prop:leibniz_diff_rule}]
+	We prove the above points one by one:
+	\begin{enumerate}[label=(\roman*)]
+		\item Suppose that $\{x_n\}_{n=1}^\infty\subset A$ is a sequence such that $x_n\to x\in A$. We have to prove that $g(x_n)\to g(x)$. Since $f$ is a Caratheodory function, we have $x\mapsto f(x, \omega)$ is continuous for almost all $\omega\in\Omega$. Therefore, $f(x_n,\omega)\to f(x, \omega)$ for almost all $\omega\in\Omega$. Then, by the Dominated Convergence Theorem\footnote{DCT is applied for the sequence of functions $\{k_n\}_{n=1}^\infty$ where $k_n:\Omega\to\R$ and $k_n(\omega)=f(x_n, \omega)$.}:
+		\begin{align*}
+			\int_\Omega f(x_n, \omega) d\mu(\omega) \to \int_\Omega f(x, \omega)d\mu(\omega).	
+		\end{align*} 
+
+		\noindent Hence, we have $g(x_n) \to g(x)$ as desired.
+
+		\item Let $e_i$ denotes the $i^{th}$ standard basis in $\R^n$. We have:
+		\begin{align*}
+			D_i f(x, \omega) = \lim_{\xi\to 0} \frac{f(x+\xi e_i, \omega) - f(x, \omega)}{\xi}.
+		\end{align*} 
+	\end{enumerate} 	
+\end{proof*} 
