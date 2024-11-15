@@ -1,7 +1,13 @@
 \subsection{Sub-Gaussian Distributions}
 A random variable $X$ is called ``sub-Gaussian" if its distribution has a strong tail decay similar to that of a Gaussian distribution. More precisely, the tail of $X$'s probability density/mass function is dominated by the tail of a Gaussian distribution, hence the name ``sub-Gaussian".
 
-\noindent\newline Sub-Gaussian is a particularly interesting family of random variables because by modelling random events using sub-Gaussian distributions, we can bound the probability of very rare events happening at the tail.
+\noindent\newline Sub-Gaussian is a particularly interesting family of random variables because by modelling random events using sub-Gaussian distributions, we can bound the probability of very rare events happening at the tail. Furthermore, sub-Gaussianity implies the following properties:
+\begin{enumerate}[label=(\roman*)]
+	\item Bounded tail probability.
+	\item Bounded moment.
+	\item Bounded moment generating function (for $X$ and $X^2$).
+	\item Bounded Gaussian norm*.
+\end{enumerate} 
 
 \begin{definition}[Sub-Gaussian Random Variable]
 	A random variable $X$ is called sub-Gaussian if there exists a constant $C>0$ such that:
