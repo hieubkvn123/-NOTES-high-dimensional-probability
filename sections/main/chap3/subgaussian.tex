@@ -1,1 +1,24 @@
-\subsection{Sub-gaussian Distributions}
+\subsection{Sub-Gaussian Distributions}
+A random variable $X$ is called ``sub-Gaussian" if its distribution has a strong tail decay similar to that of a Gaussian distribution. More precisely, the tail of $X$'s probability density/mass function is dominated by the tail of a Gaussian distribution, hence the name ``sub-Gaussian".
+
+\noindent\newline Sub-Gaussian is a particularly interesting family of random variables because by modelling random events using sub-Gaussian distributions, we can bound the probability of very rare events happening at the tail.
+
+\begin{definition}[Sub-Gaussian Random Variable]
+	A random variable $X$ is called sub-Gaussian if there exists a constant $C>0$ such that:
+	\begin{equation}
+		\Pm(|X|\ge t) \le 2\exp(-t^2/C^2).	
+	\end{equation} 
+\end{definition} 
+
+\begin{definition}[Sub-Gaussian Variance Proxy]
+	Let $X$ be a sub-Gaussian random variable. Then, $X$ is sub-Gaussian with proxy $\sigma^2$ if:
+	\begin{equation}
+		M_X(\lambda) \le \exp(\lambda^2\sigma^2/2), \quad \forall \lambda\in\R.	
+	\end{equation} 
+
+	\noindent We denote that $X\in\SG(\sigma^2)$.
+\end{definition} 
+
+\begin{proposition}{Properties of Sub-Gaussian Variables}{props_subgaussian}
+	
+\end{proposition} 
