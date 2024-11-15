@@ -3,17 +3,30 @@ A random variable $X$ is called ``sub-Gaussian" if its distribution has a strong
 
 \noindent\newline Sub-Gaussian is a particularly interesting family of random variables because by modelling random events using sub-Gaussian distributions, we can bound the probability of very rare events happening at the tail. Furthermore, sub-Gaussianity implies the following properties:
 \begin{enumerate}[label=(\roman*)]
-	\item Bounded tail probability.
-	\item Bounded moment.
-	\item Bounded moment generating function (for $X$ and $X^2$).
-	\item Bounded Gaussian norm*.
+	\item Bounded \textbf{tail probability}.
+	\item Bounded \textbf{moment}.
+	\item Bounded \textbf{moment generating function} (for $X$ and $X^2$).
+	\item Bounded \textbf{sub-Gaussian norm\hyperref[sec:subgaussian_norm]{*}}.
 \end{enumerate} 
 
 \begin{definition}[Sub-Gaussian Random Variable]
+	\label{sec:subgaussian_var}
 	A random variable $X$ is called sub-Gaussian if there exists a constant $C>0$ such that:
 	\begin{equation}
 		\Pm(|X|\ge t) \le 2\exp(-t^2/C^2).	
 	\end{equation} 
+\end{definition} 
+
+\begin{definition}[Sub-Gaussian Norm]
+	\label{sec:subgaussian_norm}
+	Let $X$ be a random variable. Then, we denote the sub-Gaussian norm of $X$ as:
+	\begin{equation}
+		\|X\|_{\psi_2} = \inf\bigCurl{
+			t > 0: \E\exp\bigRound{X^2/t^2}\le 2
+		}.
+	\end{equation} 
+
+	\noindent From the above definition and the definition of sub-Gaussian variables, we can deduce that $X$ is sub-Gaussian if and only if $\|X\|_{\psi_2} < \infty$. Furthermore, the intuition behind $\|.\|_{\psi_2}$ norm is that it measures the light-tailed-ness of a random variable. In other words, \textbf{the smaller the sub-Gaussian norm, the faster the tail decays}.
 \end{definition} 
 
 \begin{definition}[Sub-Gaussian Variance Proxy]
