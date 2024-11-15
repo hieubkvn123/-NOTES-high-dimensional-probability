@@ -282,8 +282,43 @@
 \end{remark}
 
 \begin{theorem}{Cramer-Rao Lower Bound $\CRLB$}{cramer_rao_lowerbound}
+    Let $\bX = \{X_1, \dots, X_n\}$ be a random sample where $X_i \sim p_{\btheta}$. If $\hat\Theta(\bX)$ is an estimator (biased or unbiased) for $\btheta$ based on the random sample $\bX$, then, we have:
+    \begin{equation}
+        \mathrm{Var}(\hat\Theta(\bX)) \ge \mathcal{I}_{\bX}(\btheta)^{-1}\biggSquare{\frac{d}{d\btheta}\E[\hat\Theta(\bX)]}^2. 
+    \end{equation} 
 
+    \noindent When $\hat\Theta$ is unbiased, we have $\E[\hat\Theta(\bX)] = \btheta$. Hence, we have $\boxed{\mathrm{Var}(\hat\Theta(\bX))\ge\mathcal{I}_{\bX}(\btheta)^{-1}}$.
 \end{theorem}
+
+\begin{proof*}[Cramer-Rao Lower Bound $\CRLB$]
+    We make use of the following covariance inequality: For two random variables $X, Y$, the following inequality holds
+    \begin{equation}
+        \mathrm{Cov}(X, Y)^2 \le \mathrm{Var}(X)\cdot\mathrm{Var}(Y).
+    \end{equation} 
+
+    \noindent We denote $X, Y$ as follows:
+    \begin{align*}
+        X = \hat\Theta(\bX); \qquad Y = s(\btheta;\bX). 
+    \end{align*} 
+
+    \noindent Applying the above inequality, we have:
+    \begin{align*}
+        \mathrm{Var}(\hat\Theta(\bX)) \ge \frac{\mathrm{Cov}(\hat\Theta(\bX), s(\btheta;\bX))}{\mathrm{Var}(s(\btheta;\bX))} = \mathcal{I}_{\bX}(\btheta)^{-1}\mathrm{Cov}(\hat\Theta(\bX), s(\btheta;\bX)).
+    \end{align*} 
+
+    \noindent Now, we derive the lower bound for $\mathrm{Cov}(\hat\Theta(\bX), s(\btheta;\bX))$. Suppose that the random variables $X_i$ maps from a sample space to $\chi$ and $P_{\btheta}:\chi^n\to [0,1]$ is the probability density for the random sample $\bX$, we have:
+    \begin{align*}
+        \mathrm{Cov}(\hat\Theta(\bX), s(\btheta;\bX)) &= \E[\hat\Theta(\bX)s(\btheta;\bX)] - \underbrace{\E[\hat\Theta(\bX)]\E[s(\btheta;\bX)]}_{\text{Equals } 0} \\
+        &= \int_{\chi^n} \hat\Theta(\bx) s(\btheta;\bx)P_{\btheta}(\bx)d\bx \\
+        &= \int_{\chi^n} \hat\Theta(\bx) \frac{d}{d\btheta}\ln L(\btheta;\bx) P_{\btheta}(\bx)d\bx \\
+        &= \int_{\chi^n} \hat\Theta(\bx) \frac{\frac{d}{d\btheta}L(\btheta;\bx)}{L(\btheta;\bx)}P_{\btheta}(\bx)d\bx \\
+        &= \int_{\chi^n} \hat\Theta(\bx)\frac{d}{d\btheta}L(\btheta;\bx)d\bx \qquad (L(\btheta;\bx) = P_{\btheta}(\bx)) \\
+        &= \frac{d}{d\btheta}\int_{\chi^n}\hat\Theta(\bx)L(\btheta;\bx)d\bx \qquad (\text{Leibniz Differentiation Rule}) \\
+        &= \frac{d}{d\btheta}\E[\hat\Theta(\bX)].
+    \end{align*} 
+
+    \noindent Hence, we obtain the desired lower bound.
+\end{proof*} 
 
 
 \subsubsection{Maximum Likelihood Estimation (MLE)}
