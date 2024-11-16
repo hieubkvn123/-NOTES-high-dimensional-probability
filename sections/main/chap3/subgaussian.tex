@@ -76,12 +76,30 @@ A random variable $X$ is called ``sub-Gaussian" if its distribution has a strong
 \end{proposition} 
 
 \begin{proof*}[Proposition \ref{prop:props_subgaussian}]
-	We prove that ${\bf (i)}\implies{\bf (ii)}\implies\dots\implies{\bf (v)}$ then prove that ${\bf (v)}\implies{\bf (i)}$.
+	We prove that ${\bf (i)}\implies{\bf (ii)}\implies\dots\implies{\bf (v)}$ then prove that ${\bf (v)}\implies{\bf (i)}$. Without loss of generality, assume that $K_1=1$ because we can rescale $X$ to $X/K_1$.
 	\begin{enumerate}
 		\item ${\bf (i)}\implies{\bf (ii)}$: By the integral identity for $p^{th}$ moments, we have
 		\begin{align*}
 			\E|X|^p &= \int_0^\infty pt^{p-1}\Pm(|X|>t)dt \\
-				&\le 2p\int_0^\infty t^{p-1}\exp\biggRound{-\frac{t^2}{K_1^2}}dt		
-		\end{align*} 	
+				&\le 2p\int_0^\infty t^{p-1}e^{-t^2}dt.
+		\end{align*}
+
+		\noindent Recall that $\Gamma(z) = \int_0^\infty u^{z-1}e^{-u}du$. By the change of variable, let $u=t^2$ (then, we have $du = 2tdt$). We have:
+		\begin{align*}
+			\E|X|^p &\le p\int_0^\infty (\sqrt{u})^{p-2}e^{-u}du \\
+				&= p\int_0^\infty u^{p/2 - 1}e^{-u}du = p\Gamma(p/2).
+		\end{align*} 
+
+		\noindent Since $\Gamma(z) < 3z^z$ for all $z\ge 1/2$, we have $\E|X|^p \le 3p(p/2)^{p/2}$. Taking $p^{th}$ root from both sides, we can have $K_2=3$ since $[3p(p/2)^{p/2}]^{1/p} \le 3\sqrt{p}$.
+
+		\item ${\bf (ii)}\implies{\bf (iii)}$: Using the identity $e^x = 1 + \sum_{k=1}^\infty \frac{x^k}{k!}$, we have:
+
+		\begin{align*}
+			M_{X^2}(\lambda^2) &= \E\exp(X^2\lambda^2) \\
+				&= \E\biggSquare{
+					1 + \sum_{k=1}^\infty \frac{(\lambda^2X^2)^k}{k!}
+				} \\
+				&= 1 + \sum_{k=1}^\infty \frac{\lambda^{2k} \E[X^{2k}]}{k!}
+		\end{align*} 
 	\end{enumerate} 
 \end{proof*} 
