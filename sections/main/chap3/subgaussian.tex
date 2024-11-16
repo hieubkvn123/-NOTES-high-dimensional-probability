@@ -109,9 +109,10 @@ A random variable $X$ is called ``sub-Gaussian" if its distribution has a strong
 
 		\noindent When $2e\lambda^2K_2^2 < 1$, we have the sum of geometric series that converges to $\frac{1}{1 - 2e\lambda^2K_2^2}$. Hence, we need $|\lambda| < \frac{1}{K_2\sqrt{2e}}$. Therefore, property $\bf (iii)$ holds with $K_3 = K_2\sqrt{2e}$.
 
-		\item ${\bf (iii)}\implies {\bf (iv)}$: We have
+		\item ${\bf (iii)}\implies {\bf (iv)}$: Using the identity $e^x = 1 + \sum_{k=1}^\infty \frac{x^k}{k!}$, we have
 		\begin{align*}
-			M_{X-\mu}(\lambda) &= \E\exp\bigSquare{\lambda(X - \mu)}	
+			M_{X-\mu}(\lambda) &= \E\exp\bigSquare{\lambda(X - \mu)} \\
+				&= 1 + \sum_{k=1}^\infty \frac{\lambda^k \E[(X - \mu)^k]}{k!}
 		\end{align*} 
 	\end{enumerate} 
 \end{proof*} 
