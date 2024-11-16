@@ -74,3 +74,12 @@ A random variable $X$ is called ``sub-Gaussian" if its distribution has a strong
 
 	\noindent The parameters $K_1, \dots, K_5$ differ from each other by at most an absolute constant. Meaning, there exists a constant $C$ independent of $K_1, \dots, K_5$ such that $K_i \le C K_j$ for any two $i,j \in \{1, \dots, 5\}$.
 \end{proposition} 
+
+\begin{proof*}[Proposition \ref{prop:props_subgaussian}]
+	\begin{enumerate}
+		\item ${\bf (i)}\implies{\bf (ii)}$: By the integral identity for $p^{th}$ moments, we have
+		\begin{align*}
+			\E|X|^p &= \int_0^\infty pt^{p-1}\Pm(|X|>t)dt.			
+		\end{align*} 	
+	\end{enumerate} 
+\end{proof*} 
