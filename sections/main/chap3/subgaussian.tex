@@ -22,7 +22,7 @@ A random variable $X$ is called ``sub-Gaussian" if its distribution has a strong
 	Let $X$ be a random variable. Then, we denote the sub-Gaussian norm of $X$ as:
 	\begin{equation}
 		\|X\|_{\psi_2} = \inf\bigCurl{
-			t > 0: \E\exp\bigRound{X^2/t^2}\le 2
+			t > 0: \E\bigSquare{\exp\bigRound{X^2/t^2}} \le 2
 		}.
 	\end{equation} 
 
@@ -50,6 +50,11 @@ A random variable $X$ is called ``sub-Gaussian" if its distribution has a strong
 		\item \textbf{Bounded $p$-moment}: There exists $K_2>0$ such that
 		\begin{equation}
 			\|X\|_{L^p} = (\E |X|^p)^{1/p} \le K_2\sqrt{p}, \quad \forall p \ge 1.	
+		\end{equation} 
+
+		\item \textbf{Bounded MGF (of $X^2$)}: There exists $K_3>0$ such that
+		\begin{equation}
+			M_{X^2}(\lambda^2) \le \exp(K_3^2\lambda^2), \quad \forall \lambda\in\R \text{ and } |\lambda| \le \frac{1}{K_3}.	
 		\end{equation} 
 	\end{enumerate} 
 
