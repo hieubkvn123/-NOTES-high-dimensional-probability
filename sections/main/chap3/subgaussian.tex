@@ -56,6 +56,20 @@ A random variable $X$ is called ``sub-Gaussian" if its distribution has a strong
 		\begin{equation}
 			M_{X^2}(\lambda^2) \le \exp(K_3^2\lambda^2), \quad \forall \lambda\in\R \text{ and } |\lambda| \le \frac{1}{K_3}.	
 		\end{equation} 
+
+		\item \textbf{Bounded MGF (of $X$)}: There exists $K_4>0$ such that
+		\begin{equation}
+			M_{X-\mu}(\lambda) \le \exp(K_4^2\lambda^2), \quad \forall \lambda\in\R.
+		\end{equation}
+
+		\noindent In other words, $X-\mu$ has a variance proxy of $\sigma^2\le 2K_4^2$.
+
+		\item \textbf{Bounded sub-Gaussian norm}: There exists $K_5>0$ such that
+		\begin{equation}
+			\E\bigSquare{\exp\bigRound{X^2/K_5^2}}\le 2.
+		\end{equation} 
+
+		\noindent In other words, $\|X\|_{\psi_2}\le K_5$.
 	\end{enumerate} 
 
 	\noindent The parameters $K_1, \dots, K_5$ differ from each other by at most an absolute constant. Meaning, there exists a constant $C$ independent of $K_1, \dots, K_5$ such that $K_i \le C K_j$ for any two $i,j \in \{1, \dots, 5\}$.
