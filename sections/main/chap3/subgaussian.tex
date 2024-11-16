@@ -76,10 +76,12 @@ A random variable $X$ is called ``sub-Gaussian" if its distribution has a strong
 \end{proposition} 
 
 \begin{proof*}[Proposition \ref{prop:props_subgaussian}]
+	We prove that ${\bf (i)}\implies{\bf (ii)}\implies\dots\implies{\bf (v)}$ then prove that ${\bf (v)}\implies{\bf (i)}$.
 	\begin{enumerate}
 		\item ${\bf (i)}\implies{\bf (ii)}$: By the integral identity for $p^{th}$ moments, we have
 		\begin{align*}
-			\E|X|^p &= \int_0^\infty pt^{p-1}\Pm(|X|>t)dt.			
+			\E|X|^p &= \int_0^\infty pt^{p-1}\Pm(|X|>t)dt \\
+				&\le 2p\int_0^\infty t^{p-1}\exp\biggRound{-\frac{t^2}{K_1^2}}dt		
 		\end{align*} 	
 	\end{enumerate} 
 \end{proof*} 
