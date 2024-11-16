@@ -54,7 +54,7 @@ A random variable $X$ is called ``sub-Gaussian" if its distribution has a strong
 
 		\item \textbf{Bounded MGF (of $X^2$)}: There exists $K_3>0$ such that
 		\begin{equation}
-			M_{X^2}(\lambda^2) \le \exp(K_3^2\lambda^2), \quad \forall \lambda\in\R \text{ and } |\lambda| \le \frac{1}{K_3}.	
+			M_{X^2}(\lambda^2) \le \exp(K_3^2\lambda^2), \quad \forall \lambda\in\R \text{ and } |\lambda| < \frac{1}{K_3}.	
 		\end{equation} 
 
 		\item \textbf{Bounded MGF (of $X$)}: There exists $K_4>0$ such that
@@ -99,7 +99,14 @@ A random variable $X$ is called ``sub-Gaussian" if its distribution has a strong
 				&= \E\biggSquare{
 					1 + \sum_{k=1}^\infty \frac{(\lambda^2X^2)^k}{k!}
 				} \\
-				&= 1 + \sum_{k=1}^\infty \frac{\lambda^{2k} \E[X^{2k}]}{k!}
+				&= 1 + \sum_{k=1}^\infty \frac{\lambda^{2k} \E[X^{2k}]}{k!}.
 		\end{align*} 
+
+		\noindent By property ${\bf (ii)}$, we have $\E[X^{2k}] \le K_2^{2k}(2k)^{k}$. By Stirling's approximation, we have $k!\ge(k/e)^k$. Combining the bounds, we have:
+		\begin{align*}
+			M_{X^2}(\lambda^2) &\le 1 + \sum_{k=1}^\infty \frac{\lambda^{2k}K_2^{2k}(2k)^k}{(k/e)^k}= 1 + \sum_{k=1}^\infty \frac{(2k\lambda^2K_2^2)^k}{(k/e)^k} = 1 + \sum_{k=1}^\infty (2e\lambda^2K_2^2)^k.
+		\end{align*} 
+
+		\noindent When $2e\lambda^2K_2^2 < 1$, we have the sum of geometric series that converges to $\frac{1}{1 - 2e\lambda^2K_2^2}$. Hence, we need $|\lambda| < \frac{1}{K_2\sqrt{2e}}$. Therefore, property $\bf (iii)$ holds with $K_3 = K_2\sqrt{2e}$.
 	\end{enumerate} 
 \end{proof*} 
