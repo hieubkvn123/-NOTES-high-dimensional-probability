@@ -76,7 +76,7 @@ A random variable $X$ is called ``sub-Gaussian" if its distribution has a strong
 \end{proposition} 
 
 \begin{proof*}[Proposition \ref{prop:props_subgaussian}]
-	We prove that ${\bf (i)}\implies{\bf (ii)}\implies\dots\implies{\bf (v)}$ then prove that ${\bf (v)}\implies{\bf (i)}$. Without loss of generality, assume that $K_1=1$ because we can rescale $X$ to $X/K_1$.
+	We prove that ${\bf (i)}\implies{\bf (ii)}\implies{\bf (iii)}\implies{\bf (v)}$ then prove that ${\bf (v)}\implies{\bf (i)}$. This means that the statements ${\bf (i)}, {\bf (ii)}, {\bf (iii)}, {\bf (v)}$ are equivalent. Then, we prove that ${\bf (ii)} \iff {\bf (iv)}$. Without loss of generality, assume that $K_1=1$ because we can rescale $X$ to $X/K_1$.
 	\begin{enumerate}
 		\item ${\bf (i)}\implies{\bf (ii)}$: By the integral identity for $p^{th}$ moments, we have
 		\begin{align*}
@@ -109,10 +109,11 @@ A random variable $X$ is called ``sub-Gaussian" if its distribution has a strong
 
 		\noindent When $2e\lambda^2K_2^2 < 1$, we have the sum of geometric series that converges to $\frac{1}{1 - 2e\lambda^2K_2^2}$. Hence, we need $|\lambda| < \frac{1}{K_2\sqrt{2e}}$. Therefore, property $\bf (iii)$ holds with $K_3 = K_2\sqrt{2e}$.
 
-		\item ${\bf (iii)}\implies {\bf (iv)}$: Using the identity $e^x = 1 + \sum_{k=1}^\infty \frac{x^k}{k!}$, we have
+		\item ${\bf (iii)}\implies {\bf (v)}$: Let $K_5=\frac{K_3}{\sqrt{\ln 2}}$ and set $\lambda=\frac{1}{K_5}$. Since $K_5^{-1} < \frac{1}{K_3}$, statement $\bf (iii)$ holds with $\lambda=K_5^{-1}$. Therefore:
 		\begin{align*}
-			M_{X-\mu}(\lambda) &= \E\exp\bigSquare{\lambda(X - \mu)} \\
-				&= 1 + \sum_{k=1}^\infty \frac{\lambda^k \E[(X - \mu)^k]}{k!}
+			\E\exp\bigSquare{X^2/K_5^2} &\le \exp(K_3^2/K_5^2) = \exp(\ln 2) = 2.
 		\end{align*} 
+
+		\item ${\bf (v)}\implies{\bf (i)}$:
 	\end{enumerate} 
 \end{proof*} 
