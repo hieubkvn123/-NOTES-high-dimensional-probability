@@ -114,6 +114,14 @@ A random variable $X$ is called ``sub-Gaussian" if its distribution has a strong
 			\E\exp\bigSquare{X^2/K_5^2} &\le \exp(K_3^2/K_5^2) = \exp(\ln 2) = 2.
 		\end{align*} 
 
-		\item ${\bf (v)}\implies{\bf (i)}$:
+		\item ${\bf (v)}\implies{\bf (i)}$: Let $K_5>0$ be the constant that makes $\bf (v)$ hold. We have
+		\begin{align*}
+			\Pm(|X| \ge t) &= \Pm(X^2\ge t^2) \\
+				&= \Pm\bigRound{e^{X^2/K_5^2} \ge e^{t^2/K_5^2}} \\
+				&\le \exp\biggRound{-\frac{t^2}{K_5^2}}\E\bigSquare{e^{X^2/K_5^2}} \quad \text{(Markov's Inequality)} \\
+				&\le 2\exp\biggRound{-\frac{t^2}{K_5^2}}.
+		\end{align*} 
+
+		\noindent Hence, $\bf (i)$ holds with $K_1\ge K_5$. From here on, we have proved that the statements $\bf (i), (ii), (iii)$ and $\bf (v)$ are equivalent. 
 	\end{enumerate} 
 \end{proof*} 
