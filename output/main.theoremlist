@@ -10,3 +10,4 @@
 \contentsline {tcolorbox}{\numberline {2.1}Factorisation Theorem $\hyperref [thm:factorisation_theorem]{(\mathrm {{\bf FacT}})}$}{19}{tcb@cnt@theorem.2.1}%
 \contentsline {tcolorbox}{\numberline {2.2}Rao-Blackwell Theorem $\hyperref [thm:rao_blackwell_theorem]{(\mathrm {{\bf RB}})}$}{22}{tcb@cnt@theorem.2.2}%
 \contentsline {tcolorbox}{\numberline {2.3}Cramer-Rao Lower Bound $\hyperref [thm:cramer_rao_lowerbound]{(\mathrm {{\bf CRLB}})}$}{24}{tcb@cnt@theorem.2.3}%
+\contentsline {tcolorbox}{\numberline {3.1}Bounded Tail Probability $\DOTSB \tmspace +\thickmuskip {.2777em}\DOTSB \Leftarrow \joinrel \Rightarrow \tmspace +\thickmuskip {.2777em}\mathcal {SG}$ $\hyperref [thm:bounded_tail_equiv_sg]{(\mathrm {{\bf BTP-SG}})}$}{27}{tcb@cnt@theorem.3.1}%

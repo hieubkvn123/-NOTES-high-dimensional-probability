@@ -1,3 +1,4 @@
+\newcommand{\BTPSG}{\hyperref[thm:bounded_tail_equiv_sg]{(\mathrm{{\bf BTP-SG}})}}
 \subsection{Sub-Gaussian Distributions}
 A random variable $X$ is called ``sub-Gaussian" if its distribution has a strong tail decay similar to that of a Gaussian distribution. More precisely, the tail of $X$'s probability density/mass function is dominated by the tail of a Gaussian distribution, hence the name ``sub-Gaussian".
 
@@ -124,10 +125,18 @@ A random variable $X$ is called ``sub-Gaussian" if its distribution has a strong
 
 		\noindent Hence, $\bf (i)$ holds with $K_1\ge K_5$. From here on, we have proved that the statements $\bf (i), (ii), (iii)$ and $\bf (v)$ are equivalent. 
 
-		\item ${\bf (iii)} \iff {\bf (iv)}$: Assume that $\bf (iii)$ holds with constant $K_3>0$. Using the inequality $e^x\le x + e^{x^2}$, we have
-		\begin{align*}
-			M_{X-\mu}(\lambda) &= \E\exp\bigSquare{\lambda(X-\mu)} \\
-				&\le \E\bigSquare{\lambda(X-\mu) + e^{\lambda^2(X-\mu)^2}}
-		\end{align*} 
+		\item ${\bf (i)} \iff {\bf (iv)}$: This relationship is proven below in theorem \ref{thm:bounded_tail_equiv_sg}.
 	\end{enumerate} 
+\end{proof*} 
+
+\begin{theorem}{Bounded Tail Probability $\iff \mathcal{SG}$ $\BTPSG$}{bounded_tail_equiv_sg}
+	Let $X$ be a random variable with mean $\E[X] = \mu$. Then,
+	\begin{enumerate}[label=(\roman*)]
+		\item $X\in\mathcal{SG}(\sigma^2) \implies \Pm ({|X-\mu|\ge t}) \le 2\exp\bigRound{-\frac{t^2}{2\sigma^2}}$ for some $\sigma>0$.
+		\item $\Pm ({|X-\mu|\ge t}) \le 2\exp\bigRound{-\frac{t^2}{2\xi^2}} \implies X\in\mathcal{SG}(16\xi^2)$ for some $\xi>0$.
+	\end{enumerate} 
+\end{theorem} 
+
+\begin{proof*}[Theorem $\BTPSG$]
+	
 \end{proof*} 
