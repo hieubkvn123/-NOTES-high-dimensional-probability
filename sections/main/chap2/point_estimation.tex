@@ -170,14 +170,17 @@
 \end{proof*} 
 
 \begin{proposition}{Asymptotic Normality of MLE}{asymptotic_normality_mle}
-    Let $\bX=(X_1, \dots, X_n)$ be a random sample from a distribution $p_{\btheta}$ dependent on a true set of parameters $\btheta$. Let $\Theta$ be the parameters space. Then, the Maximum Likelihood Estimator $\Theta_{MLE} = \arg\max_{\theta\in\Theta}L(\theta;\bX)$ is asymptotically normal:
+    Let $\bX=(X_1, \dots, X_n)$ be a random sample from a distribution $p_{\btheta}$ dependent on a true set of parameters $\btheta$. Suppose that the $\mathrm{MLE}$ is \underline{consistent}. Then, the Maximum Likelihood Estimator $\Theta_{MLE} = \arg\max_{\theta\in\Theta}L(\theta;\bX)$ is asymptotically normal:
     \begin{equation}
         \sqrt{n}(\Theta_{MLE} - \btheta) \xrightarrow{d} \mathcal{N}(0, \mathcal{I}_{\bX}(\btheta)^{-1}).
     \end{equation}
 \end{proposition} 
 
 \begin{proof*}[Proposition \ref{prop:asymptotic_normality_mle}]
-    
+    By the Mean Value Theorem, for a continuous function $f:[a, b] \to \R$, we have:
+    \begin{align*}
+        \frac{f(b) - f(a)}{b - a} = f'(c), \quad \text{for some } c\in [a,b]. 
+    \end{align*} 
 \end{proof*}
 
 %% ---------------- %%
