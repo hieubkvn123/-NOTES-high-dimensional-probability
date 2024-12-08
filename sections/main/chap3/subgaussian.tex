@@ -130,26 +130,90 @@ A random variable $X$ is called ``sub-Gaussian" if its distribution has a strong
 \end{proof*} 
 
 \begin{theorem}{Bounded Tail Probability $\iff \mathcal{SG}$ $\BTPSG$}{bounded_tail_equiv_sg}
-	Let $X$ be a random variable with mean $\E[X] = \mu$. Then, for all $t\in\R$,
+	Let $X$ be a random variable with mean $\E[X] = \mu$ and $Z$ be the centered random variable $Z=X-\mu$. Then, for all $t\in\R$,
 	\begin{enumerate}[label=(\roman*)]
-		\item $X\in\mathcal{SG}(\sigma^2) \implies \Pm ({|X-\mu|\ge t}) \le 2\exp\bigRound{-\frac{t^2}{2\sigma^2}}$ for some $\sigma>0$.
-		\item $\Pm ({|X-\mu|\ge t}) \le 2\exp\bigRound{-\frac{t^2}{2\xi^2}} \implies X\in\mathcal{SG}(16\xi^2)$ for some $\xi>0$.
+		\item $Z\in\mathcal{SG}(\sigma^2) \implies \Pm ({|X-\mu|\ge t}) \le 2\exp\bigRound{-\frac{t^2}{2\sigma^2}}$ for some $\sigma>0$.
+		\item $\Pm ({|X-\mu|\ge t}) \le 2\exp\bigRound{-\frac{t^2}{2\xi^2}} \implies Z\in\mathcal{SG}(16\xi^2)$ for some $\xi>0$.
 	\end{enumerate} 
 \end{theorem} 
 
 \begin{proof*}[Theorem $\BTPSG$]
 	We prove each bullet point one by one.
 	\begin{enumerate}[label=(\roman*)]
-		\item From the definition, for all $\lambda\in\R$, we have $M_X(\lambda) = \E\exp[\lambda X] \le \exp\bigRound{\lambda\mu+\frac{\lambda^2\sigma^2}{2}}$. By the Markov's inequality, we have:
+		\item From the definition, for all $\lambda\in\R$, we have $M_Z(\lambda) = \E\exp[\lambda Z] \le \exp\bigRound{\frac{\lambda^2\sigma^2}{2}}$. For $\lambda>0$ and for all $t>0$, we have:
 		\begin{align*}
 			\Pm(|X-\mu| \ge t) &= \Pm\bigRound{\bigCurl{X - \mu \ge t} \vee \bigCurl{X - \mu \le -t}} \\
-			&\le \Pm(X \ge \mu + t) + \Pm(X\le \mu - t) \\
-			&= \Pm(e^{\lambda X} \ge e^{\lambda\mu + \lambda t}) + \Pm(e^{\lambda X} \le e^{\lambda\mu - \lambda t}) \\
-			&\le e^{-\lambda\mu}\E\exp[\lambda X]\bigRound{e^{-\lambda t} + e^{\lambda t}} \\
-			&\le \exp\biggRound{\frac{\lambda^2\sigma^2}{2}}\bigRound{e^{-\lambda t} + e^{\lambda t}} \\
-			&\le 2\exp\biggRound{\frac{\lambda^2\sigma^2 + \lambda^2t^2}{2}}. \qquad (e^x + e^{-x} \le 2e^{x^2/2})
+			&\le \Pm(Z \ge t) + \Pm(Z\le -t) \\
+			&= \Pm(e^{\lambda Z} \ge e^{\lambda t}) + \Pm(Z \le -t)
 		\end{align*} 
 
-		\noindent Using Lagrange multiplier $\dots$
-	\end{enumerate} 
+		\noindent Then, we have the following inequalities:
+		\begin{align*}
+			\begin{cases}
+				\Pm(e^{\lambda Z} \ge e^{\lambda t}) &\le e^{-\lambda t}M_Z(\lambda) \qquad \text{(Markov's Inequality)} \\
+				\Pm(Z \le -t) &\le e^{-\lambda t} M_Z(-\lambda) \qquad \text{(Chernoff's Bound)}
+			\end{cases},
+		\end{align*} 
+
+		\noindent where the second inequality comes from the left-tail Chernoff's Bound\footnote{$\Pm(X\le a)\le e^{-sa}M_X(s)$ for all $s<0$. Hence, $\Pm(Z\le -t)\le e^{st}M_Z(s)$ for all $s<0$. Setting $s=-\lambda$, we have $\Pm(Z\le -t) \le e^{-\lambda t}M_Z(-\lambda)$.}. As a result, we have:
+		\begin{align*}
+			\Pm(|X-\mu|\ge t) &\le e^{-\lambda t}\bigSquare{M_Z(\lambda) + M_Z(-\lambda)} \\
+				&\le 2e^{-\lambda t} \exp\biggRound{\frac{\lambda^2\sigma^2}{2}} \\
+				&= 2\exp\biggRound{-\lambda t + \frac{\lambda^2\sigma^2}{2}}.
+		\end{align*} 
+
+		\noindent Using Lagrange multiplier to solve for $\lambda$, we have $\lambda=\frac{t}{\sigma^2}$. Hence, we have:
+		\begin{align*}
+			\Pm(|X-\mu| \ge t) \le 2\exp\biggRound{-\frac{t^2}{2\sigma^2}}.	
+		\end{align*} 
+
+		\item Firstly, we prove that bounded tail probability implies that $\E|Z|^{2q} \le q!(4\xi^2)^q$ for all integers $q\ge1$. Using the identity $\E|Z|^q = \int_0^\infty qt^{q-1}\Pm(|Z|\ge t)dt$, we have:
+	    \begin{align*}
+	        \E|Z|^{2q} &= 2q\int_0^\infty t^{2q-1}\Pm(|Z|\ge t)dt \\
+	            &\le 4q\int_0^\infty t^{2q-1}\exp\biggRound{-\frac{t^2}{2\xi^2}}dt.
+	    \end{align*}
+
+	    \noindent Letting $u=\frac{t^2}{2\xi^2}$, hence $t^2 = 2u\xi^2$ and $dt = \frac{\xi^2du}{t}$, the above integral becomes:
+	    \begin{align*}
+	        \E|Z|^{2q} &\le 4q\xi^2\int_0^\infty t^{2q-2}e^{-u}du \\
+	            &= 4q\xi^2\int_{0}^\infty (2u\xi^2)^{q-1}e^{-u}du \\
+	            &= 2q\cdot(2\xi^2)^q \underbrace{\int_0^\infty u^{q-1}e^{-u}du}_{\Gamma(q)} \\
+	            &= 2q!(2\xi^2)^q \le q!(4\xi^2)^q.
+	    \end{align*}
+
+	    \noindent Let $\tilde Z$ be the $i.i.d$ copy of $Z$. Hence, $Z-\tilde Z$ is symmetric about $0$, which means that $\E[(Z-\tilde Z)^p] = 0$ for odd-order $p$-moments. Therefore, For all $\lambda>0$, we have:
+	    \begin{align*}
+	        M_Z(\lambda)M_{-\tilde Z}(\lambda) &= M_{Z-\tilde Z}(\lambda) \quad (\text{Due to independence})\\
+	            &= \E\exp\bigRound{\lambda(Z - \tilde Z)} \\
+	            &= 1 + \sum_{q=1}^\infty \frac{\lambda^{2q}\E\bigSquare{(Z - \tilde Z)^{2q}}}{(2q)!}.
+	    \end{align*}
+
+	    \noindent By the convexity of $f(z) = z^{2q}$, for all $t\in(0,1)$, we have:
+	    \begin{align*}
+	        \bigSquare{tZ + (1-t)(-\tilde Z)}^{2q} \le tZ^{2q} + (1-t)\tilde Z^{2q}.
+	    \end{align*}
+
+	    \noindent Setting $t=\frac{1}{2}$, we have:
+	    \begin{align*}
+	        \biggSquare{\frac{Z - \tilde Z}{2}}^{2q} \le \frac{Z^{2q} + \tilde Z^{2q}}{2} \implies (Z - \tilde Z)^{2q} \le 2^{2q-1}(Z^{2q} + \tilde Z^{2q}).
+	    \end{align*}
+
+	    \noindent As a result, we have $\E[(Z-\tilde Z)^{2q}] \le 2^{2q-1}(\E[Z^{2q}] + \E[\tilde Z^{2q}]) = 2^{2q}\E[Z^{2q}]$. Plugging this back to the formula of $M_{Z-\tilde Z}(\lambda)$, we have:
+	    \begin{align*}
+	        \E[e^{\lambda Z}]\E[e^{-\lambda \tilde Z}] &\le 1 + \sum_{q=1}^\infty \frac{\lambda^{2q}2^{2q}\E[Z^{2q}]}{(2q)!} \\
+	        &\le 1 + \sum_{q=1}^\infty \frac{\lambda^{2q}2^{2q}(4\xi^2)^{q}q!}{(2q)!}.
+	    \end{align*}
+
+	    \noindent Since $\E[e^{-\lambda \tilde Z}]\ge 1$ for all $\lambda>0$ and 
+	    \begin{align*}
+	        \frac{(2q)!}{q!} &= \prod_{j=1}^q (q+j) \ge \prod_{j=1}^q (2j) = 2^qq!,
+	    \end{align*}
+
+	    \noindent We have:
+	    \begin{align*}
+	        \E[e^{\lambda Z}] &\le 1 + \sum_{q=1}^\infty \frac{(2\lambda^2\cdot 4\xi^2)^q}{q!} = e^{8\lambda^2\xi^2}.
+	    \end{align*}
+
+	    \noindent Hence, $Z\in\mathcal{SG}(16\xi^2)$.
+	\end{enumerate}	 
 \end{proof*} 
