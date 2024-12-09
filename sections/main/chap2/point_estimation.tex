@@ -7,6 +7,14 @@
     Let $\bX = (X_1, \dots, X_n) \sim p_{\btheta}$ be a random sample drawn $i.i.d$ from a distribution with parameters $\btheta$. Let $\bU=T(\bX)$ be a statistic, then it is called a \underline{sufficient statistic} if the conditional distribution $p_{\bX|\bU}$ does not depend on $\btheta$.
 \end{definition}
 
+\begin{remark}[Intuition for ``Sufficiency"]
+    To give a bit of intuition into what we consider a ``sufficient" statistics. Given a random sample $\bX$ from a distribution whose parameters are denoted as $\btheta$. A statistics $\bU=T(\bX)$ is \textbf{sufficient} for the inference of $\btheta$ iff \textbf{once we know $\bU$, there is no further information about $\btheta$ that we can derive from the data $\bX$}. For example, given $\bX=(X_1, \dots, X_n) \sim_\mathrm{i.i.d}\mathcal{N}(\mu, \sigma^2)$ and our task is to estimate the expectation $\mu$. Consider the following intuitive example:
+    \begin{enumerate}[label=(\roman*)]
+        \item $\bU_1 = \frac{1}{n}\sum_{i=1}^n X_i$: $\bU_1$ is a sufficient statistics because we have used up all the information from the sample $\bX$. More specifically, we have taken the sample mean of all available instances available. 
+        \item $\bU_2 = X_1$: While it is unbiased like $\bU_1$, this is \underline{not a sufficient statistics} because there are further information (the remaining instances $X_2, \dots, X_n$) that is yet to be utilized in the random sample $\bX$.
+    \end{enumerate} 
+\end{remark} 
+
 \begin{example}[Bernoulli random variables]
     Let $\bX = (X_1, \dots, X_n) \sim \bern(\theta)$ be a random sample from the Bernoulli distribution. Let $\bU = \frac{1}{n}\sum_{i=1}^n X_i$, then $\bU$ is a sufficient statistic of $\theta$. To illustrate this, suppose that $\bx = (x_1, \dots, x_n)$ is an observation of the random sample $\bX$ and $\bu = \frac{1}{n}\sum_{i=1}^n x_i$. We have:
     \begin{align*}
