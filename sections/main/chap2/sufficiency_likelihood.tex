@@ -2,7 +2,7 @@
 \subsection{Sufficiency \& Likelihood Principles}
 \newcommand{\FacT}{\hyperref[thm:factorisation_theorem]{(\mathrm{{\bf FacT}})}}
 
-\subsubsection{Sufficiency}
+\subsubsection{Sufficient Statistics}
 \begin{definition}[Sufficient Statistics]
     Let $\bX = (X_1, \dots, X_n) \sim p_{\btheta}$ be a random sample drawn $i.i.d$ from a distribution with parameters $\btheta$. Let $\bU=T(\bX)$ be a statistic, then it is called a \underline{sufficient statistic} if the conditional distribution $p_{\bX|\bU}$ does not depend on $\btheta$.
 \end{definition}
@@ -138,7 +138,7 @@
     \end{itemize}
 \end{proof*}
 
-\subsubsection{Likelihood}
+\subsubsection{Maximum Likelihood Estimation (MLE)}
 \begin{definition}[Likelihood Function]
     Let $\bX=(X_1, \dots, X_n)$ be a random sample whose distribution belongs to a family of distributions $\mathcal{P}=\bigCurl{p_\theta:\theta\in\Theta}$. Let $\bx=(x_1, \dots, x_n)$ be an observation of the random sample $\bX$. Then, the likelihood function $L(\theta;\bx)$ is defined as follows:
     \begin{equation}
