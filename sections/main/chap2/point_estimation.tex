@@ -22,7 +22,43 @@
         \item $\bU_2=\frac{X_1 + X_2}{2}$. 
     \end{enumerate} 
 
-    \noindent Now, we analyse the sufficiency of both $\bU_1, \bU_2$ by calculating the conditional density functions $p_{\bX|\bU_1}$ and $p_{\bX|\bU_2}$ as follows:
+    \noindent Now, we analyse the sufficiency of both $\bU_1, \bU_2$ by calculating the conditional density functions $p_{\bX|\bU_1}$ and $p_{\bX|\bU_2}$ as follows: Let $\bx=\{x_1, x_2 \}$ be a particular observation of the random sample $\bX$ and $\bu_1, \bu_2$ be values of $\bU_1$, $\bU_2$. We have
+
+    \begin{enumerate}[label=(\roman*)]
+        \item \textbf{Calculation of $p_{\bX|\bU_1}(\bx|\bu_1)$}: Obviously, when $x_1\ne\bu_1$, we have $p_{\bX|\bU_1}(\bx|\bu_1) = 0$. On the other hand, if $x_1=\bu_1$, we have
+        \begin{align*}
+            p_{\bX|\bU_1}(\bx|\bu_1) &= \Pm(X_1=x_1, X_2=x_2|\bU_1=\bu_1) \\
+                &= \Pm(X_1 = \bu_1, X_2 = x_2) \\
+                &= \frac{1}{2\pi\sigma^2}\exp\biggSquare{
+                    -\frac{(\bu_1 - \mu)^2 + (x_2 - \mu)^2}{2\sigma^2}
+                },
+        \end{align*}
+
+        \noindent which still depends on $\mu$. Therefore, $\bU_1$ is not a sufficient statistics. 
+
+
+        \item \textbf{Calculation of $p_{\bX|\bU_2}(\bx|\bu_2)$}: Again, when $x_1+x_2\ne \bu_2$, $p_{\bX|\bU_2}(\bx|\bu_2)=0$. Suppose that $x_1+x_2=\bu_2$, using Bayes rule, we have
+        \begin{align*}
+            p_{\bX|\bU_2}(\bx|\bu_2) &= \Pm\biggRound{X_1=x_1, X_2=x_2\Bigg|\frac{X_1 + X_2}{2} = \bu_2} \\
+            &= \frac{\Pm(\bU_2=\bu_2|X_1=x_1, X_2=x_2)\Pm(X_1=x_1, X_2=x_2)}{\Pm(\bU_2 = \bu_2)} \\
+            &= \frac{\Pm(X_1=x_1, X_2=x_2)}{\Pm(\bU_2=\bu_2)}.
+        \end{align*} 
+
+        \noindent Note that $\bU_2 \sim \mathcal{N}\bigRound{\mu, \frac{\sigma^2}{2}}$. Hence, we have:
+        \begin{align*}
+             p_{\bX|\bU_2}(\bx|\bu_2) &= \frac{
+                \frac{1}{2\pi\sigma^2}\exp\biggSquare{-\frac{(x_1 - \mu)^2 + (x_2 - \mu)^2}{2\sigma^2}}
+             }{
+                \frac{1}{\sqrt{\pi\sigma^2}}\exp\biggSquare{-\frac{(\bu_2 - \mu)^2}{\sigma^2}}
+             } \\
+             &= \frac{1}{2\sigma\sqrt{\pi}}\exp\biggSquare{
+                -\frac{-(x_1 - \mu)^2 + (x_2 - \mu)^2 - 2(\bu_2 - \mu)^2}{2\sigma^2}
+             } \\
+             &= \frac{1}{2\sigma\sqrt{\pi}} \exp\biggSquare{-\frac{x_1^2 + x_2^2 - 2\bu_2^2}{2\sigma^2}}.
+        \end{align*} 
+
+        \noindent Since the above conditional density is independent of $\mu$, it is a sufficient statistics for $\mu$.
+    \end{enumerate} 
 \end{example} 
 
 \begin{example}[Bernoulli random variables]
