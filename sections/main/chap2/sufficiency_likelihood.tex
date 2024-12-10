@@ -1,0 +1,280 @@
+%% ---------------- %%
+\subsection{Sufficiency \& Likelihood Principles}
+\newcommand{\FacT}{\hyperref[thm:factorisation_theorem]{(\mathrm{{\bf FacT}})}}
+
+\subsubsection{Sufficiency}
+\begin{definition}[Sufficient Statistics]
+    Let $\bX = (X_1, \dots, X_n) \sim p_{\btheta}$ be a random sample drawn $i.i.d$ from a distribution with parameters $\btheta$. Let $\bU=T(\bX)$ be a statistic, then it is called a \underline{sufficient statistic} if the conditional distribution $p_{\bX|\bU}$ does not depend on $\btheta$.
+\end{definition}
+
+\begin{remark}[Intuition for ``Sufficiency"]
+    To give a bit of intuition into what we consider a ``sufficient" statistics. Given a random sample $\bX$ from a distribution whose parameters are denoted as $\btheta$. A statistics $\bU=T(\bX)$ is \textbf{sufficient} for the inference of $\btheta$ iff \textbf{once we know $\bU$, there is no further information about $\btheta$ that we can derive from the data $\bX$}. For example, given $\bX=(X_1, \dots, X_n) \sim_\mathrm{i.i.d}\mathcal{N}(\mu, \sigma^2)$ and our task is to estimate the expectation $\mu$. Consider the following intuitive example:
+    \begin{enumerate}[label=(\roman*)]
+        \item $\bU_1 = \frac{1}{n}\sum_{i=1}^n X_i$: $\bU_1$ is a sufficient statistics because we have used up all the information from the sample $\bX$. More specifically, we have taken the sample mean of all available instances available. 
+        \item $\bU_2 = X_1$: While it is unbiased like $\bU_1$, this is \underline{not a sufficient statistics} because there are further information (the remaining instances $X_2, \dots, X_n$) that is yet to be utilized in the random sample $\bX$.
+    \end{enumerate} 
+\end{remark} 
+
+\begin{example}[Intuition for ``Sufficiency" - A Gaussian Illustration]
+    Suppose that we are conducting a survey about children's height. Suppose that the distribution of heights follows a Gaussian distribution $\mathcal{N}(\mu, \sigma^2)$ and we are given a random sample of size $2$: $X_1, X_2\sim \mathcal{N}(\mu, \sigma^2)$. Then, we use the following statistics to make inference about $\mu$:
+    \begin{enumerate}[label=(\roman*)]
+        \item $\bU_1=X_1$, and
+        \item $\bU_2=\frac{X_1 + X_2}{2}$. 
+    \end{enumerate} 
+
+    \noindent Now, we analyse the sufficiency of both $\bU_1, \bU_2$ by calculating the conditional density functions $p_{\bX|\bU_1}$ and $p_{\bX|\bU_2}$ as follows: Let $\bx=\{x_1, x_2 \}$ be a particular observation of the random sample $\bX$ and $\bu_1, \bu_2$ be values of $\bU_1$, $\bU_2$. We have
+
+    \begin{enumerate}[label=(\roman*)]
+        \item \textbf{Calculation of $p_{\bX|\bU_1}(\bx|\bu_1)$}: Obviously, when $x_1\ne\bu_1$, we have $p_{\bX|\bU_1}(\bx|\bu_1) = 0$. On the other hand, if $x_1=\bu_1$, we have
+        \begin{align*}
+            p_{\bX|\bU_1}(\bx|\bu_1) &= \Pm(X_1=x_1, X_2=x_2|\bU_1=\bu_1) \\
+                &= \Pm(X_1 = \bu_1, X_2 = x_2) \\
+                &= \frac{1}{2\pi\sigma^2}\exp\biggSquare{
+                    -\frac{(\bu_1 - \mu)^2 + (x_2 - \mu)^2}{2\sigma^2}
+                },
+        \end{align*}
+
+        \noindent which still depends on $\mu$. Therefore, $\bU_1$ is not a sufficient statistics. 
+
+
+        \item \textbf{Calculation of $p_{\bX|\bU_2}(\bx|\bu_2)$}: Again, when $x_1+x_2\ne \bu_2$, $p_{\bX|\bU_2}(\bx|\bu_2)=0$. Suppose that $x_1+x_2=\bu_2$, using Bayes rule, we have
+        \begin{align*}
+            p_{\bX|\bU_2}(\bx|\bu_2) &= \Pm\biggRound{X_1=x_1, X_2=x_2\Bigg|\frac{X_1 + X_2}{2} = \bu_2} \\
+            &= \frac{\Pm(\bU_2=\bu_2|X_1=x_1, X_2=x_2)\Pm(X_1=x_1, X_2=x_2)}{\Pm(\bU_2 = \bu_2)} \\
+            &= \frac{\Pm(X_1=x_1, X_2=x_2)}{\Pm(\bU_2=\bu_2)}.
+        \end{align*} 
+
+        \noindent Note that $\bU_2 \sim \mathcal{N}\bigRound{\mu, \frac{\sigma^2}{2}}$. Hence, we have:
+        \begin{align*}
+             p_{\bX|\bU_2}(\bx|\bu_2) &= \frac{
+                \frac{1}{2\pi\sigma^2}\exp\biggSquare{-\frac{(x_1 - \mu)^2 + (x_2 - \mu)^2}{2\sigma^2}}
+             }{
+                \frac{1}{\sqrt{\pi\sigma^2}}\exp\biggSquare{-\frac{(\bu_2 - \mu)^2}{\sigma^2}}
+             } \\
+             &= \frac{1}{2\sigma\sqrt{\pi}}\exp\biggSquare{
+                -\frac{-(x_1 - \mu)^2 + (x_2 - \mu)^2 - 2(\bu_2 - \mu)^2}{2\sigma^2}
+             } \\
+             &= \frac{1}{2\sigma\sqrt{\pi}} \exp\biggSquare{-\frac{x_1^2 + x_2^2 - 2\bu_2^2}{2\sigma^2}}.
+        \end{align*} 
+
+        \noindent Since the above conditional density is independent of $\mu$, it is a sufficient statistics for $\mu$.
+    \end{enumerate} 
+\end{example} 
+
+\begin{example}[Bernoulli random variables]
+    Let $\bX = (X_1, \dots, X_n) \sim \bern(\theta)$ be a random sample from the Bernoulli distribution. Let $\bU = \frac{1}{n}\sum_{i=1}^n X_i$, then $\bU$ is a sufficient statistic of $\theta$. To illustrate this, suppose that $\bx = (x_1, \dots, x_n)$ is an observation of the random sample $\bX$ and $\bu = \frac{1}{n}\sum_{i=1}^n x_i$. We have:
+    \begin{align*}
+        \Pm(\bX=\bx| \bU=\bu) &= \frac{\Pm(\bX=\bx, \bU=\bu)}{\Pm(\bU=\bu)} \\
+            &= \frac{\Pm(X_1=x_1, \dots, X_n=x_n, \sum_{i=1}^n X_i = \sum_{i=1}^n x_i)}{\Pm(\sum_{i=1}^n X_i = \sum_{i=1}^n x_i)} \\
+            &= \frac{\Pm(X_1=x_1, \dots, X_n=x_n)}{\Pm(\sum_{i=1}^n X_i = \sum_{i=1}^n x_i)} \\
+            &= \frac{\theta^{\sum_{i=1}^n x_i}(1-\theta)^{n-\sum_{i=1}^n x_i}}{\Pm(\sum_{i=1}^n X_i = \sum_{i=1}^n x_i)}.
+    \end{align*}
+
+    \noindent Now, setting $k=\sum_{i=1}^n x_i$, The denominator is basically the probability that the Bernoulli variables sums up to $k$. Hence, we can calculate the denominator as follows:
+    \begin{align*}
+        \Pm\biggRound{\sum_{i=1}^n X_i = k} &= \begin{pmatrix}
+            n \\ k
+        \end{pmatrix} \theta^k(1-\theta)^{n - k}.
+    \end{align*}
+
+    \noindent Therefore, we have:
+    \begin{align*}
+        \Pm(\bX = \bx | \bU = \bu) &= \frac{\theta^k(1-\theta)^{n-k}}{
+            \begin{pmatrix}
+                n \\ k
+            \end{pmatrix} \theta^k(1-\theta)^{n - k}
+        } = \frac{1}{
+            \begin{pmatrix}
+                n \\ k
+            \end{pmatrix}
+        }.
+    \end{align*}
+
+    \noindent Therefore, the conditional distribution does not depend on $\theta$ and $\bU$ is a sufficient statistic.
+\end{example}
+
+\begin{definition}[Sufficiency Principle]
+    If $\bU=T(\bX)$ is a sufficient statistic for $\btheta$, then any inference about $\btheta$ should only depend on the sample $\bX$ through $\bU$. \color{blue}In other words, if we estimate $\btheta$ using an estimator $\hat\btheta$, only $\bU$ shows up in the formula of $\hat\btheta$, not the sample $\bX$ itself. We will see why this is the case in the Factorisation Theorem $\FacT$, which states that we can factorise the density function into a function of $\bU, \btheta$ and a function of the observations $\bx$ and thus, the inference about $\btheta$ is independent of the observations $\bx$\color{black}.
+\end{definition}
+
+\begin{theorem}{(Fisher-Neyman) Factorisation Theorem $\FacT$}{factorisation_theorem}
+    Let $\bX = (X_1, \dots, X_n)$ be a random sample with joint density function $p_{\btheta}$ over $\mathcal{X}^n$. The statistic $\bU=T(\bX)$ is sufficient for the parameters $\btheta$ if and only if we can find functions $h, g$ such that:
+    \begin{align*}
+        p_{\btheta}(\bx) &= g(T(\bx), \btheta)h(\bx),
+    \end{align*}
+
+    \noindent for all $\bx\in\R^n$ and $\btheta\in\Theta$.
+\end{theorem}
+
+\begin{proof*}[Factorisation Theorem $\FacT$]
+    We have to conduct the proof in both directions.
+    \begin{itemize}
+        \item $T(\bX)$ is sufficient $\implies$ Factorisation exists:
+        Let $\bU=T(\bX)$ be a sufficient statistics and $\bu = T(\bx)$ be the statistics evaluated on the observations $\bx$. Then, we have:
+        \begin{align*}
+            p_{\btheta}(\bx) &= \Pm(\bX=\bx; \btheta) \\ 
+                &= \Pm(\bX=\bx | \bU=\bu; \btheta) \Pm(\bU=\bu;\btheta).
+        \end{align*} 
+
+        \noindent Since $\bU=T(\bX)$ is a sufficient statistics, $\Pm(\bX=\bx|\bU=\bu;\btheta)$ does not depend on $\btheta$. Hence, we denote $h(\bx) = \Pm(\bX=\bx|\bU=\bu;\btheta)$. Furthermore, $\Pm(\bU=\bu;\btheta)$ is a function of $\bu$ and $\btheta$. We denote this function as $g(\bu, \btheta)$ and conclude that the factorisation $p_{\btheta}(\bx)=h(\bx)g(T(\bx),\btheta)$ indeed exists. 
+
+        \item Factorisation exists $\implies$ $T(\bX)$ is sufficient: Suppose that there exists $g, h$ such that we have the factorisation $p_{\btheta}(\bx)=g(T(\bx), \btheta)h(\bx)$. We then have:
+        \begin{align*}
+            \Pm(\bX = \bx|\bU = \bu;\btheta) &=  \frac{p_{\btheta}(\bx)}{\Pm(\bU=\bu;\btheta)} = \frac{g(\bu, \btheta)h(\bx)}{\Pm(\bU=\bu;\btheta)}.
+        \end{align*} 
+
+        \noindent We denote $A_\bu = \bigCurl{\tilde\bx \in \mathcal{X}^n : T(\tilde\bx) = \bu}$. We have:
+        \begin{align*}
+            \Pm(\bU = \bu;\btheta) &= \sum_{\tilde \bx \in A_\bu} \Pm(\bX = \tilde\bx) \\ 
+                &= \sum_{\tilde\bx\in A_\bu} p(\tilde\bx;\btheta) = \sum_{\tilde\bx\in A_\bu} g(T(\tilde\bx), \btheta)h(\tilde\bx) \\ 
+                &= g(\bu, \btheta) \sum_{\tilde\bx\in A_\bu} h(\tilde\bx).
+        \end{align*} 
+
+        \noindent From the above, we have:
+        \begin{align*}
+            \Pm(\bX=\bx|\bU=\bu;\btheta) &= \frac{h(\bx)}{\sum_{\tilde\bx\in A_\bu} h(\tilde\bx)},
+        \end{align*} 
+        \noindent and the above expression does not depend on $\btheta$. Hence, $T(\bX)$ is a sufficient statistics.
+    \end{itemize}
+\end{proof*}
+
+\subsubsection{Likelihood}
+\begin{definition}[Likelihood Function]
+    Let $\bX=(X_1, \dots, X_n)$ be a random sample whose distribution belongs to a family of distributions $\mathcal{P}=\bigCurl{p_\theta:\theta\in\Theta}$. Let $\bx=(x_1, \dots, x_n)$ be an observation of the random sample $\bX$. Then, the likelihood function $L(\theta;\bx)$ is defined as follows:
+    \begin{equation}
+        L(\theta;\bx) = \prod_{i=1}^n p_\theta(x_i), \quad \theta\in\Theta.
+    \end{equation}
+
+    \noindent In some cases, we also use the log-likelihood function:
+    \begin{equation}
+        \ell(\theta;\bx) = \log L(\theta;\bx) = \sum_{i=1}^n \log p_\theta(x_i), \quad \theta\in\Theta.
+    \end{equation}
+
+    \noindent Essentially, $L(\theta;\bx)$ quantifies the likelihood that $\theta$ generates the observations $\bx$. In a way, it is the inverse of probability density (mass) functions, we can see the contrast as follows:
+    \begin{itemize}
+        \item \textbf{Probability Density Function}: The parameters are fixed but the observations are random.
+        \item \textbf{Likelihood Function}: The observations are fixed but the parameters are variable.
+    \end{itemize} 
+\end{definition}
+
+\begin{definition}[Maximum Likelihood Estimator]
+    Given $\bX=(X_1, \dots, X_n)$ be a random sample whose distribution belongs to a family of distributions $\mathcal{P}=\bigCurl{p_\theta:\theta\in\Theta}$ and let $\bx=(x_1, \dots, x_n)$ be an observation of the random sample $\bX$. The \underline{Maximum Likelihood Estimator} $\theta_{MLE}\in\Theta$ is the parameter that maximizes the likelihood function:
+    \begin{equation}
+        \theta_{MLE} = \arg\max_{\theta\in\Theta} L(\theta;\bx).
+    \end{equation}
+
+    \noindent In the subsequent propositions, we will discuss some of the key properties of MLE.
+\end{definition} 
+
+
+\begin{proposition}{Consistency of MLE}{consistency_of_mle}
+    Let $\bX=(X_1, \dots, X_n)$ be a random sample from a distribution $p_{\btheta}$ over $\mathcal{X}$ dependent on a true set of parameters $\btheta$. Let $\Theta$ be the parameters space. Then, the Maximum Likelihood Estimator $\Theta_{MLE} = \arg\max_{\theta\in\Theta}L(\theta;\bX)$, which is a random variable, is consistent, meaning $\Theta_{MLE}\xrightarrow{p}\btheta$, provided that the following conditions are met:
+    \begin{enumerate}
+        \item $\btheta\in\Theta$ and $\Theta$ is a compact space. 
+        \item $\log p_\theta(x)$ is continuous in $\theta$ for almost all $x\in\mathcal{X}$.
+        \item $\E_{\btheta}[\sup_{\theta\in\Theta}|\log p_\theta(X)|] < \infty$.
+        \item The mapping $\xi\mapsto p_\xi, \quad \xi\in\Theta$ is one-to-one (Identifiability).\footnote{In general, it is required that the model is strongly identifiable. However, since the parameters space $\Theta$ is compact, this requirement is satisfied.}
+    \end{enumerate} 
+    
+    \noindent Furthermore, we can also show that $\Theta_{MLE}$ is asymptotically unbiased. In other words, $\lim_{n\to\infty}\E[\Theta_{MLE}] = \btheta$.
+\end{proposition} 
+
+\begin{proof*}[Proposition \ref{prop:consistency_of_mle}]
+    A proof for consistency of MLE can be found in \cite[Theorem 2.5]{book:newey1994} but we attempt our own proof anyway. The general proof strategy is listed below:
+    \begin{enumerate}
+        \item First, prove that $\btheta=\arg\max_{\xi\in\Theta}\E_{\btheta} [\log p_\xi(X)]$. 
+        \item Then, by $\ULLN$: $\frac{1}{n}\sum_{i=1}^n \log p_\theta(X_i)\xrightarrow{p}\E_{\btheta}[\log p_\theta(X)], \quad \forall \theta\in\Theta$.
+        \item Prove that if a stochastic process converges in probability to a deterministic process, then the maximizers of the stochastic process converges in probability to the maximizer of the deterministic process.
+    \end{enumerate} 
+
+    \noindent To complete the proof, it is sufficient to prove the first point. For any $\theta\in\Theta$, we have:
+    \begin{align*}
+        \E_{\btheta}\biggSquare{
+            \log \frac{p_\theta(X)}{p_{\btheta}(X)}
+        } &\le \log\E_{\btheta}\biggSquare{
+            \frac{p_\theta(X)}{p_{\btheta}(X)}
+        } = \log\int_\mathcal{X} \frac{p_\theta(x)}{p_{\btheta}(x)}p_{\btheta}(x)dx = \log 1 = 0.
+    \end{align*} 
+
+    \noindent Therefore, for all $\theta\in\Theta:\E_{\btheta}[\log p_\theta(X)]\le \E_{\btheta}[\log p_{\btheta}(X)]$. Hence, $\btheta=\arg\max_{\xi\in\Theta}\E_{\btheta} [\log p_\xi(X)]$ as desired. Define the following continuous mappings:
+    \begin{align*}
+        M_n &= \xi \mapsto \frac{1}{n} \sum_{i=1}^n \log p_\xi(X_i), \\
+        \text{ and } M &= \xi \mapsto \E_{\btheta}[\log p_\xi(X)]. 
+    \end{align*} 
+
+    \noindent Then, by $\ULLN$, we have $\|M_n - M\|_\infty \xrightarrow{p} 0$. This means that for any fixed $\epsilon>0$ and $\delta\in(0,1)$, there exists $N\in\mathbb{N}$ such that for all $n\ge N$, with probability of at least $1-\delta$, we have:
+    \begin{align*}
+        |M_n(\hat\theta_n) - M(\hat\theta_n)| < \frac{\epsilon}{2}, \quad \text{and} \quad |M_n(\btheta) - M(\btheta)| < \frac{\epsilon}{2},
+    \end{align*} 
+
+    \noindent simultaneously, where $\hat\theta_n = \arg\max_{\theta\in\Theta}M_n(\theta)$. From the above, with probability of at least $1-\delta$, we have:
+    \begin{align*}
+        M(\hat\theta_n) \ge M_n(\hat\theta_n) - \frac{\epsilon}{2} \ge M_n(\btheta) - \frac{\epsilon}{2} \ge M(\btheta) - \epsilon.
+    \end{align*} 
+
+    \noindent Hence, we have $M(\btheta) - M(\hat\theta_n) < \epsilon$ with high probability. Since $M$ is continuous on a compact space, for all $\epsilon>0$, there exists a constant $\xi>0$ such that $|\theta - \btheta| < \xi \implies |M(\btheta) - M(\theta)|<\epsilon$. Hence, we have:
+    \begin{align*}
+        \Pm(|\btheta - \hat\theta_n| < \xi) = \Pm(|M(\btheta)-M(\hat\theta_n)| < \epsilon) \ge 1 - \delta.  
+    \end{align*}   
+
+    \noindent Hence, we have $|\btheta-\hat\theta_n|<\xi$ with high probability. Since $\delta$ is chosen arbitrarily, we can take $\delta\to0$ and for all $\xi>0$, we have: 
+    \begin{align*}
+        \lim_{n\to\infty}\Pm(|\btheta-\hat\theta_n|<\xi) = 1 \implies \hat\theta_n \xrightarrow{p} \btheta. 
+    \end{align*} 
+\end{proof*} 
+
+\begin{proposition}{Asymptotic Normality of MLE}{asymptotic_normality_mle}
+    Let $\bX=(X_1, \dots, X_n)$ be a random sample from a distribution $p_{\btheta}$ dependent on a true set of parameters $\btheta$. Suppose that the $\mathrm{MLE}$ is \underline{consistent}. Then, the Maximum Likelihood Estimator $\Theta_\mathrm{MLE} = \arg\max_{\theta\in\Theta}L(\theta;\bX)$ is asymptotically normal:
+    \begin{equation}
+        \sqrt{n}(\Theta_\mathrm{MLE} - \btheta) \xrightarrow{d} \mathcal{N}(0, \mathcal{I}_{\bX}(\btheta)^{-1}).
+    \end{equation}
+\end{proposition} 
+
+\begin{proof*}[Proposition \ref{prop:asymptotic_normality_mle}]
+    By the Mean Value Theorem, for a continuous function $f:[a, b] \to \R$, we have:
+    \begin{align*}
+        \frac{f(b) - f(a)}{b - a} = f'(c), \quad \text{for some } c\in [a,b]. 
+    \end{align*} 
+
+    \noindent Apply MVT for the log-likelihood function, for some $\varphi_n$ within the interval formed by $\hat\Theta_\mathrm{MLE}$ and $\btheta$ (hence, $\varphi_n$ is a random variable since $\hat\Theta_\mathrm{MLE}$ is random), we have:
+    \begin{align*}
+         \ell''(\varphi_n;\bX) &= \frac{\ell'(\hat\Theta_\mathrm{MLE};\bX) - \ell'(\btheta;\bX)}{\hat\Theta_\mathrm{MLE} - \btheta} = -\frac{\ell'(\btheta;\bX)}{\hat\Theta_\mathrm{MLE} - \btheta} \qquad \bigRound{\ell'(\hat\Theta_\mathrm{MLE};\bX) = 0}.
+    \end{align*} 
+
+    \noindent Therefore, we have:
+    \begin{equation}
+        \label{eq:asympt_normality_mle_mvt}
+        \hat\Theta_\mathrm{MLE} - \btheta = -\frac{\ell'(\btheta;\bX)}{\ell''(\varphi_n;\bX)}\implies \sqrt{n}(\hat\Theta_\mathrm{MLE} - \btheta) = -\frac{\frac{1}{\sqrt n} \ell'(\btheta;\bX)}{\frac{1}{n}\ell''(\varphi_n;\bX)}.\tag{A}
+    \end{equation} 
+
+    \noindent We have:
+    \begin{equation}
+    \label{eq:asympt_normality_mle_numerator}
+    \begin{aligned}
+        \frac{1}{\sqrt n}\ell'(\btheta;\bX) &= \sqrt{n}\biggSquare{\frac{1}{n}\sum_{i=1}^n \frac{d}{d\xi}\ln p_{\xi}(X_i)\Bigg|_{\xi=\btheta}} \\
+        &= \sqrt{n} \biggSquare{
+            \frac{1}{n}\sum_{i=1}^n s(\btheta;X_i)
+        } \\
+        &= \sqrt{n} \biggSquare{
+            \frac{1}{n}\sum_{i=1}^n s(\btheta;X_i) - \underbrace{\E_{\btheta}\bigSquare{s(\btheta;X)}}_{0}
+        } \\
+        &\xrightarrow{d} \mathcal{N}\bigRound{0, \mathrm{Var}_{\btheta}[s(\btheta; X)]} \qquad\CLT \\
+        &= \mathcal{N}(0, \mathcal{I}_{\bX}(\btheta)).
+    \end{aligned}
+    \tag{B}
+    \end{equation} 
+
+    \noindent We also have:
+    \begin{align*}
+        \frac{1}{n}\ell''(\varphi_n;\bX) &= \frac{1}{n} \sum_{i=1}^n \frac{d^2}{d\xi^2}\ln p_\xi(X_i)\Bigg|_{\xi=\varphi_n} 
+        &\xrightarrow{p} \E_{\btheta}\biggSquare{\frac{d^2}{d\xi^2}\ln p_\xi(X)\Big|_{\xi=\varphi_n}}. \qquad \WLLN
+    \end{align*} 
+
+    \noindent By the initial assumption, $\hat\Theta_\mathrm{MLE}\xrightarrow{p}\btheta$ and $\varphi_n$ lies between $\hat\Theta_\mathrm{MLE}$ and $\btheta$. Therefore, $\varphi_n\xrightarrow{p}\btheta$. As a result, by $\CMT$\footnote{The mapping $p\mapsto \E_{\btheta}\bigSquare{\frac{d^2}{d\xi^2} p_\xi(X)\Big|_{\xi=p}}$ is a continuous mapping by the initial assumption that $p_\theta$ is continuous in $\theta$ for $\theta\in\Theta$.}, we have $\E_{\btheta}\bigSquare{\frac{d^2}{d\xi^2}\ln p_\xi(X)\Big|_{\xi=\varphi_n}}\xrightarrow{p}\E_{\btheta}\bigSquare{\frac{d^2}{d\xi^2}\ln p_\xi(X)\Big|_{\xi=\btheta}} = -\mathcal{I}_{\bX}(\btheta)$. Therefore, we have:
+    \begin{equation}
+        \label{eq:asympt_normality_mle_denominator} 
+        \frac{1}{n}\ell''(\varphi_n;\bX) \xrightarrow{p} \E_{\btheta}\biggSquare{\frac{d^2}{d\xi^2}\ln p_\xi(X)\Big|_{\xi=\varphi_n}} \xrightarrow{p} -\mathcal{I}_{\bX}(\btheta).\tag{C}
+    \end{equation} 
+
+    \noindent From Eqns. \ref{eq:asympt_normality_mle_mvt}, \ref{eq:asympt_normality_mle_numerator}, \ref{eq:asympt_normality_mle_denominator} and $\SLUTSKY$ lemma, we have $\sqrt{n}(\hat\Theta_\mathrm{MLE} - \btheta) \xrightarrow{d}\mathcal{N}(0, \mathcal{I}_{\bX}(\btheta)^{-1})$, as desired.
+\end{proof*}
