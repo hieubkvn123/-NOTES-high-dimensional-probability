@@ -15,6 +15,16 @@
     \end{enumerate} 
 \end{remark} 
 
+\begin{example}[Intuition for ``Sufficiency" - A Gaussian Illustration]
+    Suppose that we are conducting a survey about children's height. Suppose that the distribution of heights follows a Gaussian distribution $\mathcal{N}(\mu, \sigma^2)$ and we are given a random sample of size $2$: $X_1, X_2\sim \mathcal{N}(\mu, \sigma^2)$. Then, we use the following statistics to make inference about $\mu$:
+    \begin{enumerate}[label=(\roman*)]
+        \item $\bU_1=X_1$, and
+        \item $\bU_2=\frac{X_1 + X_2}{2}$. 
+    \end{enumerate} 
+
+    \noindent Now, we analyse the sufficiency of both $\bU_1, \bU_2$ by calculating the conditional density functions $p_{\bX|\bU_1}$ and $p_{\bX|\bU_2}$ as follows:
+\end{example} 
+
 \begin{example}[Bernoulli random variables]
     Let $\bX = (X_1, \dots, X_n) \sim \bern(\theta)$ be a random sample from the Bernoulli distribution. Let $\bU = \frac{1}{n}\sum_{i=1}^n X_i$, then $\bU$ is a sufficient statistic of $\theta$. To illustrate this, suppose that $\bx = (x_1, \dots, x_n)$ is an observation of the random sample $\bX$ and $\bu = \frac{1}{n}\sum_{i=1}^n x_i$. We have:
     \begin{align*}
@@ -51,7 +61,7 @@
     If $\bU=T(\bX)$ is a sufficient statistic for $\btheta$, then any inference about $\btheta$ should only depend on the sample $\bX$ through $\bU$. \color{blue}In other words, if we estimate $\btheta$ using an estimator $\hat\btheta$, only $\bU$ shows up in the formula of $\hat\btheta$, not the sample $\bX$ itself. We will see why this is the case in the Factorisation Theorem $\FacT$, which states that we can factorise the density function into a function of $\bU, \btheta$ and a function of the observations $\bx$ and thus, the inference about $\btheta$ is independent of the observations $\bx$\color{black}.
 \end{definition}
 
-\begin{theorem}{Factorisation Theorem $\FacT$}{factorisation_theorem}
+\begin{theorem}{(Fisher-Neyman) Factorisation Theorem $\FacT$}{factorisation_theorem}
     Let $\bX = (X_1, \dots, X_n)$ be a random sample with joint density function $p_{\btheta}$ over $\mathcal{X}^n$. The statistic $\bU=T(\bX)$ is sufficient for the parameters $\btheta$ if and only if we can find functions $h, g$ such that:
     \begin{align*}
         p_{\btheta}(\bx) &= g(T(\bx), \btheta)h(\bx),
