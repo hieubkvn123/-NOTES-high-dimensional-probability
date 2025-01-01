@@ -4,20 +4,20 @@
 \subsection{Properties of Point Estimators}
 In this section, we will discuss ``point estimators", the desirable properties of classes of point estimators and important results. Firstly, let us define what a point estimator is:
 \begin{definition}[Point Estimator]
-    Let $X_1, \dots, X_n$ be a random $i.i.d$ sample from a distribution $p_{\btheta}$ over $\mathcal{X}$ that relies on parameter(s) $\btheta$. Let $\theta\in\Theta$ be a population parameter (population mean, variance, etc). A point estimator for $\theta$ is a mapping:
+    Let $\bX=(X_1, \dots, X_n)$ be a random $i.i.d$ sample from a distribution $p_{\btheta}$ over $\mathcal{X}$ that relies on parameter(s) $\btheta$. Let $\theta\in\Theta$ be a population parameter (population mean, variance, etc). A point estimator for $\theta$ is a mapping:
     \begin{equation}
         \widehat{\Theta}: \mathcal{X}^n \to \Theta,
     \end{equation}
 
-    \noindent where $\widehat{\Theta}(X_1, \dots, X_n)$ serves as a ``best guess" of the quantity $\theta$ based on the available data. Due to the randomness of the sample, the estimator $\widehat\Theta(X_1, \dots, X_n)$ is a \textbf{random variable}.
+    \noindent where $\widehat{\Theta}(\bX)$ serves as a ``best guess" of the quantity $\theta$ based on the available data. Due to the randomness of the sample, the estimator $\widehat\Theta(\bX)$ is a \textbf{random variable}.
 \end{definition} 
 
-In this note, we discuss the following properties of point estimators:
+\noindent In this note, we discuss some desirable properties of point estimators. To summarize these properties before getting into the technicality, we will illustrate the concepts with an example. Suppose that you are given a truck of apples and you want to guess the average weight $\theta$ of these apples. Suppose you have a method $\widehat{\Theta}$ to estimate $\theta$, the properties of unbiasedness, consistency, efficiency and sufficiency can be demonstrated as follows:
 \begin{enumerate}
-    \item Sufficiency.
-    \item Unbiasedness.
-    \item Consistency.
-    \item Efficiency. 
+    \item \textbf{Unbiasedness}: Suppose that your method is to guess $\theta$ as the mean of the first $10$ apples you see. You repeat this guessing process over and over again and realize that the average of all your guesses matches the true value of $\theta$. So, on average, you guess $\theta$ correctly.
+    \item \textbf{Consistency}: You take the first $5$ apples, your method $\widehat{\Theta}$ gives you an estimate a bit far off from $\theta$. You take 45 more apples, your guess gets closer to the true value of $\theta$. Now, you take $450$ more apples, your guess gets even closer. So, your guess gets closer and closer to the true value as you increase sample size.
+    \item \textbf{Efficiency}: Suppose your friend has an estimation method $\widetilde{\Theta}$. It took you $50$ apples to get an estimate that is close to $\theta$ while it took your friend's method $500$ apples to get similarly close. So, your method is more efficient. 
+    \item \textbf{Sufficiency}: Suppose someone gives you a summary table stating that you have $5000$ apples in the truck and the total weight is $100$kg. Then, you do not even have to measure any apple. The summary table already gives you sufficient information.
 \end{enumerate} 
 
 \subsubsection{Sufficiency}
