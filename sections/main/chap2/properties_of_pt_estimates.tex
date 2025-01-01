@@ -1,0 +1,155 @@
+%% ---------------- %%
+\newcommand{\FacT}{\hyperref[thm:factorisation_theorem]{(\mathrm{{\bf FacT}})}}
+
+\subsection{Properties of Point Estimators}
+In this section, we will discuss ``point estimators", the desirable properties of classes of point estimators and important results. Firstly, let us define what a point estimator is:
+\begin{definition}[Point Estimator]
+    Let $X_1, \dots, X_n$ be a random $i.i.d$ sample from a distribution $p_{\btheta}$ over $\mathcal{X}$ that relies on parameter(s) $\btheta$. Let $\theta\in\Theta$ be a population parameter (population mean, variance, etc). A point estimator for $\theta$ is a mapping:
+    \begin{equation}
+        \widehat{\Theta}: \mathcal{X}^n \to \Theta,
+    \end{equation}
+
+    \noindent where $\widehat{\Theta}(X_1, \dots, X_n)$ serves as a ``best guess" of the quantity $\theta$ based on the available data. Due to the randomness of the sample, the estimator $\widehat\Theta(X_1, \dots, X_n)$ is a \textbf{random variable}.
+\end{definition} 
+
+
+\subsubsection{Sufficiency}
+\begin{definition}[Sufficient Statistics]
+    Let $\bX = (X_1, \dots, X_n) \sim p_{\btheta}$ be a random sample drawn $i.i.d$ from a distribution with parameters $\btheta$. Let $\bU=T(\bX)$ be a statistic, then it is called a \underline{sufficient statistic} if the conditional distribution $p_{\bX|\bU}$ does not depend on $\btheta$.
+\end{definition}
+
+\begin{remark}[Intuition for ``Sufficiency"]
+    To give a bit of intuition into what we consider a ``sufficient" statistics. Given a random sample $\bX$ from a distribution whose parameters are denoted as $\btheta$. A statistics $\bU=T(\bX)$ is \textbf{sufficient} for the inference of $\btheta$ iff \textbf{once we know $\bU$, there is no further information about $\btheta$ that we can derive from the data $\bX$}. For example, given $\bX=(X_1, \dots, X_n) \sim_\mathrm{i.i.d}\mathcal{N}(\mu, \sigma^2)$ and our task is to estimate the expectation $\mu$. Consider the following intuitive example:
+    \begin{enumerate}[label=(\roman*)]
+        \item $\bU_1 = \frac{1}{n}\sum_{i=1}^n X_i$: $\bU_1$ is a sufficient statistics because we have used up all the information from the sample $\bX$. More specifically, we have taken the sample mean of all available instances available. 
+        \item $\bU_2 = X_1$: While it is unbiased like $\bU_1$, this is \underline{not a sufficient statistics} because there are further information (the remaining instances $X_2, \dots, X_n$) that is yet to be utilized in the random sample $\bX$.
+    \end{enumerate} 
+\end{remark} 
+
+\begin{example}[Intuition for ``Sufficiency" - A Gaussian Illustration]
+    Suppose that we are conducting a survey about children's height. Suppose that the distribution of heights follows a Gaussian distribution $\mathcal{N}(\mu, \sigma^2)$ and we are given a random sample of size $2$: $X_1, X_2\sim \mathcal{N}(\mu, \sigma^2)$. Then, we use the following statistics to make inference about $\mu$:
+    \begin{enumerate}[label=(\roman*)]
+        \item $\bU_1=X_1$, and
+        \item $\bU_2=\frac{X_1 + X_2}{2}$. 
+    \end{enumerate} 
+
+    \noindent Now, we analyse the sufficiency of both $\bU_1, \bU_2$ by calculating the conditional density functions $p_{\bX|\bU_1}$ and $p_{\bX|\bU_2}$ as follows: Let $\bx=\{x_1, x_2 \}$ be a particular observation of the random sample $\bX$ and $\bu_1, \bu_2$ be values of $\bU_1$, $\bU_2$. We have
+
+    \begin{enumerate}[label=(\roman*)]
+        \item \textbf{Calculation of $p_{\bX|\bU_1}(\bx|\bu_1)$}: Obviously, when $x_1\ne\bu_1$, we have $p_{\bX|\bU_1}(\bx|\bu_1) = 0$. On the other hand, if $x_1=\bu_1$, we have
+        \begin{align*}
+            p_{\bX|\bU_1}(\bx|\bu_1) &= \Pm(X_1=x_1, X_2=x_2|\bU_1=\bu_1) \\
+                &= \Pm(X_1 = \bu_1, X_2 = x_2) \\
+                &= \frac{1}{2\pi\sigma^2}\exp\biggSquare{
+                    -\frac{(\bu_1 - \mu)^2 + (x_2 - \mu)^2}{2\sigma^2}
+                },
+        \end{align*}
+
+        \noindent which still depends on $\mu$. Therefore, $\bU_1$ is not a sufficient statistics. 
+
+
+        \item \textbf{Calculation of $p_{\bX|\bU_2}(\bx|\bu_2)$}: Again, when $x_1+x_2\ne \bu_2$, $p_{\bX|\bU_2}(\bx|\bu_2)=0$. Suppose that $x_1+x_2=\bu_2$, using Bayes rule, we have
+        \begin{align*}
+            p_{\bX|\bU_2}(\bx|\bu_2) &= \Pm\biggRound{X_1=x_1, X_2=x_2\Bigg|\frac{X_1 + X_2}{2} = \bu_2} \\
+            &= \frac{\Pm(\bU_2=\bu_2|X_1=x_1, X_2=x_2)\Pm(X_1=x_1, X_2=x_2)}{\Pm(\bU_2 = \bu_2)} \\
+            &= \frac{\Pm(X_1=x_1, X_2=x_2)}{\Pm(\bU_2=\bu_2)}.
+        \end{align*} 
+
+        \noindent Note that $\bU_2 \sim \mathcal{N}\bigRound{\mu, \frac{\sigma^2}{2}}$. Hence, we have:
+        \begin{align*}
+             p_{\bX|\bU_2}(\bx|\bu_2) &= \frac{
+                \frac{1}{2\pi\sigma^2}\exp\biggSquare{-\frac{(x_1 - \mu)^2 + (x_2 - \mu)^2}{2\sigma^2}}
+             }{
+                \frac{1}{\sqrt{\pi\sigma^2}}\exp\biggSquare{-\frac{(\bu_2 - \mu)^2}{\sigma^2}}
+             } \\
+             &= \frac{1}{2\sigma\sqrt{\pi}}\exp\biggSquare{
+                -\frac{-(x_1 - \mu)^2 + (x_2 - \mu)^2 - 2(\bu_2 - \mu)^2}{2\sigma^2}
+             } \\
+             &= \frac{1}{2\sigma\sqrt{\pi}} \exp\biggSquare{-\frac{x_1^2 + x_2^2 - 2\bu_2^2}{2\sigma^2}}.
+        \end{align*} 
+
+        \noindent Since the above conditional density is independent of $\mu$, it is a sufficient statistics for $\mu$.
+    \end{enumerate} 
+\end{example} 
+
+\begin{example}[Bernoulli random variables]
+    Let $\bX = (X_1, \dots, X_n) \sim \bern(\theta)$ be a random sample from the Bernoulli distribution. Let $\bU = \frac{1}{n}\sum_{i=1}^n X_i$, then $\bU$ is a sufficient statistic of $\theta$. To illustrate this, suppose that $\bx = (x_1, \dots, x_n)$ is an observation of the random sample $\bX$ and $\bu = \frac{1}{n}\sum_{i=1}^n x_i$. We have:
+    \begin{align*}
+        \Pm(\bX=\bx| \bU=\bu) &= \frac{\Pm(\bX=\bx, \bU=\bu)}{\Pm(\bU=\bu)} \\
+            &= \frac{\Pm(X_1=x_1, \dots, X_n=x_n, \sum_{i=1}^n X_i = \sum_{i=1}^n x_i)}{\Pm(\sum_{i=1}^n X_i = \sum_{i=1}^n x_i)} \\
+            &= \frac{\Pm(X_1=x_1, \dots, X_n=x_n)}{\Pm(\sum_{i=1}^n X_i = \sum_{i=1}^n x_i)} \\
+            &= \frac{\theta^{\sum_{i=1}^n x_i}(1-\theta)^{n-\sum_{i=1}^n x_i}}{\Pm(\sum_{i=1}^n X_i = \sum_{i=1}^n x_i)}.
+    \end{align*}
+
+    \noindent Now, setting $k=\sum_{i=1}^n x_i$, The denominator is basically the probability that the Bernoulli variables sums up to $k$. Hence, we can calculate the denominator as follows:
+    \begin{align*}
+        \Pm\biggRound{\sum_{i=1}^n X_i = k} &= \begin{pmatrix}
+            n \\ k
+        \end{pmatrix} \theta^k(1-\theta)^{n - k}.
+    \end{align*}
+
+    \noindent Therefore, we have:
+    \begin{align*}
+        \Pm(\bX = \bx | \bU = \bu) &= \frac{\theta^k(1-\theta)^{n-k}}{
+            \begin{pmatrix}
+                n \\ k
+            \end{pmatrix} \theta^k(1-\theta)^{n - k}
+        } = \frac{1}{
+            \begin{pmatrix}
+                n \\ k
+            \end{pmatrix}
+        }.
+    \end{align*}
+
+    \noindent Therefore, the conditional distribution does not depend on $\theta$ and $\bU$ is a sufficient statistic.
+\end{example}
+
+\begin{definition}[Sufficiency Principle]
+    If $\bU=T(\bX)$ is a sufficient statistic for $\btheta$, then any inference about $\btheta$ should only depend on the sample $\bX$ through $\bU$. \color{blue}In other words, if we estimate $\btheta$ using an estimator $\hat\btheta$, only $\bU$ shows up in the formula of $\hat\btheta$, not the sample $\bX$ itself. We will see why this is the case in the Factorisation Theorem $\FacT$, which states that we can factorise the density function into a function of $\bU, \btheta$ and a function of the observations $\bx$ and thus, the inference about $\btheta$ is independent of the observations $\bx$\color{black}.
+\end{definition}
+
+\begin{theorem}{(Fisher-Neyman) Factorisation Theorem $\FacT$}{factorisation_theorem}
+    Let $\bX = (X_1, \dots, X_n)$ be a random sample with joint density function $p_{\btheta}$ over $\mathcal{X}^n$. The statistic $\bU=T(\bX)$ is sufficient for the parameters $\btheta$ if and only if we can find functions $h, g$ such that:
+    \begin{align*}
+        p_{\btheta}(\bx) &= g(T(\bx), \btheta)h(\bx),
+    \end{align*}
+
+    \noindent for all $\bx\in\R^n$ and $\btheta\in\Theta$.
+\end{theorem}
+
+\begin{proof*}[Factorisation Theorem $\FacT$]
+    We have to conduct the proof in both directions.
+    \begin{itemize}
+        \item $T(\bX)$ is sufficient $\implies$ Factorisation exists:
+        Let $\bU=T(\bX)$ be a sufficient statistics and $\bu = T(\bx)$ be the statistics evaluated on the observations $\bx$. Then, we have:
+        \begin{align*}
+            p_{\btheta}(\bx) &= \Pm(\bX=\bx; \btheta) \\ 
+                &= \Pm(\bX=\bx | \bU=\bu; \btheta) \Pm(\bU=\bu;\btheta).
+        \end{align*} 
+
+        \noindent Since $\bU=T(\bX)$ is a sufficient statistics, $\Pm(\bX=\bx|\bU=\bu;\btheta)$ does not depend on $\btheta$. Hence, we denote $h(\bx) = \Pm(\bX=\bx|\bU=\bu;\btheta)$. Furthermore, $\Pm(\bU=\bu;\btheta)$ is a function of $\bu$ and $\btheta$. We denote this function as $g(\bu, \btheta)$ and conclude that the factorisation $p_{\btheta}(\bx)=h(\bx)g(T(\bx),\btheta)$ indeed exists. 
+
+        \item Factorisation exists $\implies$ $T(\bX)$ is sufficient: Suppose that there exists $g, h$ such that we have the factorisation $p_{\btheta}(\bx)=g(T(\bx), \btheta)h(\bx)$. We then have:
+        \begin{align*}
+            \Pm(\bX = \bx|\bU = \bu;\btheta) &=  \frac{p_{\btheta}(\bx)}{\Pm(\bU=\bu;\btheta)} = \frac{g(\bu, \btheta)h(\bx)}{\Pm(\bU=\bu;\btheta)}.
+        \end{align*} 
+
+        \noindent We denote $A_\bu = \bigCurl{\tilde\bx \in \mathcal{X}^n : T(\tilde\bx) = \bu}$. We have:
+        \begin{align*}
+            \Pm(\bU = \bu;\btheta) &= \sum_{\tilde \bx \in A_\bu} \Pm(\bX = \tilde\bx) \\ 
+                &= \sum_{\tilde\bx\in A_\bu} p(\tilde\bx;\btheta) = \sum_{\tilde\bx\in A_\bu} g(T(\tilde\bx), \btheta)h(\tilde\bx) \\ 
+                &= g(\bu, \btheta) \sum_{\tilde\bx\in A_\bu} h(\tilde\bx).
+        \end{align*} 
+
+        \noindent From the above, we have:
+        \begin{align*}
+            \Pm(\bX=\bx|\bU=\bu;\btheta) &= \frac{h(\bx)}{\sum_{\tilde\bx\in A_\bu} h(\tilde\bx)},
+        \end{align*} 
+        \noindent and the above expression does not depend on $\btheta$. Hence, $T(\bX)$ is a sufficient statistics.
+    \end{itemize}
+\end{proof*}
+
+\subsubsection{Bias and Efficiency} 
+
+\subsubsection{Consistent Estimator}
+
