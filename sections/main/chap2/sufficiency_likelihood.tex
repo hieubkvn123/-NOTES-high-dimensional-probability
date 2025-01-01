@@ -236,15 +236,15 @@
         \frac{f(b) - f(a)}{b - a} = f'(c), \quad \text{for some } c\in [a,b]. 
     \end{align*} 
 
-    \noindent Apply MVT for the log-likelihood function, for some $\varphi_n$ within the interval formed by $\hat\Theta_\mathrm{MLE}$ and $\btheta$ (hence, $\varphi_n$ is a random variable since $\hat\Theta_\mathrm{MLE}$ is random), we have:
+    \noindent Apply MVT for the log-likelihood function, for some $\varphi_n$ within the interval formed by $\widehat{\Theta}_\mathrm{MLE}$ and $\btheta$ (hence, $\varphi_n$ is a random variable since $\widehat{\Theta}_\mathrm{MLE}$ is random), we have:
     \begin{align*}
-         \ell''(\varphi_n;\bX) &= \frac{\ell'(\hat\Theta_\mathrm{MLE};\bX) - \ell'(\btheta;\bX)}{\hat\Theta_\mathrm{MLE} - \btheta} = -\frac{\ell'(\btheta;\bX)}{\hat\Theta_\mathrm{MLE} - \btheta} \qquad \bigRound{\ell'(\hat\Theta_\mathrm{MLE};\bX) = 0}.
+         \ell''(\varphi_n;\bX) &= \frac{\ell'(\widehat{\Theta}_\mathrm{MLE};\bX) - \ell'(\btheta;\bX)}{\widehat{\Theta}_\mathrm{MLE} - \btheta} = -\frac{\ell'(\btheta;\bX)}{\widehat{\Theta}_\mathrm{MLE} - \btheta} \qquad \bigRound{\ell'(\widehat{\Theta}_\mathrm{MLE};\bX) = 0}.
     \end{align*} 
 
     \noindent Therefore, we have:
     \begin{equation}
         \label{eq:asympt_normality_mle_mvt}
-        \hat\Theta_\mathrm{MLE} - \btheta = -\frac{\ell'(\btheta;\bX)}{\ell''(\varphi_n;\bX)}\implies \sqrt{n}(\hat\Theta_\mathrm{MLE} - \btheta) = -\frac{\frac{1}{\sqrt n} \ell'(\btheta;\bX)}{\frac{1}{n}\ell''(\varphi_n;\bX)}.\tag{A}
+        \widehat{\Theta}_\mathrm{MLE} - \btheta = -\frac{\ell'(\btheta;\bX)}{\ell''(\varphi_n;\bX)}\implies \sqrt{n}(\widehat{\Theta}_\mathrm{MLE} - \btheta) = -\frac{\frac{1}{\sqrt n} \ell'(\btheta;\bX)}{\frac{1}{n}\ell''(\varphi_n;\bX)}.\tag{A}
     \end{equation} 
 
     \noindent We have:
@@ -270,11 +270,11 @@
         &\xrightarrow{p} \E_{\btheta}\biggSquare{\frac{d^2}{d\xi^2}\ln p_\xi(X)\Big|_{\xi=\varphi_n}}. \qquad \WLLN
     \end{align*} 
 
-    \noindent By the initial assumption, $\hat\Theta_\mathrm{MLE}\xrightarrow{p}\btheta$ and $\varphi_n$ lies between $\hat\Theta_\mathrm{MLE}$ and $\btheta$. Therefore, $\varphi_n\xrightarrow{p}\btheta$. As a result, by $\CMT$\footnote{The mapping $p\mapsto \E_{\btheta}\bigSquare{\frac{d^2}{d\xi^2} p_\xi(X)\Big|_{\xi=p}}$ is a continuous mapping by the initial assumption that $p_\theta$ is continuous in $\theta$ for $\theta\in\Theta$.}, we have $\E_{\btheta}\bigSquare{\frac{d^2}{d\xi^2}\ln p_\xi(X)\Big|_{\xi=\varphi_n}}\xrightarrow{p}\E_{\btheta}\bigSquare{\frac{d^2}{d\xi^2}\ln p_\xi(X)\Big|_{\xi=\btheta}} = -\mathcal{I}_{\bX}(\btheta)$. Therefore, we have:
+    \noindent By the initial assumption, $\widehat{\Theta}_\mathrm{MLE}\xrightarrow{p}\btheta$ and $\varphi_n$ lies between $\widehat{\Theta}_\mathrm{MLE}$ and $\btheta$. Therefore, $\varphi_n\xrightarrow{p}\btheta$. As a result, by $\CMT$\footnote{The mapping $p\mapsto \E_{\btheta}\bigSquare{\frac{d^2}{d\xi^2} p_\xi(X)\Big|_{\xi=p}}$ is a continuous mapping by the initial assumption that $p_\theta$ is continuous in $\theta$ for $\theta\in\Theta$.}, we have $\E_{\btheta}\bigSquare{\frac{d^2}{d\xi^2}\ln p_\xi(X)\Big|_{\xi=\varphi_n}}\xrightarrow{p}\E_{\btheta}\bigSquare{\frac{d^2}{d\xi^2}\ln p_\xi(X)\Big|_{\xi=\btheta}} = -\mathcal{I}_{\bX}(\btheta)$. Therefore, we have:
     \begin{equation}
         \label{eq:asympt_normality_mle_denominator} 
         \frac{1}{n}\ell''(\varphi_n;\bX) \xrightarrow{p} \E_{\btheta}\biggSquare{\frac{d^2}{d\xi^2}\ln p_\xi(X)\Big|_{\xi=\varphi_n}} \xrightarrow{p} -\mathcal{I}_{\bX}(\btheta).\tag{C}
     \end{equation} 
 
-    \noindent From Eqns. \ref{eq:asympt_normality_mle_mvt}, \ref{eq:asympt_normality_mle_numerator}, \ref{eq:asympt_normality_mle_denominator} and $\SLUTSKY$ lemma, we have $\sqrt{n}(\hat\Theta_\mathrm{MLE} - \btheta) \xrightarrow{d}\mathcal{N}(0, \mathcal{I}_{\bX}(\btheta)^{-1})$, as desired.
+    \noindent From Eqns. \ref{eq:asympt_normality_mle_mvt}, \ref{eq:asympt_normality_mle_numerator}, \ref{eq:asympt_normality_mle_denominator} and $\SLUTSKY$ lemma, we have $\sqrt{n}(\widehat{\Theta}_\mathrm{MLE} - \btheta) \xrightarrow{d}\mathcal{N}(0, \mathcal{I}_{\bX}(\btheta)^{-1})$, as desired.
 \end{proof*}
